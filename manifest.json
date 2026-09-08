@@ -2,25 +2,45 @@
   "id": "/Mythic-Plus-Tips/",
   "name": "Matriz Táctica M+ Midnight T2",
   "short_name": "Matriz M+",
-  "description": "Guía táctica y matriz de contramedidas para Míticas+ de la Temporada 2",
+  "description": "Guía táctica y matriz de contramedidas para pushear llaves Míticas+ en la Temporada 2 de Midnight. Basado en datos de Archon y Wowhead.",
   "start_url": "/Mythic-Plus-Tips/index.html",
   "scope": "/Mythic-Plus-Tips/",
+  "lang": "es-419",
+  "dir": "ltr",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "minimal-ui"],
   "background_color": "#1c1917",
   "theme_color": "#ea580c",
   "orientation": "portrait",
+  "categories": ["games", "utilities"],
   "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "icon-192.svg",
       "sizes": "192x192",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Matriz de Clases",
+      "url": "/Mythic-Plus-Tips/index.html#tab-matrix"
     },
     {
-      "src": "icon-512.svg",
-      "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "name": "Analizador de Grupo",
+      "url": "/Mythic-Plus-Tips/index.html#tab-analyzer"
     }
   ]
 }
