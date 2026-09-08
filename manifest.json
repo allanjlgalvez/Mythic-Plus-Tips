@@ -1,0 +1,21 @@
+{
+  "name": "Matriz Táctica M+ Midnight",
+  "short_name": "Matriz M+",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1c1917",
+  "theme_color": "#ea580c",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/allanjlgalvez/Mythic-Plus-Tips/main/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://raw.githubusercontent.com/allanjlgalvez/Mythic-Plus-Tips/main/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
