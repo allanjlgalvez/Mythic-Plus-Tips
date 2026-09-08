@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1917" />
+      <stop offset="40%" stop-color="#0c0a09" />
+      <stop offset="100%" stop-color="#181311" />
+    </linearGradient>
+    <linearGradient id="goldGrad512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="45%" stop-color="#fef08a" />
+      <stop offset="70%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+    <filter id="glow512" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Fondo base con biseles profundos -->
+  <rect width="512" height="512" rx="96" fill="url(#bgGrad512)" />
+  <rect x="16" y="16" width="480" height="480" rx="80" fill="none" stroke="url(#goldGrad512)" stroke-width="8" stroke-opacity="0.8" />
+  <rect x="32" y="32" width="448" height="448" rx="64" fill="none" stroke="#ea580c" stroke-width="2" stroke-opacity="0.4" stroke-dasharray="12 8" />
+
+  <!-- Detalles de runa angular superior e inferior -->
+  <polygon points="256,60 280,95 256,130 232,95" fill="url(#goldGrad512)" filter="url(#glow512)" />
+  <polygon points="256,382 280,417 256,452 232,417" fill="url(#goldGrad512)" opacity="0.5" />
+
+  <!-- Rombo central tenue de fondo -->
+  <polygon points="256,150 380,260 256,370 132,260" fill="none" stroke="#451a03" stroke-width="3" opacity="0.6" />
+
+  <!-- Tipografía Logotipo M+ -->
+  <g text-anchor="middle" font-family="'Cinzel', 'Cinzel Decorative', 'Georgia', serif" font-weight="900">
+    <!-- Sombra proyectada del logo -->
+    <text x="218" y="316" font-size="210" fill="#000000" opacity="0.7" letter-spacing="-6">M</text>
+    <text x="358" y="270" font-size="140" fill="#000000" opacity="0.7" font-family="'Segoe UI', sans-serif" font-weight="800">+</text>
+
+    <!-- Elementos frontales -->
+    <text x="214" y="312" font-size="210" fill="url(#goldGrad512)" filter="url(#glow512)" letter-spacing="-6">M</text>
+    <text x="354" y="266" font-size="140" fill="#ea580c" font-family="'Segoe UI', sans-serif" font-weight="800">+</text>
+  </g>
+
+  <!-- Subtítulo de Temporada -->
+  <text x="256" y="360" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="28" font-weight="800" fill="#d6d3d1" letter-spacing="8">MIDNIGHT</text>
+  <text x="256" y="388" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="700" fill="#ea580c" letter-spacing="4">TEMPORADA 2</text>
+</svg>
