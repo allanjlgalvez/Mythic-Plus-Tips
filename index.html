@@ -3,62 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matriz M+ Midnight T2</title>
+    <title>Matriz M+ Midnight T2 - Táctica</title>
     <style>
-        /* Modo oscuro nativo para leer mientras esperamos el pull */
-        body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 20px;
+        :root {
+            --bg-color: #121212;
+            --panel-bg: #1e1e1e;
+            --border-color: #333;
+            --text-color: #e0e0e0;
+            --accent-gold: #ffcc00;
+            --interrupt-red: #ff4c4c;
+            --purge-blue: #4c9aff;
+            --cc-purple: #a335ee;
+            --heal-green: #20ff20;
         }
-        h1 {
-            color: #ffcc00; /* Dorado clásico de las misiones de WoW */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 15px;
+            margin: 0;
+        }
+        h1 { 
+            color: var(--accent-gold); 
+            font-size: 1.5rem; 
+            text-align: center; 
+            margin-bottom: 20px;
+        }
+        .filtros {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+            background: var(--panel-bg);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        label { font-weight: bold; font-size: 0.95rem; }
+        select {
+            padding: 10px;
+            background-color: #2a2a2a;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 1rem;
+            width: 100%;
+        }
+        .table-container {
+            overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #1e1e1e;
+            background-color: var(--panel-bg);
+            min-width: 600px;
         }
         th, td {
-            border: 1px solid #333;
+            border: 1px solid var(--border-color);
             padding: 12px;
             text-align: left;
+            font-size: 0.9rem;
         }
-        th {
-            background-color: #2a2a2a;
-            color: #ffcc00;
+        th { 
+            background-color: #2a2a2a; 
+            color: var(--accent-gold); 
+            position: sticky;
+            top: 0;
         }
-        .interrupcion { color: #ff4c4c; font-weight: bold; }
-        .purga { color: #4c9aff; font-weight: bold; }
+        /* Colores tácticos para lectura rápida a medio pull */
+        .interrupcion { color: var(--interrupt-red); font-weight: bold; }
+        .purga { color: var(--purge-blue); font-weight: bold; }
+        .cc { color: var(--cc-purple); font-weight: bold; } 
+        .sanacion { color: var(--heal-green); font-weight: bold; }
+        
+        .oculto { display: none; }
     </style>
 </head>
 <body>
 
-    <h1>Matriz de Contramedidas - Midnight Temporada 2</h1>
-    <p>Guía de supervivencia rápida para Míticas+. Revisa quién corta y quién purga antes del pull.</p>
+    <h1>Matriz Táctica - Midnight T2</h1>
 
-    <table>
-        <tr>
-            <th>Mazmorra</th>
-            <th>Enemigo</th>
-            <th>Mecánica (Wowhead)</th>
-            <th>Clase y Habilidad</th>
-        </tr>
-        <tr>
-            <td>Arena Cicatriz del Vacío</td>
-            <td>Magi tocado por el vacío</td>
-            <td class="interrupcion">Cortar: Descarga de las Sombras</td>
-            <td>Guerrero: Zurrar / Druida: Testarazo</td>
-        </tr>
-        <tr>
-            <td>El Valle Cegador</td>
-            <td>Tejedor de luz corrupto</td>
-            <td class="purga">Purgar: Barrera radiante</td>
-            <td>Sacerdote: Disipar magia / Mago: Robar hechizo</td>
-        </tr>
-    </table>
+    <div class="filtros">
+        <label for="filtroClase">Filtrar por Especialización:</label>
+        <select id="filtroClase" onchange="filtrarTabla()">
+            <option value="todos">Mostrar Todas</option>
+            <option value="guerrero_prot">Guerrero Protección</option>
+            <option value="sacerdote_disc">Sacerdote Disciplina</option>
+            <option value="druida_feral">Druida Feral</option>
+            <option value="brujo_demo">Brujo Demonología</option>
+        </select>
 
+        <label for="filtroMazmorra">Selecciona la Mazmorra:</label>
+        <select id="filtroMazmorra" onchange="filtrarTabla()">
+            <option value="todas">Todas las Mazmorras</option>
+            <option value="altar">Altar de los Colmillos (Altar of Fangs)</option>
+            <option value="calle">Calle de los Asesinatos (Murder Row)</option>
+            <option value="guarida">Guarida de Nalorakk (Den of Nalorakk)</option>
+            <option value="valle">El Valle Cegador (The Blinding Vale)</option>
+            <option value="arena">Arena Cicatriz del Vacío (Voidscar Arena)</option>
+            <option value="reposo">Reposo de los Reyes (Kings' Rest)</option>
+            <option value="templo">Templo de Sethraliss (Temple of Sethraliss)</option>
+            <option value="estanques">Estanques de Vida Rubí (Ruby Life Pools)</option>
+        </select>
+    </div>
+
+    <div class="table-container">
+        <table id="tablaMatriz">
+            <thead>
+                <tr>
+                    <th>Mazmorra</th>
+                    <th>Enemigo / Jefe</th>
+                    <th>Mecánica Letal</th>
+                    <th>Tu Respuesta (Hechizo/Habilidad)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Guerrero Protección -->
+                <tr data-clase="guerrero_prot" data-mazmorra="arena">
+                    <td>Arena Cicatriz del Vacío</td>
+                    <td>Magi tocado por el vacío</td>
+                    <td class="interrupcion">Cortar: Descarga de las Sombras</td>
+                    <td>Zurrar / Reflejo de hechizos (si estás a rango)</td>
+                </tr>
+                <tr data-clase="guerrero_prot" data-mazmorra="reposo">
+                    <td>Reposo de los Reyes</td>
+                    <td>Sombra de Zul</td>
+                    <td class="cc">Mitigación Mágica: Maleficio de oscuridad</td>
+                    <td>Reflejo de hechizos (mitiga el debuff) / Ignorar dolor</td>
+                </tr>
+                <tr data-clase="guerrero_prot" data-mazmorra="templo">
+                    <td>Templo de Sethraliss</td>
+                    <td>Jinete de escamas de fe</td>
+                    <td class="cc">Aturdimiento: Rugido ensordecedor</td>
+                    <td>Ola de choque (Stun en área para evitar el casteo)</td>
+                </tr>
+
+                <!-- Sacerdote Disciplina -->
+                <tr data-clase="sacerdote_disc" data-mazmorra="valle">
+                    <td>El Valle Cegador</td>
+                    <td>Tejedor de luz corrupto</td>
+                    <td class="purga">Purgar: Barrera radiante</td>
+                    <td>Disipar magia (Spamear para quitar el escudo)</td>
+                </tr>
+                <tr data-clase="sacerdote_disc" data-mazmorra="calle">
+                    <td>Calle de los Asesinatos</td>
+                    <td>Asesino de las Sombras</td>
+                    <td class="sanacion">Mitigar Daño Grupo: Rastro de veneno</td>
+                    <td>Palabra de poder: escudo / Éxtasis antes de que aplique el DoT</td>
+                </tr>
+                <tr data-clase="sacerdote_disc" data-mazmorra="altar">
+                    <td>Altar de los Colmillos</td>
+                    <td>Sacerdote de sangre iracundo</td>
+                    <td class="purga">Disipar Enfermedad: Sangre hirviente</td>
+                    <td>Purificar (Quitar rápido para evitar daño progresivo)</td>
+                </tr>
+
+                <!-- Druida Feral -->
+                <tr data-clase="druida_feral" data-mazmorra="calle">
+                    <td>Calle de los Asesinatos</td>
+                    <td>Jefe: Sombra veloz</td>
+                    <td class="cc">Utilidad de Grupo: Huida táctica</td>
+                    <td>Rugido de estampida (Para ayudar al grupo a reposicionarse)</td>
+                </tr>
+                <tr data-clase="druida_feral" data-mazmorra="guarida">
+                    <td>Guarida de Nalorakk</td>
+                    <td>Lanzador de hachas Amani</td>
+                    <td class="interrupcion">Cortar: Lanzamiento brutal</td>
+                    <td>Testarazo (Prioridad máxima en pulls grandes)</td>
+                </tr>
+                <tr data-clase="druida_feral" data-mazmorra="estanques">
+                    <td>Estanques de Vida Rubí</td>
+                    <td>Bailatormentas primigenio</td>
+                    <td class="cc">Calmar (Enfurecimiento): Sed de sangre</td>
+                    <td>Calmar (Quita el enrage inmediatamente)</td>
+                </tr>
+
+                <!-- Brujo Demonología -->
+                <tr data-clase="brujo_demo" data-mazmorra="arena">
+                    <td>Arena Cicatriz del Vacío</td>
+                    <td>Clamavacío colosal</td>
+                    <td class="cc">Control de Masas: Grito de terror</td>
+                    <td>Furia de las Sombras / Lanzamiento de hacha (Guardia vil)</td>
+                </tr>
+                <tr data-clase="brujo_demo" data-mazmorra="templo">
+                    <td>Templo de Sethraliss</td>
+                    <td>Guardián del templo</td>
+                    <td class="purga">Disipar Magia: Escudo galvánico</td>
+                    <td>Devorar magia (Mascota Manáfago, si la llevas)</td>
+                </tr>
+                <tr data-clase="brujo_demo" data-mazmorra="altar">
+                    <td>Altar de los Colmillos</td>
+                    <td>Murciélago vampírico</td>
+                    <td class="cc">Mitigación Personal: Frenesí de sangre</td>
+                    <td>Resolución interminable / Piedra de salud</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function filtrarTabla() {
+            const claseSeleccionada = document.getElementById("filtroClase").value;
+            const mazmorraSeleccionada = document.getElementById("filtroMazmorra").value;
+            const filas = document.querySelectorAll("#tablaMatriz tbody tr");
+
+            filas.forEach(fila => {
+                const claseFila = fila.getAttribute("data-clase");
+                const mazmorraFila = fila.getAttribute("data-mazmorra");
+                
+                const coincideClase = (claseSeleccionada === "todos" || claseSeleccionada === claseFila);
+                const coincideMazmorra = (mazmorraSeleccionada === "todas" || mazmorraSeleccionada === mazmorraFila);
+
+                if (coincideClase && coincideMazmorra) {
+                    fila.classList.remove("oculto");
+                } else {
+                    fila.classList.add("oculto");
+                }
+            });
+        }
+    </script>
 </body>
 </html>
