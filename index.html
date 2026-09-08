@@ -1,6 +1,18 @@
 ```html
 <!DOCTYPE html>
 <html lang="es-419">
+        <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registrado OK'))
+                    .catch(err => console.error('Error en Service Worker', err));
+            });
+        }
+    </script>
+</head>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
