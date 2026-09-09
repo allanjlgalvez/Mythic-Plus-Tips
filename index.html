@@ -1004,7 +1004,7 @@
             const container = document.getElementById('dungeon-selector');
             container.innerHTML = dungeonsData.map(d => `
                 <button onclick="selectDungeon('${d.id}')" 
-                        style="background-image: url('images/${d.id}.webp');"
+                        style="background-image: url('.images/${d.id}.webp');"
                         class="group relative dungeon-card rounded-xl p-4 text-left flex flex-col justify-between aspect-square overflow-hidden shadow-xl">
                     <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-amber-500/30 to-transparent rounded-bl-full"></div>
                     <div class="relative z-10">
