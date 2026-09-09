@@ -53,7 +53,7 @@
             text-shadow: 1px 1px 2px #000;
         }
 
-        /* Botón de Mazmorra 1:1 con Fondo de Imagen y Overlay Oscuro */
+        /* Botón de Mazmorra 1:1 con Fondo de Imagen Webp y Overlay Oscuro */
         .dungeon-card {
             background-size: cover;
             background-position: center;
@@ -143,12 +143,11 @@
 </head>
 <body class="min-h-screen flex flex-col custom-scrollbar">
 
-    <!-- TOP HEADER / NAV CON LOGOTIPO DE PIEDRA ANGULAR -->
+    <!-- TOP HEADER / NAV CON LOGOTIPO GUÍA MÍTICA PLUS -->
     <header class="bg-[#141210] text-stone-100 border-b-2 border-[#57534e] sticky top-0 z-50 shadow-xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center space-x-3">
-                    <!-- Logotipo SVG: Piedra Angular Mítica (Keystone) -->
                     <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-amber-700 via-orange-600 to-amber-400 flex items-center justify-center shadow-lg border-2 border-amber-300/60 relative overflow-hidden">
                         <svg class="w-6 h-6 text-stone-950 drop-shadow" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -217,3 +216,1000 @@
             </button>
         </div>
     </header>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 overflow-hidden">
+
+        <!-- TAB 1: GUÍA DE MAZMORRAS -->
+        <section id="tab-dungeons" class="space-y-6">
+            
+            <!-- Vista A: Selector de Mazmorras 1:1 con arte Webp -->
+            <div id="dungeon-grid-view" class="view-transition fade-in-slide space-y-6">
+                <div class="companion-panel p-5 rounded-xl">
+                    <h2 class="font-cinzel text-xl sm:text-2xl font-bold text-amber-400 mb-2 drop-shadow">
+                        <i class="fa-solid fa-map-location-dot text-amber-500 mr-2"></i>Centro de Mando: Mazmorras Temporada 2
+                    </h2>
+                    <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
+                        Selecciona un calabozo para desplegar su información táctica de jefes, prioridades de *trash* y contramedidas exactas de la expansión *Midnight*.
+                    </p>
+                </div>
+                <!-- Grid con proporción 1:1 -->
+                <div id="dungeon-selector" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+
+            <!-- Vista B: Detalle de Mazmorras -->
+            <div id="dungeon-detail-view" class="view-transition fade-out-slide hidden space-y-4">
+                <button onclick="backToDungeonGrid()" class="blizzard-btn px-5 py-2.5 text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 shadow-lg">
+                    <i class="fa-solid fa-arrow-left"></i> Volver al Selector de Mazmorras
+                </button>
+                <div id="dungeon-detail-container" class="companion-panel rounded-xl p-6">
+                    <!-- JS rendereará aquí el contenido exclusivo -->
+                </div>
+            </div>
+
+        </section>
+
+        <!-- TAB 2: ECOSISTEMA Y MÉTRICAS -->
+        <section id="tab-overview" class="hidden space-y-6">
+            <div class="companion-panel p-6 rounded-xl">
+                <h2 class="font-cinzel text-2xl font-bold text-amber-400 mb-2">
+                    <i class="fa-solid fa-compass text-amber-500 mr-2"></i>Arquitectura de la Temporada 2: La Maldición de Ula'tek
+                </h2>
+                <p class="text-stone-300 leading-relaxed text-sm sm:text-base">
+                    Guía estratégica interactiva para la Temporada 2 de <span class="font-semibold text-amber-400">World of Warcraft: Midnight</span> (Parche 12.1). En llaves M+12 o superiores se activa <span class="font-semibold text-purple-400">Astucia de Xal'atath</span> (-15 segundos por cada muerte).
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="companion-panel p-4 rounded-xl flex items-center space-x-4">
+                    <div class="p-3 bg-stone-800 border border-amber-600/40 rounded-lg text-amber-400"><i class="fa-solid fa-calendar-check text-2xl"></i></div>
+                    <div>
+                        <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider">Inicio</p>
+                        <p class="text-lg font-bold text-stone-100">18 Ago, 2026</p>
+                    </div>
+                </div>
+                <div class="companion-panel p-4 rounded-xl flex items-center space-x-4">
+                    <div class="p-3 bg-stone-800 border border-purple-600/40 rounded-lg text-purple-400"><i class="fa-solid fa-skull text-2xl"></i></div>
+                    <div>
+                        <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider">Afijo M+12</p>
+                        <p class="text-lg font-bold text-purple-300">Astucia Xal'atath</p>
+                        <p class="text-xs text-purple-400">-15s por muerte</p>
+                    </div>
+                </div>
+                <div class="companion-panel p-4 rounded-xl flex items-center space-x-4">
+                    <div class="p-3 bg-stone-800 border border-emerald-600/40 rounded-lg text-emerald-400"><i class="fa-solid fa-trophy text-2xl"></i></div>
+                    <div>
+                        <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider">KSM</p>
+                        <p class="text-lg font-bold text-stone-100">2,000 Pts</p>
+                    </div>
+                </div>
+                <div class="companion-panel p-4 rounded-xl flex items-center space-x-4">
+                    <div class="p-3 bg-stone-800 border border-amber-600/40 rounded-lg text-amber-400"><i class="fa-solid fa-crown text-2xl"></i></div>
+                    <div>
+                        <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider">KSL</p>
+                        <p class="text-lg font-bold text-stone-100">3,000 Pts</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="companion-panel p-5 rounded-xl flex flex-col justify-between">
+                    <h3 class="font-cinzel font-bold text-amber-400 text-base mb-3"><i class="fa-solid fa-stopwatch text-amber-500 mr-2"></i>Comparativa de Cronómetros M+</h3>
+                    <div class="chart-container"><canvas id="timersChart"></canvas></div>
+                </div>
+                <div class="companion-panel p-5 rounded-xl flex flex-col justify-between">
+                    <h3 class="font-cinzel font-bold text-amber-400 text-base mb-3"><i class="fa-solid fa-box-open text-amber-500 mr-2"></i>Recompensas e Item Level (iLvl)</h3>
+                    <div class="overflow-x-auto custom-scrollbar">
+                        <table class="min-w-full text-left text-xs text-stone-300 border-collapse">
+                            <thead>
+                                <tr class="bg-[#141210] border-b border-stone-700 text-amber-400 font-cinzel">
+                                    <th class="py-2 px-3">Piedra M+</th>
+                                    <th class="py-2 px-3">Botín Final</th>
+                                    <th class="py-2 px-3">Gran Cámara</th>
+                                    <th class="py-2 px-3">Mejora</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-stone-800">
+                                <tr class="hover:bg-stone-900"><td class="py-2 px-3 font-bold text-white">+2</td><td class="py-2 px-3">295 iLvl</td><td class="py-2 px-3 text-emerald-400 font-semibold">305 iLvl</td><td class="py-2 px-3">Campeón 2/6</td></tr>
+                                <tr class="hover:bg-stone-900"><td class="py-2 px-3 font-bold text-white">+4</td><td class="py-2 px-3">298 iLvl</td><td class="py-2 px-3 text-emerald-400 font-semibold">308 iLvl</td><td class="py-2 px-3">Campeón 3/6</td></tr>
+                                <tr class="hover:bg-stone-900"><td class="py-2 px-3 font-bold text-white">+6</td><td class="py-2 px-3">305 iLvl</td><td class="py-2 px-3 text-emerald-400 font-semibold">311 iLvl</td><td class="py-2 px-3">Héroe 1/6</td></tr>
+                                <tr class="hover:bg-stone-900"><td class="py-2 px-3 font-bold text-white">+8</td><td class="py-2 px-3">308 iLvl</td><td class="py-2 px-3 text-emerald-400 font-semibold">315 iLvl</td><td class="py-2 px-3">Héroe 2/6</td></tr>
+                                <tr class="hover:bg-stone-900 bg-amber-950/20"><td class="py-2 px-3 font-bold text-amber-400">+10+</td><td class="py-2 px-3 font-semibold">311 iLvl</td><td class="py-2 px-3 text-amber-400 font-bold">318 iLvl</td><td class="py-2 px-3">Héroe 3/6 → Mítico</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: MATRIZ DE CONTRAMEDIDAS -->
+        <section id="tab-matrix" class="hidden space-y-6">
+            <div class="companion-panel p-5 rounded-xl">
+                <h2 class="font-cinzel text-xl sm:text-2xl font-bold text-amber-400 mb-2"><i class="fa-solid fa-book-bookmark text-amber-500 mr-2"></i>Matriz de Contramedidas</h2>
+            </div>
+            <div class="companion-panel p-4 rounded-xl space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Buscar Habilidad/Enemigo</label>
+                        <input type="text" id="matrix-search" oninput="filterMatrix()" placeholder="Ej. Zurrar, Escudo..." class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg focus:border-amber-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Mazmorra</label>
+                        <select id="matrix-dungeon-filter" onchange="filterMatrix()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg focus:border-amber-500 outline-none">
+                            <option value="ALL">Todas las Mazmorras</option>
+                            <option value="Altar de los Colmillos">Altar de los Colmillos</option>
+                            <option value="El Frontal de la Muerte">El Frontal de la Muerte</option>
+                            <option value="Guarida de Nalorakk">Guarida de Nalorakk</option>
+                            <option value="El Valle Enceguecedor">El Valle Enceguecedor</option>
+                            <option value="Arena Rajavacío">Arena Rajavacío</option>
+                            <option value="Reposo de Reyes">Reposo de Reyes</option>
+                            <option value="Templo de Sethraliss">Templo de Sethraliss</option>
+                            <option value="Estanques de Vida Rubí">Estanques de Vida Rubí</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Tipo Mecánica</label>
+                        <select id="matrix-type-filter" onchange="filterMatrix()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg focus:border-amber-500 outline-none">
+                            <option value="ALL">Todas</option>
+                            <option value="Veneno">Veneno</option>
+                            <option value="Maldición">Maldición</option>
+                            <option value="Magia">Magia / Disipar</option>
+                            <option value="Enfurecimiento">Enfurecimiento (Calmar)</option>
+                            <option value="Purga">Purga de Escudo</option>
+                            <option value="Interrupción">Interrupción / Cortar</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-stone-300 mb-2">Filtrar por Clase Oficial</label>
+                    <div class="flex flex-wrap gap-1.5" id="class-filter-badges"></div>
+                </div>
+            </div>
+            <div class="companion-panel rounded-xl overflow-hidden">
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="min-w-full text-left text-xs text-stone-300">
+                        <thead class="bg-[#141210] text-amber-400 font-cinzel border-b border-stone-700">
+                            <tr>
+                                <th class="py-3 px-4">Mazmorra</th>
+                                <th class="py-3 px-4">Enemigo</th>
+                                <th class="py-3 px-4">Mecánica Letal</th>
+                                <th class="py-3 px-4">Tipo</th>
+                                <th class="py-3 px-4">Contramedida Exacta</th>
+                            </tr>
+                        </thead>
+                        <tbody id="matrix-table-body" class="divide-y divide-stone-800"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: ANALIZADOR DE COBERTURA -->
+        <section id="tab-analyzer" class="hidden space-y-6">
+            <div class="companion-panel p-5 rounded-xl">
+                <h2 class="font-cinzel text-xl sm:text-2xl font-bold text-amber-400 mb-2"><i class="fa-solid fa-users-viewfinder text-amber-500 mr-2"></i>Analizador de Cobertura de Grupo M+</h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="companion-panel p-5 rounded-xl space-y-4">
+                    <h3 class="font-cinzel font-bold text-amber-400 text-base border-b border-stone-700 pb-2">Composición del Grupo</h3>
+                    
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Tanque</label>
+                        <select id="party-tank" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg">
+                            <option value="Guerrero">Guerrero Protección (Zurrar / Reflejo)</option>
+                            <option value="Paladín">Paladín Protección (Limpiar toxinas)</option>
+                            <option value="Caballero de la Muerte">Caballero de la Muerte Sangre (Helada mental)</option>
+                            <option value="Druida">Druida Guardián (Calmar / Limpiar)</option>
+                            <option value="Monje">Monje Maestro Cervecero (Desintoxicar)</option>
+                            <option value="Cazador de Demonios">Cazador de Demonios Venganza (Consumir magia)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Sanador</label>
+                        <select id="party-healer" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg">
+                            <option value="Sacerdote">Sacerdote Disciplina / Sagrado (Purificar / Disipar)</option>
+                            <option value="Chamán">Chamán Restauración (Purgar / Purificar)</option>
+                            <option value="Paladín">Paladín Sagrado (Limpiar toxinas)</option>
+                            <option value="Druida">Druida Restauración (Calmar / Cura natural)</option>
+                            <option value="Monje">Monje Tejedor de Niebla (Desintoxicar)</option>
+                            <option value="Evocador">Evocador Preservación (Exfoliar veneno)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">DPS 1</label>
+                        <select id="party-dps1" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg">
+                            <option value="Druida">Druida Feral / Equilibrio (Testarazo / Calmar)</option>
+                            <option value="Pícaro">Pícaro (Patada / Estocada)</option>
+                            <option value="Paladín">Paladín Reprensión (Limpiar toxinas)</option>
+                            <option value="Chamán">Chamán Mejora / Elemental (Purgar / Corte)</option>
+                            <option value="Guerrero">Guerrero Armas / Furia (Zurrar / Ola de choque)</option>
+                            <option value="Cazador">Cazador (Disparo tranquilizante)</option>
+                            <option value="Mago">Mago (Robar hechizo / Contrahechizo)</option>
+                            <option value="Brujo">Brujo (Portal / Devorar magia)</option>
+                            <option value="Monje">Monje Viajero del Viento (Paralización)</option>
+                            <option value="Cazador de Demonios">Cazador de Demonios Devastación (Consumir magia)</option>
+                            <option value="Caballero de la Muerte">Caballero de la Muerte (Helada mental)</option>
+                            <option value="Evocador">Evocador Devastación / Aumentativo (Corte temporal)</option>
+                            <option value="Sacerdote">Sacerdote Sombra (Disipar en masa)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">DPS 2</label>
+                        <select id="party-dps2" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg">
+                            <option value="Mago" selected>Mago (Robar hechizo / Contrahechizo)</option>
+                            <option value="Cazador">Cazador (Disparo tranquilizante)</option>
+                            <option value="Brujo">Brujo (Portal / Devorar magia)</option>
+                            <option value="Druida">Druida Feral / Equilibrio (Testarazo / Calmar)</option>
+                            <option value="Pícaro">Pícaro (Patada / Estocada)</option>
+                            <option value="Paladín">Paladín Reprensión (Limpiar toxinas)</option>
+                            <option value="Chamán">Chamán Mejora / Elemental (Purgar / Corte)</option>
+                            <option value="Guerrero">Guerrero Armas / Furia (Zurrar / Ola de choque)</option>
+                            <option value="Monje">Monje Viajero del Viento (Paralización)</option>
+                            <option value="Cazador de Demonios">Cazador de Demonios Devastación (Consumir magia)</option>
+                            <option value="Caballero de la Muerte">Caballero de la Muerte (Helada mental)</option>
+                            <option value="Evocador">Evocador Devastación / Aumentativo (Corte temporal)</option>
+                            <option value="Sacerdote">Sacerdote Sombra (Disipar en masa)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">DPS 3 (Flex)</label>
+                        <select id="party-dps3" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg">
+                            <option value="Cazador" selected>Cazador (Disparo tranquilizante)</option>
+                            <option value="Mago">Mago (Robar hechizo / Contrahechizo)</option>
+                            <option value="Brujo">Brujo (Portal / Devorar magia)</option>
+                            <option value="Druida">Druida Feral / Equilibrio (Testarazo / Calmar)</option>
+                            <option value="Pícaro">Pícaro (Patada / Estocada)</option>
+                            <option value="Paladín">Paladín Reprensión (Limpiar toxinas)</option>
+                            <option value="Chamán">Chamán Mejora / Elemental (Purgar / Corte)</option>
+                            <option value="Guerrero">Guerrero Armas / Furia (Zurrar / Ola de choque)</option>
+                            <option value="Monje">Monje Viajero del Viento (Paralización)</option>
+                            <option value="Cazador de Demonios">Cazador de Demonios Devastación (Consumir magia)</option>
+                            <option value="Caballero de la Muerte">Caballero de la Muerte (Helada mental)</option>
+                            <option value="Evocador">Evocador Devastación / Aumentativo (Corte temporal)</option>
+                            <option value="Sacerdote">Sacerdote Sombra (Disipar en masa)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="companion-panel p-5 rounded-xl flex flex-col justify-between lg:col-span-2">
+                    <div>
+                        <h3 class="font-cinzel font-bold text-amber-400 text-base mb-3 flex items-center justify-between border-b border-stone-700 pb-2">
+                            <span><i class="fa-solid fa-square-check text-amber-500 mr-2"></i>Diagnóstico de Utilidades</span>
+                            <span id="coverage-score-badge" class="text-xs px-3 py-1 rounded-full font-bold bg-emerald-950 text-emerald-300 border border-emerald-700">100% Cobertura</span>
+                        </h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 my-4" id="utility-checklist"></div>
+                        <div class="space-y-2 mt-4" id="dungeon-warnings"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: CALCULADORA -->
+        <section id="tab-calculator" class="hidden space-y-6">
+            <div class="companion-panel p-5 rounded-xl">
+                <h2 class="font-cinzel text-xl sm:text-2xl font-bold text-amber-400 mb-2"><i class="fa-solid fa-calculator text-amber-500 mr-2"></i>Calculadora de Tiempos y Umbrales M+</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="companion-panel p-5 rounded-xl space-y-4">
+                    <h3 class="font-cinzel font-bold text-amber-400 text-base border-b border-stone-700 pb-2">Parámetros de la Llave</h3>
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Selecciona Mazmorra</label>
+                        <select id="calc-dungeon" onchange="calculateKeyTimes()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg">
+                            <option value="28">Estanques de Vida Rubí (28 min)</option>
+                            <option value="30">Altar de los Colmillos (30 min)</option>
+                            <option value="30">Arena Rajavacío (30 min)</option>
+                            <option value="31">El Valle Enceguecedor (31 min)</option>
+                            <option value="32">Guarida de Nalorakk (32 min)</option>
+                            <option value="33">Reposo de Reyes (33 min)</option>
+                            <option value="33">Templo de Sethraliss (33 min)</option>
+                            <option value="34">El Frontal de la Muerte (34 min)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Nivel de la Piedra (M+)</label>
+                        <input type="number" id="calc-level" min="2" max="25" value="10" oninput="calculateKeyTimes()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg">
+                    </div>
+                </div>
+                <div class="companion-panel p-5 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-cinzel font-bold text-amber-400 text-base border-b border-stone-700 pb-2 mb-4">Umbrales de Cronómetro</h3>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-emerald-950/40 border border-emerald-800/60 rounded-lg flex justify-between items-center">
+                                <p class="font-bold text-emerald-300 text-xs">+3 Cofres</p><span id="time-plus3" class="font-mono font-bold text-emerald-300 text-sm"></span>
+                            </div>
+                            <div class="p-3 bg-blue-950/40 border border-blue-800/60 rounded-lg flex justify-between items-center">
+                                <p class="font-bold text-blue-300 text-xs">+2 Cofres</p><span id="time-plus2" class="font-mono font-bold text-blue-300 text-sm"></span>
+                            </div>
+                            <div class="p-3 bg-[#141210] border border-stone-700 rounded-lg flex justify-between items-center">
+                                <p class="font-bold text-stone-200 text-xs">+1 Cofre (En Tiempo)</p><span id="time-plus1" class="font-mono font-bold text-stone-800 text-sm"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const dungeonsData = [
+            { 
+                id: "altar-of-fangs", 
+                name: "Altar de los Colmillos", 
+                nameEn: "Altar of Fangs", 
+                expansion: "Midnight (12.1)", 
+                timer: "30:00", 
+                bossesCount: 3, 
+                tacticalFeature: "Venenos masivos", 
+                hiddenBuff: "Mezclas inconclusas: +5% daño de veneno.", 
+                bosses: [
+                    { 
+                        name: "Rav'i", 
+                        desc: "Hidra de carroña y fluidos corrosivos.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Posiciona a la hidra cerca de las piscinas de carroña limpia para mitigar el daño de veneno en área. Orienta el cono frontal de fluidos corrosivos hacia afuera de los meles para evitar muertes innecesarias.",
+                            "💚 <b>Sanador:</b> Mantén la vista fija en el objetivo del tanque para disipar de inmediato el <span class='whitespace-nowrap text-amber-200'>Veneno debilitante</span> usando <b>Limpiar toxinas</b>. Prepárate con habilidades de área (CDs) para los pulsos de daño continuo.",
+                            "⚔️ <b>DPS:</b> Prioriza el cambio de objetivo a los tentáculos secundarios apenas salgan. No desperdicies ráfagas ofensivas hasta que el escudo o la fase de vulnerabilidad esté activa."
+                        ] 
+                    },
+                    { 
+                        name: "Espiral Retorcida", 
+                        desc: "Elemental de energía inestable con alta movilidad.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Rota los cortes defensivos (<b>Zurrar</b> / <b>Testarazo</b>) y mantén la amenaza firme. Ayuda a coordinar las interrupciones en el hechizo principal del elemental.",
+                            "💚 <b>Sanador:</b> El daño de sombra es constante y escala rápido. Mantén al grupo por encima del 80% de vida y usa escudos preventivos antes de cada pulso de energía.",
+                            "⚔️ <b>DPS:</b> Sepárense obligatoriamente 8 metros cuando el jefe gaste su pulso de sombra para evitar detonaciones en cadena. Corten o aturdan el casteo de <span class='whitespace-nowrap text-amber-200'>Atrofia espiral</span> sin dudar."
+                        ] 
+                    },
+                    { 
+                        name: "Zul'jan", 
+                        desc: "Señor de la guerra trol corrompido.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Absorbe los golpes pesados de la guadaña y gira al jefe para proteger a la retaguardia de los efectos de cono frontal.",
+                            "💚 <b>Sanador:</b> Guarda tus habilidades más fuertes para la fase de desgaste al 30% de vida, donde el daño de sangrado y veneno se acumula.",
+                            "⚔️ <b>DPS:</b> Aplica control de masas (CC) sobre los espíritus de la selva y derrótalos de inmediato antes de que lleguen a sanar al jefe o molesten al sanador."
+                        ] 
+                    }
+                ], 
+                trash: [
+                    { name: "Desgarrador Colmillo Gemelo", mechanic: "Disparos paralizantes: Requiere disipar mágico inmediato." },
+                    { name: "Sacerdotisa de la Plaga", mechanic: "Lluvia de ácido: No quedarse estático en los charcos verdes." }
+                ] 
+            },
+            { 
+                id: "murder-row", 
+                name: "El Frontal de la Muerte", 
+                nameEn: "Murder Row", 
+                expansion: "Midnight", 
+                timer: "34:00", 
+                bossesCount: 4, 
+                tacticalFeature: "Emboscadas y Hechizos", 
+                hiddenBuff: "Carga prohibida: Uso táctico de barriles explosivos.", 
+                bosses: [
+                    { 
+                        name: "Kystia", 
+                        desc: "Inquisidora del inframundo con escudo protector.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Mantén al jefe estático para que el grupo aproveche al máximo el daño en área (*Cleave*) sobre el escudo vil.",
+                            "💚 <b>Sanador:</b> Prepara una rotación de mitigación grupal para la onda expansiva letal que emite el escudo al romperse.",
+                            "⚔️ <b>DPS:</b> Guarden sus mejores recursos ofensivos para reventar el escudo de inmediato. Al 20%, cambien de objetivo a los esbirros menores (*Mordisquitos*) sin titubear."
+                        ] 
+                    },
+                    { 
+                        name: "Zaen", 
+                        desc: "Asesino de las sombras.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Anticipa los movimientos del asesino para no perder el agro al salir de las sombras.",
+                            "💚 <b>Sanador:</b> Cura de impacto directo al tanque y dispensa curación de anticipación tras los saltos.",
+                            "⚔️ <b>DPS:</b> Ocultense estrictamente detrás de los barriles de la estancia durante el <span class='whitespace-nowrap text-amber-200'>Asesinato en sombras</span> para bloquear la línea de visión y evitar un golpe letal."
+                        ] 
+                    },
+                    { 
+                        name: "Xathuux", 
+                        desc: "Demonio de alto voltaje y vacío.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Mueve al demonio pegado a la orilla de la plataforma para limpiar el centro de las zonas de fuego gravitatorio.",
+                            "💚 <b>Sanador:</b> Vigila la salud de los meles que se mueven constantemente esquivando los rayos.",
+                            "⚔️ <b>DPS:</b> Mantén la movilidad activa para esquivar los rayos de vacío convergentes sin descuidar tu rotación de daño."
+                        ] 
+                    },
+                    { 
+                        name: "Lithiel", 
+                        desc: "Señora de la aguja arcana.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Posiciona a la jefa cerca de los portales para facilitar los desplazamientos del grupo.",
+                            "💚 <b>Sanador:</b> Sostén al grupo con curación sostenida durante las oleadas masivas de energía arcana.",
+                            "⚔️ <b>DPS:</b> Utiliza los portales de forma inteligente para cruzar las ondas de energía sin perder valiosos segundos de daño."
+                        ] 
+                    }
+                ], 
+                trash: [
+                    { name: "Brujo corrupto", mechanic: "Maldición de fatalidad: Remover con Maldición o clases con disipar arcano." },
+                    { name: "Acechador de Callejón", mechanic: "Emboscada sorpresa: El tanque debe castear taunts de área de inmediato." }
+                ] 
+            },
+            { 
+                id: "den-of-nalorakk", 
+                name: "Guarida de Nalorakk", 
+                nameEn: "Den of Nalorakk", 
+                expansion: "Midnight", 
+                timer: "32:00", 
+                bossesCount: 3, 
+                tacticalFeature: "Enfurecimientos y Bestias", 
+                hiddenBuff: "Ofrendas tribales: Buff de velocidad de movimiento.", 
+                bosses: [
+                    { 
+                        name: "Acaparador de Reliquias", 
+                        desc: "Trol recolector de hongos venenosos.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Saca al jefe de los charcos y charolas de esporas venenosas de inmediato.",
+                            "💚 <b>Sanador:</b> Disipa los venenos persistentes y mantén cobertura en los miembros que pisen hongos.",
+                            "⚔️ <b>DPS:</b> Pisen de forma coordinada y controlada los hongos pequeños para detonarlos antes de que saturen la sala."
+                        ] 
+                    },
+                    { 
+                        name: "Centinela de Invierno", 
+                        desc: "Guardián ancestral imbuido en escarcha.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Voltea al guardián para que el cono frontal de escarcha no golpee al grupo.",
+                            "💚 <b>Sanador:</b> Aplica <span class='whitespace-nowrap text-amber-200'>Disipar magia</span> de forma inmediata en cuanto notes el <span class='whitespace-nowrap text-amber-200'>Tormento congelante</span>.",
+                            "⚔️ <b>DPS:</b> Los jugadores cuerpo a cuerpo deben salir del rango de alcance al ver el destello de la explosión gélida."
+                        ] 
+                    },
+                    { 
+                        name: "Nalorakk", 
+                        desc: "Avatar del espíritu del oso.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Activa tus mejores facultades defensivas cuando el avatar brama y cambia a forma de oso.",
+                            "💚 <b>Sanador:</b> Prepara curaciones masivas tras el impacto de los ecos de bestia en el grupo.",
+                            "⚔️ <b>DPS:</b> Colóquense estrictamente detrás del escudo protector que otorga la sala durante la carga frontal masiva."
+                        ] 
+                    }
+                ], 
+                trash: [
+                    { name: "Matriarca Amani", mechanic: "Ira de la madre: Calmar obligatorio (Druida, Cazador) para evitar que borre al tanque." },
+                    { name: "Lanzador de Hachas", mechanic: "Lanzamiento brutal: Cortar o aplicar interrupciones rápidas." }
+                ] 
+            },
+            { 
+                id: "the-blinding-vale", 
+                name: "El Valle Enceguecedor", 
+                nameEn: "The Blinding Vale", 
+                expansion: "Midnight", 
+                timer: "31:00", 
+                bossesCount: 4, 
+                tacticalFeature: "Haces de luz y Visión", 
+                hiddenBuff: "Esferas de luz: Otorgan aumento temporal de daño crítico.", 
+                bosses: [
+                    { 
+                        name: "Trinidad", 
+                        desc: "Consejo de sacerdotes lumínicos.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Junta a los tres sacerdotes para optimizar el daño en área de los meles (*Cleave*).",
+                            "💚 <b>Sanador:</b> Disipa los perjuicios de luz y mantén al grupo enérgico ante las curaciones del enemigo.",
+                            "⚔️ <b>DPS:</b> Interrumpe de manera rotativa las sanaciones de los lanzadores secundarios y equilibra el daño para matarlos al mismo tiempo."
+                        ] 
+                    },
+                    { 
+                        name: "Ikuzz el Cazador de Luz", 
+                        desc: "Acechador de los claros místicos.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Posiciona al acechador cerca de las raíces seguras del escenario.",
+                            "💚 <b>Sanador:</b> Vigila la barra de vida de los compañeros alejados durante las marcas de luz.",
+                            "⚔️ <b>DPS:</b> Kitea al jefe pasando detrás de las raíces para cortar la línea de visión del haz lumínico antes de sufrir petrificación."
+                        ] 
+                    },
+                    { 
+                        name: "Luzguarda Ruia", 
+                        desc: "Paladín corrompido por la luz ciega.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Utiliza mitigación activa sólida justo cuando ejecute su golpe de maza pesado.",
+                            "💚 <b>Sanador:</b> El daño mágico en este combate es brutal; rota tus CDs defensivos personales y de grupo.",
+                            "⚔️ <b>DPS:</b> Las interrupciones en la <span class='whitespace-nowrap text-amber-200'>Ira sagrada</span> son de máxima prioridad; si una pasa, el wipe es casi seguro."
+                        ] 
+                    },
+                    { 
+                        name: "Ziekket", 
+                        desc: "Horror de esporas lumínicas.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Conduce al horror alejándolo de las zonas de esporas corruptas más densas.",
+                            "💚 <b>Sanador:</b> Reserva tus habilidades de sanación masiva para la fase de oscuridad total.",
+                            "⚔️ <b>DPS:</b> Los personajes con alta movilidad deben encargarse de limpiar las esporas secundarias mientras los demás mantienen el DPS al jefe."
+                        ] 
+                    }
+                ], 
+                trash: [
+                    { name: "Tejedor corrupto", mechanic: "Barrera radiante: Purgar el escudo mágico o disipar de inmediato." },
+                    { name: "Vigilante Ciego", mechanic: "Explosión cegadora: Voltear la cámara o aturdir." }
+                ] 
+            },
+            { 
+                id: "voidscar-arena", 
+                name: "Arena Rajavacío", 
+                nameEn: "Voidscar Arena", 
+                expansion: "Midnight", 
+                timer: "30:00", 
+                bossesCount: 3, 
+                tacticalFeature: "Gladiadores del Vacío", 
+                hiddenBuff: "Ruta de los campeones: Buff de versatilidad al limpiar pasillos.", 
+                bosses: [
+                    { 
+                        name: "Taz'Rah", 
+                        desc: "Hechicero del vacío y las sombras.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Ancla al hechicero en la orilla de la arena para dejar los charcos pegados a la pared.",
+                            "💚 <b>Sanador:</b> Cura el daño de las sombras y mantén atención al rango si se dispersan.",
+                            "⚔️ <b>DPS:</b> Asigna turnos estrictos de interrupción en las descargas de vacío para aligerar la carga al sanador."
+                        ] 
+                    },
+                    { 
+                        name: "Atroxus", 
+                        desc: "Gladiador mutado por la entropía.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Resiste las embestidas frontales sin mover al jefe del centro limpio.",
+                            "💚 <b>Sanador:</b> Limpia el veneno ponzoñoso de inmediato usando <b>Limpiar toxinas</b> o equivalente.",
+                            "⚔️ <b>DPS:</b> Guarda el Heroísmo / Ansiedad de la sangre para quemar el 30% de vida restante a máxima velocidad."
+                        ] 
+                    },
+                    { 
+                        name: "Charonus", 
+                        desc: "Coloso blindado del vacío.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Alterna tus facultades defensivas de forma milimétrica durante las descargas de energía.",
+                            "💚 <b>Sanador:</b> Sostén al grupo con curaciones de área durante los pulsos de energía intermitentes.",
+                            "⚔️ <b>DPS:</b> Jamás cruces las líneas de energía que dividen el suelo de la arena para evitar daño letal innecesario."
+                        ] 
+                    }
+                ], 
+                trash: [
+                    { name: "Magi tocado por vacío", mechanic: "Descarga de sombras: Zurrar obligatorio." },
+                    { name: "Gladiador Despiadado", mechanic: "Acometida mortal: El tanque debe usar defensivos activos." }
+                ] 
+            },
+            { 
+                id: "kings-rest", 
+                name: "Reposo de Reyes", 
+                nameEn: "Kings' Rest", 
+                expansion: "BFA", 
+                timer: "33:00", 
+                bossesCount: 4, 
+                tacticalFeature: "Purgas mágicas y Tótems", 
+                hiddenBuff: "Esbirros de Zul: Mueren al purgar su escudo protector.", 
+                bosses: [
+                    { 
+                        name: "Serpiente dorada", 
+                        desc: "Constructo imperial dorado.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Mantén al constructo dándole la espalda al grupo y sácalo de los charcos dorados.",
+                            "💚 <b>Sanador:</b> Alerta máxima con el jugador marcado por las estacas de oro; protégelo con escudos o sanación directa.",
+                            "⚔️ <b>DPS:</b> Aplica control de masas (<i>Stun</i>) inmediato a los elementales animados antes de que lleguen al jefe y exploten."
+                        ] 
+                    },
+                    { 
+                        name: "Mchimba el Embalsamador", 
+                        desc: "Gólem de preservación y sarcófagos.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Controla a los esbirros y mantén el cono frontal del gólem controlado.",
+                            "💚 <b>Sanador:</b> Cura al aliado atrapado en el sarcófago por encima del 90% de su vida para romper el hechizo de <span class='whitespace-nowrap text-amber-200'>Desecación</span>.",
+                            "⚔️ <b>DPS:</b> Cambia de objetivo de inmediato al sarcófago correcto en cuanto capture a un compañero."
+                        ] 
+                    },
+                    { 
+                        name: "El Consejo de las Tribus", 
+                        desc: "Monarcas trols resucitados.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Toma al rey activo y evita que pise las habilidades de sus compañeros caídos.",
+                            "💚 <b>Sanador:</b> Prepárate para picos de daño masivo cuando cambien de monarca activo en el escenario.",
+                            "⚔️ <b>DPS:</b> Interrumpe habilidades clave, destruye los tótems de invocación y céntrate en el rey en turno."
+                        ] 
+                    },
+                    { 
+                        name: "Dazar", 
+                        desc: "Primer rey de los zandalaris.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Rota al jefe en cuanto monte al raptor espectral para proteger al grupo de embestidas frontales.",
+                            "💚 <b>Sanador:</b> Anticipa el daño masivo del <span class='whitespace-nowrap text-amber-200'>Salto sísmico</span> levantando la barra de vida de todos.",
+                            "⚔️ <b>DPS:</b> Usa habilidades de movilidad para esquivar las cargas del rey y reventar a Reban en cuanto aparezca en la sala."
+                        ] 
+                    }
+                ], 
+                trash: [
+                    { name: "Esbirro de Zul", mechanic: "Atado por la sombra: Purgar escudo o disipar mágico al instante para romper la inmunidad." },
+                    { name: "Honrado Zandalar", mechanic: "Paso de las Sombras: Cortar casteo o aplicar control de masas." }
+                ] 
+            },
+            { 
+                id: "temple-of-sethraliss", 
+                name: "Templo de Sethraliss", 
+                nameEn: "Temple of Sethraliss", 
+                expansion: "BFA", 
+                timer: "33:00", 
+                bossesCount: 4, 
+                tacticalFeature: "Electricidad y Canales", 
+                hiddenBuff: "Orbes de poder: Ajustados para otorgar maná y poder de ataque.", 
+                bosses: [
+                    { 
+                        name: "Adderis y Aspix", 
+                        desc: "Dúo de guardianes serpiente de rayos.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Fija la posición de tu serpiente asignada sin cruzar las trayectorias de energía.",
+                            "💚 <b>Sanador:</b> Mantén una sanación constante para contrarrestar el daño en cadena de la chispa estática.",
+                            "⚔️ <b>DPS:</b> Sepárense obligatoriamente para evitar saltos del rayo en cadena y corten los casteos de Aspix."
+                        ] 
+                    },
+                    { 
+                        name: "Merektha", 
+                        desc: "Madre de las serpientes colosales.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Agarra con rapidez a los esbirros grandes en cuanto emerjan del suelo.",
+                            "💚 <b>Sanador:</b> Dispensa curas rápidas y disipa efectos de veneno tras las inmersiones de la serpiente.",
+                            "⚔️ <b>DPS:</b> Limpia los nudos de serpientes pequeñas con daño en área (*Cleave*) de inmediato para evitar abrumar al grupo."
+                        ] 
+                    },
+                    { 
+                        name: "Galvazzt", 
+                        desc: "Concentrador de energía pura.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Sostén al concentrador en el centro exacto de la plataforma.",
+                            "💚 <b>Sanador:</b> Vigila de cerca la salud de los DPS o tanques que intercepten los haces de luz.",
+                            "⚔️ <b>DPS:</b> Intercepta los haces de luz hacia el jefe para bloquear su carga, alternándote con el grupo para no morir por acumulación."
+                        ] 
+                    },
+                    { 
+                        name: "Avatar de Sethraliss", 
+                        desc: "Serpiente guardiana caída.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Toma el agro de los esbirros corruptos que atacan el corazón del templo.",
+                            "💚 <b>Sanador:</b> Tu rol principal aquí es curar directamente al Avatar de Sethraliss mientras limpias la corrupción con las esferas.",
+                            "⚔️ <b>DPS:</b> Reventar a los enemigos que aparecen antes de que drenen por completo la salud del Avatar."
+                        ] 
+                    }
+                ], 
+                trash: [
+                    { name: "Jinete de escamas", mechanic: "Rugido: Aplica ola de choque en área (Stun). Cortar o esquivar." },
+                    { name: "Clérigo del Templo", mechanic: "Sanación relámpago: Interrupción obligatoria." }
+                ] 
+            },
+            { 
+                id: "ruby-life-pools", 
+                name: "Estanques de Vida Rubí", 
+                nameEn: "Ruby Life Pools", 
+                expansion: "Dragonflight", 
+                timer: "28:00", 
+                bossesCount: 3, 
+                tacticalFeature: "Cronómetro ajustado", 
+                hiddenBuff: "Marcas visuales de roca térmica.", 
+                bosses: [
+                    { 
+                        name: "Melidrussa Caracoluz", 
+                        desc: "Maestra de los dracónidos de escarcha.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Posiciona al dracónido evitando áreas congeladas que limiten el movimiento.",
+                            "💚 <b>Sanador:</b> Prepara tus escudos y mitigaciones para cuando el escudo de escarcha colapse.",
+                            "⚔️ <b>DPS:</b> Vuelca todo tu daño de ráfaga para romper el escudo de escarcha masivo antes de que emita la onda letal de frío."
+                        ] 
+                    },
+                    { 
+                        name: "Kokia Pezuña de Fuego", 
+                        desc: "Comandante primigenia.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Mueve a la comandante para abrir una línea de visión limpia en la plataforma.",
+                            "💚 <b>Sanador:</b> Cura el daño de fuego disperso por todo el grupo.",
+                            "⚔️ <b>DPS:</b> Mantén un campo visual abierto para esquivar la trayectoria de las rocas de fuego rodantes que cruzan la sala."
+                        ] 
+                    },
+                    { 
+                        name: "Kyrakka y Erkhart Venapiedra", 
+                        desc: "Dúo de jinetes de dragones primigenios.", 
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Agarra al jinete en tierra y prepárate para los cambios de amenaza en la fase de vuelo.",
+                            "💚 <b>Sanador:</b> Coordina curaciones de área intensas cuando los dragones batan alas en simultáneo.",
+                            "⚔️ <b>DPS:</b> Enfocarse primero en el jinete en tierra antes de que despeguen y guardar CDs para quemarlos en el aire."
+                        ] 
+                    }
+                ], 
+                trash: [
+                    { name: "Bailatormentas primigenio", mechanic: "Sed de sangre: Calmar enfurecimiento de inmediato para salvar al tanque." },
+                    { name: "Defensor de la fragua", mechanic: "Embestida de magma: Posicionarse de costado al cono frontal." }
+                ] 
+            }
+        ];
+
+        const matrixData = [
+            { dungeon: "Arena Rajavacío", enemy: "Magi tocado", mechanic: "Descarga Sombras", type: "Interrupción", counter: "Guerrero: Zurrar / Pícaro: Patada / Chamán: Corte de viento" },
+            { dungeon: "Reposo de Reyes", enemy: "Sombra de Zul", mechanic: "Maleficio oscuridad", type: "Magia", counter: "Paladín: Escudo divino / Sacerdote: Disipar magia" },
+            { dungeon: "El Valle Enceguecedor", enemy: "Tejedor corrupto", mechanic: "Barrera radiante", type: "Purga", counter: "Sacerdote: Disipar magia / Chamán: Purgar / Mago: Robar hechizo" },
+            { dungeon: "El Frontal de la Muerte", enemy: "Asesino Sombras", mechanic: "Rastro veneno", type: "Veneno", counter: "Paladín: Limpiar toxinas / Monje: Desintoxicar / Evocador: Exfoliar veneno" },
+            { dungeon: "Guarida de Nalorakk", enemy: "Lanzador Amani", mechanic: "Lanzamiento brutal", type: "Interrupción", counter: "Druida: Testarazo / Cazador de Demonios: Interrupción" },
+            { dungeon: "Estanques de Vida Rubí", enemy: "Bailatormentas", mechanic: "Sed de sangre", type: "Enfurecimiento", counter: "Druida: Calmar / Cazador: Disparo tranquilizante" },
+            { dungeon: "Arena Rajavacío", enemy: "Clamavacío", mechanic: "Grito de terror", type: "Interrupción", counter: "Caballero de la Muerte: Helada mental / Brujo: Furia de las sombras" },
+            { dungeon: "Reposo de Reyes", enemy: "Esbirro de Zul", mechanic: "Atado por la sombra", type: "Purga", counter: "Sacerdote: Disipar en masa / Brujo: Devorar magia / Cazador de Demonios: Consumir magia" }
+        ];
+
+        /* Mapa oficial de colores de clases de World of Warcraft */
+        const classColors = {
+            "Caballero de la Muerte": "#C41E3A",
+            "Cazador de Demonios": "#A330C9",
+            "Druida": "#FF7C0A",
+            "Evocador": "#33937F",
+            "Cazador": "#AAD372",
+            "Mago": "#3FC7EB",
+            "Monje": "#00FF98",
+            "Paladín": "#F48CBA",
+            "Sacerdote": "#FFFFFF",
+            "Pícaro": "#FFF468",
+            "Chamán": "#0070DD",
+            "Brujo": "#8788EE",
+            "Guerrero": "#C69B6D"
+        };
+
+        const classNames = Object.keys(classColors);
+        let activeClassFilter = "ALL";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            initTimersChart();
+            renderDungeonSelector();
+            renderMobileDungeonMenu();
+            renderClassFilterBadges();
+            renderMatrixTable();
+            calculatePartyCoverage();
+            calculateKeyTimes();
+        });
+
+        function switchTab(tabId) {
+            ['tab-overview', 'tab-dungeons', 'tab-matrix', 'tab-analyzer', 'tab-calculator'].forEach(t => {
+                document.getElementById(t).classList.add('hidden');
+                document.getElementById(`nav-${t}`)?.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById(`nav-${tabId}`)?.classList.add('active');
+        }
+
+        function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+
+        function initTimersChart() {
+            const ctx = document.getElementById('timersChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Estanques', 'Rajavacío', 'Colmillos', 'Enceguecedor', 'Nalorakk', 'Reyes', 'Sethraliss', 'Frontal'],
+                    datasets: [{ label: 'Minutos', data: [28, 30, 30, 31, 32, 33, 33, 34], backgroundColor: '#d97706', borderRadius: 4 }]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { ticks: { color: '#a8a29e' }, grid: { color: '#292524' } },
+                        y: { 
+                            min: 20, 
+                            max: 35, 
+                            ticks: { 
+                                stepSize: 5, 
+                                color: '#a8a29e',
+                                callback: function(value) { return value + ' min'; }
+                            }, 
+                            grid: { color: '#292524' } 
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderDungeonSelector() {
+            const container = document.getElementById('dungeon-selector');
+            container.innerHTML = dungeonsData.map(d => `
+                <button onclick="selectDungeon('${d.id}')" 
+                        style="background-image: url('images/${d.id}.webp');"
+                        class="group relative dungeon-card rounded-xl p-4 text-left flex flex-col justify-between aspect-square overflow-hidden shadow-xl">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-amber-500/30 to-transparent rounded-bl-full"></div>
+                    <div class="relative z-10">
+                        <span class="text-[10px] font-bold uppercase tracking-wide text-amber-400 drop-shadow">${d.expansion}</span>
+                        <h4 class="font-cinzel font-bold text-xs sm:text-sm mt-1 text-stone-100 leading-tight group-hover:text-amber-300 transition-colors drop-shadow-md">${d.name}</h4>
+                    </div>
+                    <div class="mt-2 text-[11px] font-semibold text-stone-300 flex justify-between items-center relative z-10 border-t pt-2 border-stone-700/60 drop-shadow">
+                        <span class="flex items-center"><i class="fa-solid fa-stopwatch text-amber-400 mr-1"></i> ${d.timer}</span>
+                        <span class="flex items-center"><i class="fa-solid fa-skull text-purple-300 mr-1"></i> ${d.bossesCount} Jefes</span>
+                    </div>
+                </button>
+            `).join('');
+        }
+
+        function renderMobileDungeonMenu() {
+            const list = document.getElementById('mobile-dungeon-list');
+            list.innerHTML = dungeonsData.map(d => `
+                <button onclick="selectDungeonFromMobile('${d.id}')" class="w-full text-left px-2 py-1.5 text-xs text-stone-300 hover:bg-stone-900 hover:text-amber-400 rounded flex items-center justify-between">
+                    <span><i class="fa-solid fa-shield-halved text-[10px] mr-1.5 text-amber-500"></i>${d.name}</span>
+                    <span class="font-mono text-[10px] text-stone-500">${d.timer}</span>
+                </button>
+            `).join('');
+        }
+
+        function selectDungeon(id) {
+            const d = dungeonsData.find(x => x.id === id);
+            const gridView = document.getElementById('dungeon-grid-view');
+            const detailView = document.getElementById('dungeon-detail-view');
+
+            gridView.classList.add('fade-out-slide');
+            
+            setTimeout(() => {
+                gridView.classList.add('hidden');
+                gridView.classList.remove('fade-out-slide');
+                
+                detailView.classList.remove('hidden');
+                detailView.classList.add('fade-out-slide');
+                
+                setTimeout(() => {
+                    detailView.classList.remove('fade-out-slide');
+                    detailView.classList.add('fade-in-slide');
+                }, 20);
+
+                document.getElementById('dungeon-detail-container').innerHTML = `
+                    <div class="flex flex-col lg:flex-row justify-between mb-6 gap-3 border-b border-stone-700 pb-4">
+                        <div>
+                            <span class="bg-amber-950/60 border border-amber-600/50 text-amber-400 text-xs font-bold px-2.5 py-0.5 rounded-full">${d.expansion}</span>
+                            <h2 class="font-cinzel text-2xl font-bold text-amber-400 mt-2">${d.name}</h2>
+                        </div>
+                        <div class="bg-stone-900 p-3 rounded-lg border border-amber-600/40 text-xs text-stone-300 max-w-lg">
+                            <p class="font-bold text-amber-400"><i class="fa-solid fa-gem text-amber-500 mr-1"></i>Ventaja de Ruta: ${d.hiddenBuff}</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-2 space-y-4">
+                            <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-crown text-amber-500 mr-2"></i>Jefes y Estrategias</h3>
+                            ${d.bosses.map(b => `
+                                <div class="bg-[#141210] p-4 rounded-lg border border-stone-700 space-y-2">
+                                    <h4 class="font-bold text-amber-300 text-sm font-cinzel">
+                                        <i class="fa-solid fa-skull-crossbones text-amber-500 mr-1.5"></i>${b.name}
+                                    </h4>
+                                    <p class="text-xs text-stone-300">${b.desc}</p>
+                                    <div class="bg-stone-900 p-3 rounded border border-stone-800 space-y-1.5">
+                                        <p class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-1">Estrategia por Rol:</p>
+                                        <ul class="space-y-2 text-xs text-stone-200">
+                                            ${b.strategy.map(item => `<li class="flex items-start gap-2">${item}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="space-y-4">
+                            <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-biohazard text-amber-500 mr-2"></i>Trash Peligroso</h3>
+                            ${d.trash.map(t => `<div class="bg-[#141210] p-3.5 rounded-lg border border-stone-700 text-xs"><b>${t.name}</b><p class="text-stone-300 mt-1">${t.mechanic}</p></div>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }, 200);
+        }
+
+        function selectDungeonFromMobile(id) {
+            switchTab('tab-dungeons');
+            toggleMobileMenu();
+            selectDungeon(id);
+        }
+
+        function backToDungeonGrid() {
+            const gridView = document.getElementById('dungeon-grid-view');
+            const detailView = document.getElementById('dungeon-detail-view');
+
+            detailView.classList.add('fade-out-slide');
+
+            setTimeout(() => {
+                detailView.classList.add('hidden');
+                detailView.classList.remove('fade-out-slide');
+
+                gridView.classList.remove('hidden');
+                gridView.classList.add('fade-out-slide');
+
+                setTimeout(() => {
+                    gridView.classList.remove('fade-out-slide');
+                    gridView.classList.add('fade-in-slide');
+                }, 20);
+            }, 200);
+        }
+
+        function renderClassFilterBadges() {
+            let html = `<button onclick="setClassFilter('ALL')" class="px-2.5 py-1 text-xs rounded border transition-all ${activeClassFilter === 'ALL' ? 'bg-amber-600 border-amber-500 text-stone-950 font-bold' : 'bg-[#141210] border-stone-700 text-stone-300'}">Todas</button>`;
+            
+            for (let c of classNames) {
+                const color = classColors[c] || '#ffffff';
+                const isActive = activeClassFilter === c;
+                const isLightColor = ["Sacerdote", "Pícaro", "Cazador", "Monje", "Paladín", "Mago"].includes(c);
+                
+                let style = "";
+                let cssClasses = "px-2.5 py-1 text-xs rounded border transition-all font-medium ";
+                
+                if (isActive) {
+                    style = `background-color: ${color}; color: ${isLightColor ? '#0c0a09' : '#ffffff'}; border-color: #facc15; font-weight: bold; box-shadow: 0 0 10px ${color};`;
+                } else {
+                    style = `background-color: #141210; color: ${color}; border-color: ${color}50;`;
+                }
+                
+                html += `<button onclick="setClassFilter('${c}')" style="${style}" class="${cssClasses} hover:opacity-80">${c}</button>`;
+            }
+            document.getElementById('class-filter-badges').innerHTML = html;
+        }
+
+        function setClassFilter(c) { activeClassFilter = c; renderClassFilterBadges(); filterMatrix(); }
+
+        function filterMatrix() {
+            const txt = document.getElementById('matrix-search').value.toLowerCase();
+            const d = document.getElementById('matrix-dungeon-filter').value;
+            const t = document.getElementById('matrix-type-filter').value;
+            const filtered = matrixData.filter(i => 
+                (i.enemy.toLowerCase().includes(txt) || i.mechanic.toLowerCase().includes(txt) || i.counter.toLowerCase().includes(txt)) &&
+                (d === 'ALL' || i.dungeon.includes(d)) && (t === 'ALL' || i.type === t) &&
+                (activeClassFilter === 'ALL' || i.counter.toLowerCase().includes(activeClassFilter.toLowerCase()))
+            );
+            renderMatrixTable(filtered);
+        }
+
+        function formatCounterWithColors(counterText) {
+            let formatted = counterText;
+            for (let className of classNames) {
+                if (formatted.includes(className)) {
+                    const color = classColors[className];
+                    const regex = new RegExp(`(${className})`, 'g');
+                    formatted = formatted.replace(regex, `<span style="color: ${color}; font-weight: bold; text-shadow: 0 0 4px rgba(0,0,0,0.8);">$1</span>`);
+                }
+            }
+            return formatted;
+        }
+
+        function renderMatrixTable(data = matrixData) {
+            document.getElementById('matrix-table-body').innerHTML = data.map(r => `
+                <tr class="hover:bg-stone-900 transition-colors">
+                    <td class="py-3 px-4 font-semibold text-amber-400">${r.dungeon}</td>
+                    <td class="py-3 px-4 font-medium text-stone-200">${r.enemy}</td>
+                    <td class="py-3 px-4 text-xs font-mono text-stone-300">${r.mechanic}</td>
+                    <td class="py-3 px-4"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-stone-800 border border-stone-700 text-stone-300">${r.type}</span></td>
+                    <td class="py-3 px-4 text-stone-200">${formatCounterWithColors(r.counter)}</td>
+                </tr>
+            `).join('');
+        }
+
+        function calculatePartyCoverage() {
+            const p = [
+                document.getElementById('party-tank').value, 
+                document.getElementById('party-healer').value, 
+                document.getElementById('party-dps1').value, 
+                document.getElementById('party-dps2').value, 
+                document.getElementById('party-dps3').value
+            ];
+            
+            const hasPoisonOrCurse = p.some(c => ["Paladín", "Druida", "Monje", "Chamán", "Evocador"].some(k => c.includes(k)));
+            const hasMagicDispel = p.some(c => ["Sacerdote", "Paladín", "Chamán", "Druida"].some(k => c.includes(k)));
+            const hasPurge = p.some(c => ["Chamán", "Sacerdote", "Mago", "Cazador de Demonios", "Cazador", "Brujo"].some(k => c.includes(k)));
+
+            document.getElementById('utility-checklist').innerHTML = `
+                <div class="p-3 border rounded-lg text-xs ${hasPoisonOrCurse ? 'bg-emerald-950/40 border-emerald-800 text-emerald-300' : 'bg-red-950/40 border-red-800 text-red-300'}"><b>Dispel Toxinas/Veneno:</b> ${hasPoisonOrCurse ? 'Cubierto' : 'Falta'}</div>
+                <div class="p-3 border rounded-lg text-xs ${hasMagicDispel ? 'bg-emerald-950/40 border-emerald-800 text-emerald-300' : 'bg-red-950/40 border-red-800 text-red-300'}"><b>Dispel Mágico:</b> ${hasMagicDispel ? 'Cubierto' : 'Falta'}</div>
+                <div class="p-3 border rounded-lg text-xs ${hasPurge ? 'bg-emerald-950/40 border-emerald-800 text-emerald-300' : 'bg-red-950/40 border-red-800 text-red-300'}"><b>Purga / Robar Magia:</b> ${hasPurge ? 'Cubierto' : 'Falta'}</div>
+            `;
+
+            let warnings = "";
+            if (!hasPurge) {
+                warnings += `<div class="p-3 bg-red-950/50 text-red-300 text-xs border border-red-800 rounded-lg"><b>¡Alerta Reposo de Reyes!</b> Falta purga mágica para romper los escudos de Zul.</div>`;
+            }
+            if (!hasPoisonOrCurse) {
+                warnings += `<div class="p-3 bg-amber-950/50 text-amber-300 text-xs border border-amber-800 rounded-lg"><b>¡Atención Altar de los Colmillos!</b> Falta disipar venenos en área.</div>`;
+            }
+            if (warnings === "") {
+                warnings = `<div class="p-3 bg-emerald-950/50 text-emerald-300 text-xs border border-emerald-800 rounded-lg"><b>¡Grupo óptimo!</b> Cobertura de utilidades lista para pushear llaves altas.</div>`;
+            }
+            document.getElementById('dungeon-warnings').innerHTML = warnings;
+        }
+
+        function calculateKeyTimes() {
+            const s = parseInt(document.getElementById('calc-dungeon').value) * 60;
+            document.getElementById('time-plus3').innerText = formatSeconds(s * 0.60);
+            document.getElementById('time-plus2').innerText = formatSeconds(s * 0.80);
+            document.getElementById('time-plus1').innerText = formatSeconds(s);
+        }
+        function formatSeconds(sec) { const m = Math.floor(sec/60); const s = Math.floor(sec%60); return `${m}:${s<10?'0':''}${s}`; }
+    </script>
+</body>
+</html>
