@@ -32,7 +32,6 @@
     </script>
 
     <style>
-        /* Estilo Companion App / Blizzard Classic Dark UI */
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: #0c0a09; 
@@ -40,7 +39,6 @@
         }
         .font-cinzel { font-family: 'Cinzel', serif; }
         
-        /* Paneles Estilo Companion App */
         .companion-panel {
             background-color: #1a1614;
             border: 2px solid #57534e;
@@ -53,7 +51,6 @@
             text-shadow: 1px 1px 2px #000;
         }
 
-        /* Botón de Mazmorra 1:1 con Fondo de Imagen Webp y Overlay Oscuro */
         .dungeon-card {
             background-size: cover;
             background-position: center;
@@ -79,20 +76,10 @@
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.9);
         }
 
-        /* Transiciones orgánicas de vista */
-        .view-transition {
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
-        .fade-out-slide {
-            opacity: 0;
-            transform: translateX(30px);
-        }
-        .fade-in-slide {
-            opacity: 1;
-            transform: translateX(0);
-        }
+        .view-transition { transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; }
+        .fade-out-slide { opacity: 0; transform: translateX(30px); }
+        .fade-in-slide { opacity: 1; transform: translateX(0); }
 
-        /* Botón Clásico Blizzard: Rojo en Relieve con esquinas a 45 grados (Chamfered) */
         .blizzard-btn {
             background: linear-gradient(to bottom, #ef4444 0%, #dc2626 50%, #991b1b 100%);
             border: 2px solid #78716c;
@@ -109,29 +96,12 @@
             filter: brightness(1.15);
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 6px 12px rgba(220, 38, 38, 0.4);
         }
-        .blizzard-btn:active {
-            transform: translateY(1px);
-        }
+        .blizzard-btn:active { transform: translateY(1px); }
 
-        /* Pestañas de Navegación */
-        .tab-btn {
-            color: #a8a29e;
-            background-color: #141210;
-            border: 1px solid #292524;
-        }
-        .tab-btn:hover {
-            color: #facc15;
-            background-color: #1c1917;
-        }
-        .tab-btn.active { 
-            border-bottom: 3px solid #facc15; 
-            color: #facc15; 
-            font-weight: 700; 
-            background-color: #292524; 
-            border-top: 1px solid #78716c;
-        }
+        .tab-btn { color: #a8a29e; background-color: #141210; border: 1px solid #292524; }
+        .tab-btn:hover { color: #facc15; background-color: #1c1917; }
+        .tab-btn.active { border-bottom: 3px solid #facc15; color: #facc15; font-weight: 700; background-color: #292524; border-top: 1px solid #78716c; }
 
-        /* Scrollbars personalizados estilo piedra */
         .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #0c0a09; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #44403c; border-radius: 4px; border: 1px solid #57534e; }
@@ -143,7 +113,6 @@
 </head>
 <body class="min-h-screen flex flex-col custom-scrollbar">
 
-    <!-- TOP HEADER / NAV CON LOGOTIPO GUÍA MÍTICA PLUS -->
     <header class="bg-[#141210] text-stone-100 border-b-2 border-[#57534e] sticky top-0 z-50 shadow-xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
@@ -160,7 +129,6 @@
                     </div>
                 </div>
                 
-                <!-- Main Navigation Tabs -->
                 <nav class="hidden md:flex space-x-1">
                     <button onclick="switchTab('tab-dungeons')" id="nav-tab-dungeons" class="tab-btn active px-3 py-2 rounded-t-lg text-xs lg:text-sm font-medium transition-all flex items-center gap-2">
                         <i class="fa-solid fa-dungeon text-amber-500"></i> Guía de Mazmorras
@@ -179,7 +147,6 @@
                     </button>
                 </nav>
 
-                <!-- Mobile Menu Button -->
                 <div class="md:hidden">
                     <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-stone-300 hover:text-white p-2">
                         <i class="fa-solid fa-bars text-xl"></i>
@@ -188,7 +155,6 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-[#141210] border-t border-stone-800 px-4 pt-2 pb-4 space-y-2">
             <button onclick="switchTab('tab-dungeons'); toggleMobileMenu();" class="w-full text-left px-3 py-2 text-stone-200 hover:bg-stone-900 rounded flex items-center gap-2 font-bold text-amber-400">
                 <i class="fa-solid fa-dungeon"></i> Guía de Mazmorras
@@ -212,10 +178,8 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT WRAPPER -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 overflow-hidden">
 
-        <!-- TAB 1: GUÍA DE MAZMORRAS -->
         <section id="tab-dungeons" class="space-y-6">
             <div id="dungeon-grid-view" class="view-transition fade-in-slide space-y-6">
                 <div class="companion-panel p-5 rounded-xl">
@@ -532,48 +496,49 @@
                         name: "Rav'i", 
                         desc: "Hidra de carroña y fluidos corrosivos.", 
                         abilities: [
-                            "Inflige <span class='whitespace-nowrap text-amber-200'>Veneno debilitante</span> progresivo al grupo.",
-                            "Escupe <span class='whitespace-nowrap text-amber-200'>Saliva corrosiva</span> en un cono frontal.",
-                            "Desata <span class='whitespace-nowrap text-amber-200'>Erupción de carroña</span> invocando tentáculos."
+                            "Inflige <span class='whitespace-nowrap text-amber-200'>Veneno debilitante</span> progresivo a jugadores aleatorios.",
+                            "Escupe <span class='whitespace-nowrap text-amber-200'>Saliva corrosiva</span> en un cono frontal letal.",
+                            "Desata una <span class='whitespace-nowrap text-amber-200'>Erupción de carroña</span> masiva invocando tentáculos que restringen el movimiento."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Posiciona a la hidra cerca de las piscinas de carroña limpia para mitigar el daño de veneno en área. Orienta la <span class='whitespace-nowrap text-amber-200'>Saliva corrosiva</span> hacia afuera.",
-                            "💚 <b>Sanador:</b> Disipa de inmediato el <span class='whitespace-nowrap text-amber-200'>Veneno debilitante</span> usando <b>Limpiar toxinas</b>. Prepárate con CDs para los pulsos de daño continuo.",
-                            "⚔️ <b>DPS:</b> Cambio de objetivo inmediato a los tentáculos secundarios apenas salgan. Guarda ráfagas ofensivas para la fase de vulnerabilidad."
+                            "🛡️ <b>Tanque:</b> Posiciona a la hidra cerca de las piscinas de carroña limpia para mitigar el daño de veneno en área. Orienta la <span class='whitespace-nowrap text-amber-200'>Saliva corrosiva</span> estricamente hacia la pared.",
+                            "💚 <b>Sanador:</b> Mantén tu <b>Limpiar toxinas</b> / <b>Exfoliar veneno</b> listo para disipar el <span class='whitespace-nowrap text-amber-200'>Veneno debilitante</span> en menos de 2 segundos. Usa CDs de área preventivos antes de la Erupción.",
+                            "⚔️ <b>DPS:</b> Cambio de objetivo *instantáneo* a los tentáculos secundarios apenas salgan de la tierra. No desperdicies ráfagas de 3 minutos hasta asegurar el área."
                         ] 
                     },
                     { 
                         name: "Espiral Retorcida", 
                         desc: "Elemental de energía inestable con alta movilidad.", 
                         abilities: [
-                            "Canaliza <span class='whitespace-nowrap text-amber-200'>Atrofia espiral</span> que debe ser interrumpida.",
-                            "Emite un <span class='whitespace-nowrap text-amber-200'>Pulso de sombra</span> que empuja a los jugadores.",
-                            "Invoca <span class='whitespace-nowrap text-amber-200'>Nova inestable</span> en ubicaciones aleatorias."
+                            "Canaliza constantemente <span class='whitespace-nowrap text-amber-200'>Atrofia espiral</span> que debe ser interrumpida o acumula daño irreparable.",
+                            "Emite un <span class='whitespace-nowrap text-amber-200'>Pulso de sombra</span> que inflige daño mágico al grupo y empuja 15 metros.",
+                            "Invoca una <span class='whitespace-nowrap text-amber-200'>Nova inestable</span> en ubicaciones aleatorias marcadas en el piso."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Rota los cortes defensivos (<b>Zurrar</b> / <b>Testarazo</b>) y mantén la amenaza firme.",
-                            "💚 <b>Sanador:</b> Mantén al grupo por encima del 80% de vida y usa escudos preventivos antes de cada <span class='whitespace-nowrap text-amber-200'>Pulso de sombra</span>.",
-                            "⚔️ <b>DPS:</b> Sepárense obligatoriamente 8 metros cuando gaste su pulso de sombra para evitar detonaciones en cadena. Corten el casteo de <span class='whitespace-nowrap text-amber-200'>Atrofia espiral</span> sin dudar."
+                            "🛡️ <b>Tanque:</b> Coordina una rotación de cortes estrictos (<b>Zurrar</b>, <b>Testarazo</b>, <b>Helada mental</b>) en la Atrofia y mantén al jefe estático dentro de lo posible.",
+                            "💚 <b>Sanador:</b> El daño es pulsante y desgastante. Levanta al grupo al 100% de vida y usa mitigación de banda justo un segundo antes de cada <span class='whitespace-nowrap text-amber-200'>Pulso de sombra</span>.",
+                            "⚔️ <b>DPS:</b> Regla de oro: sepárense 8 metros exactos entre ustedes antes del <span class='whitespace-nowrap text-amber-200'>Pulso de sombra</span> para evitar detonaciones letales en cadena. Corten religiosamente."
                         ] 
                     },
                     { 
                         name: "Zul'jan", 
                         desc: "Señor de la guerra trol corrompido.", 
                         abilities: [
-                            "Ejecuta <span class='whitespace-nowrap text-amber-200'>Guadaña maldita</span> sobre el tanque.",
-                            "Usa <span class='whitespace-nowrap text-amber-200'>Llamada de la selva</span> para invocar espíritus.",
-                            "Coloca un <span class='whitespace-nowrap text-amber-200'>Tótem de sangre</span> que otorga invulnerabilidad."
+                            "Ejecuta una brutal <span class='whitespace-nowrap text-amber-200'>Guadaña maldita</span> sobre su objetivo actual.",
+                            "Entona la <span class='whitespace-nowrap text-amber-200'>Llamada de la selva</span> para invocar espíritus rastreadores intarjeables.",
+                            "Coloca en el centro del terreno un <span class='whitespace-nowrap text-amber-200'>Tótem de sangre</span> que lo inmuniza al daño físico."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Absorbe los golpes de la <span class='whitespace-nowrap text-amber-200'>Guadaña maldita</span> y gira al jefe para proteger a los meles.",
-                            "💚 <b>Sanador:</b> Guarda tus habilidades más fuertes para la fase de desgaste al 30% de vida.",
-                            "⚔️ <b>DPS:</b> Destruyan el <span class='whitespace-nowrap text-amber-200'>Tótem de sangre</span> al instante y apliquen control de masas sobre los espíritus invocados."
+                            "🛡️ <b>Tanque:</b> Necesitas mitigación activa al 100% para cada <span class='whitespace-nowrap text-amber-200'>Guadaña maldita</span> o morirás. Gira al jefe para proteger a los DPS.",
+                            "💚 <b>Sanador:</b> Ahorra tu *Bloodlust* (si eres chamán/evocador) y tus CDs de sanación de 3 minutos para la fase frenética cuando el jefe baje del 30% de vida.",
+                            "⚔️ <b>DPS:</b> <i>Target switch</i> absoluto al <span class='whitespace-nowrap text-amber-200'>Tótem de sangre</span> en cuanto aterrice. Apliquen aturdimientos, raíces y ralentizaciones (CC) a los espíritus invocados."
                         ] 
                     }
                 ], 
                 trash: [
-                    { name: "Desgarrador Colmillo Gemelo", mechanic: "Canaliza <span class='whitespace-nowrap text-amber-200'>Disparo paralizante</span>: Requiere disipar mágico inmediato o interrupción rápida." },
-                    { name: "Sacerdotisa de la Plaga", mechanic: "Castea <span class='whitespace-nowrap text-amber-200'>Lluvia de ácido</span> y <span class='whitespace-nowrap text-amber-200'>Ritual oscuro</span>. Prioridad absoluta de CC y cortes." }
+                    { name: "Desgarrador Colmillo Gemelo", mechanic: "Fija un objetivo y canaliza <span class='whitespace-nowrap text-amber-200'>Disparo paralizante</span> que aturde por 4 seg. Requiere <b>Disipar magia</b> inmediato o un corte veloz." },
+                    { name: "Sacerdotisa de la Plaga", mechanic: "Lanzadora de alto peligro. Castea <span class='whitespace-nowrap text-amber-200'>Lluvia de ácido</span> en área y un <span class='whitespace-nowrap text-amber-200'>Ritual oscuro</span> que aumenta su daño. Prioridad de <i>foco</i> y aturdimientos en cadena." },
+                    { name: "Aletargador Venenoso", mechanic: "Dejará un charco inmenso al morir que aplica DoT severo. El tanque debe alejar los pulls siguientes de esta zona." }
                 ] 
             },
             { 
@@ -590,62 +555,62 @@
                         name: "Kystia", 
                         desc: "Inquisidora del inframundo con escudo protector.", 
                         abilities: [
-                            "Se protege con <span class='whitespace-nowrap text-amber-200'>Escudo vil</span> que absorbe daño.",
-                            "Desata <span class='whitespace-nowrap text-amber-200'>Explosión de inframundo</span> si el escudo no se rompe.",
-                            "Inicia <span class='whitespace-nowrap text-amber-200'>Cosecha de almas</span> al llegar al 20% de vida."
+                            "Se protege periódicamente con un inmenso <span class='whitespace-nowrap text-amber-200'>Escudo vil</span> que absorbe daño y la hace inmune a interrupciones.",
+                            "Si el escudo no se rompe a tiempo, desata una <span class='whitespace-nowrap text-amber-200'>Explosión de inframundo</span> wipeando a toda la party.",
+                            "Inicia una <span class='whitespace-nowrap text-amber-200'>Cosecha de almas</span> ininterrumpible al llegar al 20% de salud, llenando la sala de pequeños *Mordisquitos*."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Mantén al jefe estático para que el grupo aproveche al máximo el daño en área (*Cleave*) sobre el <span class='whitespace-nowrap text-amber-200'>Escudo vil</span>.",
-                            "💚 <b>Sanador:</b> Prepara una rotación de mitigación grupal para la onda expansiva de la <span class='whitespace-nowrap text-amber-200'>Explosión de inframundo</span>.",
-                            "⚔️ <b>DPS:</b> Guarden recursos para reventar el escudo de inmediato. Al 20%, cambien al *trash* invocado por la <span class='whitespace-nowrap text-amber-200'>Cosecha de almas</span>."
+                            "🛡️ <b>Tanque:</b> Clava al jefe en el centro de la habitación. Tu labor principal es agrupar a los esbirros menores sobre la jefa para facilitar el daño por <i>cleave</i>.",
+                            "💚 <b>Sanador:</b> Acomoda tu interfaz para prever la barra del escudo. Si notas que los DPS no llegarán, tira todos tus CDs de banda para sobrevivir a la onda expansiva.",
+                            "⚔️ <b>DPS:</b> Sus ráfagas de daño de 1 o 2 minutos (CDs ofensivos) NO deben usarse al *pull*, guárdenlos exclusivamente para derretir el <span class='whitespace-nowrap text-amber-200'>Escudo vil</span> antes de que explote."
                         ] 
                     },
                     { 
                         name: "Zaen", 
                         desc: "Asesino de las sombras.", 
                         abilities: [
-                            "Ejecuta <span class='whitespace-nowrap text-amber-200'>Asesinato en sombras</span> que mata de un golpe.",
-                            "Deja un <span class='whitespace-nowrap text-amber-200'>Rastro de veneno</span> letal al caminar.",
-                            "Ataca con <span class='whitespace-nowrap text-amber-200'>Dagas gemelas</span> que aplican sangrado profundo."
+                            "Ejecuta periódicamente su <span class='whitespace-nowrap text-amber-200'>Asesinato en sombras</span> que mata instantáneamente a cualquier jugador en su línea de visión.",
+                            "Deja un letal <span class='whitespace-nowrap text-amber-200'>Rastro de veneno</span> en el piso que reduce la celeridad y causa daño periódico profundo.",
+                            "Apuñala al tanque de forma cruzada con <span class='whitespace-nowrap text-amber-200'>Dagas gemelas</span> que aplican doble acumulación de sangrado."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Anticipa los movimientos del asesino para no perder el agro al salir de las sombras.",
-                            "💚 <b>Sanador:</b> Cura de impacto directo al tanque y dispensa curación de anticipación tras los saltos.",
-                            "⚔️ <b>DPS:</b> Ocultense detrás de los barriles durante el <span class='whitespace-nowrap text-amber-200'>Asesinato en sombras</span> para bloquear la línea de visión."
+                            "🛡️ <b>Tanque:</b> Anticípate a la fase de invisibilidad. Cuando Zaen reaparezca, corre a tomar el agro antes de que aplique sus dagas a un jugador de tela (tela/cuero).",
+                            "💚 <b>Sanador:</b> El daño es reaccionario. Dispensa curaciones potentes de un solo objetivo al tanque y purifica al grupo de cualquier debuff venenoso residual.",
+                            "⚔️ <b>DPS:</b> Mecánica de vida o muerte: busquen un pilar o barril en el escenario y colóquense detrás rompiendo completamente la línea de visión (LoS) cuando empiece el casteo del <span class='whitespace-nowrap text-amber-200'>Asesinato en sombras</span>."
                         ] 
                     },
                     { 
                         name: "Xathuux", 
                         desc: "Demonio de alto voltaje y vacío.", 
                         abilities: [
-                            "Fija un <span class='whitespace-nowrap text-amber-200'>Rayo convergente</span> sobre los jugadores.",
-                            "Atrae a todos con <span class='whitespace-nowrap text-amber-200'>Gravedad cero</span>.",
-                            "Llena el piso de <span class='whitespace-nowrap text-amber-200'>Fuego gravitatorio</span>."
+                            "Fija un inmenso <span class='whitespace-nowrap text-amber-200'>Rayo convergente</span> sobre un jugador aleatorio, persiguiéndolo por la sala.",
+                            "Atrae a todos los jugadores a su centro de gravedad usando <span class='whitespace-nowrap text-amber-200'>Gravedad cero</span>.",
+                            "Llena los cuadrantes de la arena de <span class='whitespace-nowrap text-amber-200'>Fuego gravitatorio</span> inesquivable si el tanque no rota bien."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Mueve al demonio pegado a la orilla para limpiar el centro del <span class='whitespace-nowrap text-amber-200'>Fuego gravitatorio</span>.",
-                            "💚 <b>Sanador:</b> Vigila la salud de los meles que se mueven esquivando los rayos.",
-                            "⚔️ <b>DPS:</b> Mantén la movilidad activa para esquivar el <span class='whitespace-nowrap text-amber-200'>Rayo convergente</span> sin descuidar la rotación de daño."
+                            "🛡️ <b>Tanque:</b> El control del espacio lo es todo. Bordea el escenario paso a paso para concentrar las zonas de <span class='whitespace-nowrap text-amber-200'>Fuego gravitatorio</span> lejos del centro y dar espacio de kiteo.",
+                            "💚 <b>Sanador:</b> Prepárate para lanzar habilidades instantáneas mientras te mueves y aplica *HoTs* a todo el grupo antes de la atracción masiva.",
+                            "⚔️ <b>DPS:</b> Si el <span class='whitespace-nowrap text-amber-200'>Rayo convergente</span> te marca, no lo lleves hacia el tanque ni hacia el sanador. Tírate a los bordes y mantén tu rotación de daño mientras corres."
                         ] 
                     },
                     { 
                         name: "Lithiel", 
                         desc: "Señora de la aguja arcana.", 
                         abilities: [
-                            "Lanza una <span class='whitespace-nowrap text-amber-200'>Ola de energía arcana</span> letal.",
-                            "Marca al grupo con <span class='whitespace-nowrap text-amber-200'>Aguja perforante</span>.",
-                            "Usa <span class='whitespace-nowrap text-amber-200'>Translocación</span> para moverse por la arena."
+                            "Lanza transversalmente una <span class='whitespace-nowrap text-amber-200'>Ola de energía arcana</span> que empuja al vacío y mata en llaves altas.",
+                            "Marca a todo el grupo con <span class='whitespace-nowrap text-amber-200'>Aguja perforante</span> exigiendo sanación abrumadora.",
+                            "Utiliza <span class='whitespace-nowrap text-amber-200'>Translocación</span> rápida desapareciendo y reposicionándose para emitir nuevas olas."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Posiciona a la jefa cerca de los portales para facilitar los desplazamientos.",
-                            "💚 <b>Sanador:</b> Sostén al grupo con curación sostenida durante las oleadas de magia arcana.",
-                            "⚔️ <b>DPS:</b> Utiliza los portales inteligentemente para cruzar la <span class='whitespace-nowrap text-amber-200'>Ola de energía arcana</span> sin perder tiempo."
+                            "🛡️ <b>Tanque:</b> Reubica a la jefa en cuanto reaparezca de su translocación. Déjala estratégicamente cerca de los pilares seguros de la sala.",
+                            "💚 <b>Sanador:</b> Este es tu examen final. Utiliza sanación potente en área para sobrevivir el daño abrumador que dejará la <span class='whitespace-nowrap text-amber-200'>Aguja perforante</span> en el grupo completo.",
+                            "⚔️ <b>DPS:</b> Usen Portales de Brujo, Traslación de Mago, o Puerta de Sombras de Sacerdote para cruzar instantáneamente a través de la <span class='whitespace-nowrap text-amber-200'>Ola de energía arcana</span> sin sufrir daño ni perder <i>uptime</i>."
                         ] 
                     }
                 ], 
                 trash: [
-                    { name: "Brujo corrupto", mechanic: "Lanza <span class='whitespace-nowrap text-amber-200'>Maldición de fatalidad</span> y <span class='whitespace-nowrap text-amber-200'>Descarga de las Sombras</span>. Remover maldiciones al instante." },
-                    { name: "Acechador de Callejón", mechanic: "Usa <span class='whitespace-nowrap text-amber-200'>Emboscada sorpresa</span>. El tanque debe lanzar provocaciones en área (Taunts) al verlos aparecer." }
+                    { name: "Brujo corrupto", mechanic: "La máxima prioridad del pull. Lanza constantemente <span class='whitespace-nowrap text-amber-200'>Maldición de fatalidad</span> y spam de <span class='whitespace-nowrap text-amber-200'>Descarga de las Sombras</span>. Druidas/Magos remuevan maldición al instante; Meles pateen sin piedad." },
+                    { name: "Acechador de Callejón", mechanic: "Activa <span class='whitespace-nowrap text-amber-200'>Emboscada sorpresa</span> apareciendo detrás del sanador. El tanque debe tener el ratón listo para lanzar provocaciones (Taunts) en área." }
                 ] 
             },
             { 
@@ -662,49 +627,49 @@
                         name: "Acaparador de Reliquias", 
                         desc: "Trol recolector de hongos venenosos.", 
                         abilities: [
-                            "Expulsa una <span class='whitespace-nowrap text-amber-200'>Nube de esporas</span> mortal.",
-                            "Invoca <span class='whitespace-nowrap text-amber-200'>Lluvia de hongos</span> sobre la plataforma.",
-                            "Atrapa a los jugadores con <span class='whitespace-nowrap text-amber-200'>Raíces asfixiantes</span>."
+                            "Satura su entorno inmediato exhalando una <span class='whitespace-nowrap text-amber-200'>Nube de esporas</span> que asfixia y daña.",
+                            "Salpica toda la arena con una brutal <span class='whitespace-nowrap text-amber-200'>Lluvia de hongos</span> tóxicos que crecen en tamaño.",
+                            "Entrampa al grupo inmovilizando a varios con <span class='whitespace-nowrap text-amber-200'>Raíces asfixiantes</span> destructibles."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Saca al jefe de los charcos de esporas venenosas de inmediato.",
-                            "💚 <b>Sanador:</b> Disipa venenos persistentes y cura a quienes rompan raíces.",
-                            "⚔️ <b>DPS:</b> Pisen la <span class='whitespace-nowrap text-amber-200'>Lluvia de hongos</span> pequeños para detonarlos controladamente."
+                            "🛡️ <b>Tanque:</b> Jamás te quedes quieto en el mismo lugar; mueve lentamente al jefe sacándolo de la zona afectada por las nubes tóxicas.",
+                            "💚 <b>Sanador:</b> Mantén a tope a los jugadores enfocados en romper mecánicas. Disipa el veneno con extremo cuidado si cuentas con el hechizo.",
+                            "⚔️ <b>DPS:</b> Asignen rotaciones para pisar deliberadamente los hongos pequeños tras la <span class='whitespace-nowrap text-amber-200'>Lluvia de hongos</span> antes de que crezcan y exploten matando a toda la party."
                         ] 
                     },
                     { 
                         name: "Centinela de Invierno", 
                         desc: "Guardián ancestral imbuido en escarcha.", 
                         abilities: [
-                            "Congela con <span class='whitespace-nowrap text-amber-200'>Tormento congelante</span>.",
-                            "Barre el área con <span class='whitespace-nowrap text-amber-200'>Aliento gélido</span>.",
-                            "Dispara una <span class='whitespace-nowrap text-amber-200'>Pica de hielo</span> al objetivo más lejano."
+                            "Congela las venas del jugador con un debuff mágico llamado <span class='whitespace-nowrap text-amber-200'>Tormento congelante</span> que ralentiza hasta el 99%.",
+                            "Barre medio escenario exhalando un <span class='whitespace-nowrap text-amber-200'>Aliento gélido</span> en cono frontal.",
+                            "Castea una gigantesca <span class='whitespace-nowrap text-amber-200'>Pica de hielo</span> dirigida al objetivo que se encuentre más alejado."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Voltea al guardián para que el <span class='whitespace-nowrap text-amber-200'>Aliento gélido</span> frontal no golpee al grupo.",
-                            "💚 <b>Sanador:</b> Aplica <b>Disipar magia</b> de forma inmediata al notar el <span class='whitespace-nowrap text-amber-200'>Tormento congelante</span>.",
-                            "⚔️ <b>DPS:</b> Cuerpo a cuerpo salgan del rango de alcance al ver el destello de la explosión."
+                            "🛡️ <b>Tanque:</b> Posicionamiento firme. Ancla al guardián dándole la espalda al grupo para que tu cuerpo absorba todo el <span class='whitespace-nowrap text-amber-200'>Aliento gélido</span> frontal sin salpicar.",
+                            "💚 <b>Sanador:</b> Este es tu momento de brillar. Configura tu interfaz para ver los debuffs mágicos grandes y aplica <b>Disipar magia</b> / <b>Purificar</b> inmediatamente en cuanto veas el <span class='whitespace-nowrap text-amber-200'>Tormento congelante</span>.",
+                            "⚔️ <b>DPS:</b> Clases a rango (Cazadores, Magos, Brujos), túrnense para hacer *Bait* quedándose como los más alejados y forzando a que la <span class='whitespace-nowrap text-amber-200'>Pica de hielo</span> vaya a donde es fácil esquivarla."
                         ] 
                     },
                     { 
                         name: "Nalorakk", 
                         desc: "Avatar del espíritu del oso.", 
                         abilities: [
-                            "Embestida masiva con <span class='whitespace-nowrap text-amber-200'>Carga bestial</span>.",
-                            "Interrumpe casteos con <span class='whitespace-nowrap text-amber-200'>Rugido ensordecedor</span>.",
-                            "Destroza armaduras con <span class='whitespace-nowrap text-amber-200'>Zarpazo brutal</span>."
+                            "Marca su territorio y embiste a la pared del escenario con <span class='whitespace-nowrap text-amber-200'>Carga bestial</span> infligiendo daño masivo e inesquivable.",
+                            "Interrumpe canalizaciones y aturde con un estruendoso <span class='whitespace-nowrap text-amber-200'>Rugido ensordecedor</span> de banda.",
+                            "Destroza y desangra al tanque ignorando su armadura mediante <span class='whitespace-nowrap text-amber-200'>Zarpazo brutal</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Usa mitigación activa alta durante el <span class='whitespace-nowrap text-amber-200'>Zarpazo brutal</span>.",
-                            "💚 <b>Sanador:</b> Prepara curaciones masivas tras el <span class='whitespace-nowrap text-amber-200'>Rugido ensordecedor</span>.",
-                            "⚔️ <b>DPS:</b> Colóquense detrás del escudo protector durante la <span class='whitespace-nowrap text-amber-200'>Carga bestial</span> masiva."
+                            "🛡️ <b>Tanque:</b> Avisa al grupo de tus defensivos. Activa tu mejor mitigación activa (ej. Ignorar dolor, Bloqueo con escudo) 1 segundo antes de cada <span class='whitespace-nowrap text-amber-200'>Zarpazo brutal</span>.",
+                            "💚 <b>Sanador:</b> Pre-castea tus habilidades de sanación masiva para que curen al grupo exactamente el mismo milisegundo en que reciban el daño del <span class='whitespace-nowrap text-amber-200'>Rugido ensordecedor</span>.",
+                            "⚔️ <b>DPS:</b> Mecánica de posicionamiento forzoso: todos deben colapsar detrás del escudo protector generado en la arena durante el casteo de la <span class='whitespace-nowrap text-amber-200'>Carga bestial</span> o morirán *One-Shot*."
                         ] 
                     }
                 ], 
                 trash: [
-                    { name: "Matriarca Amani", mechanic: "Se potencia con <span class='whitespace-nowrap text-amber-200'>Ira de la madre</span>. Calmar obligatorio (Druida/Cazador) o destruirá al tanque." },
-                    { name: "Lanzador de Hachas", mechanic: "Castea <span class='whitespace-nowrap text-amber-200'>Lanzamiento brutal</span>. Cortar o aplicar CC rápido." },
-                    { name: "Chamán de guerra", mechanic: "Canaliza <span class='whitespace-nowrap text-amber-200'>Cadena de relámpagos</span> letal en llaves altas. Interrumpir." }
+                    { name: "Matriarca Amani", mechanic: "La bestia enfurece con <span class='whitespace-nowrap text-amber-200'>Ira de la madre</span> subiendo su velocidad y daño físico al doble. Un Druida (Calmar) o Cazador (Disparo tranquilizante) debe purgar el enrage instantáneamente." },
+                    { name: "Lanzador de Hachas", mechanic: "Inicia el casteo de <span class='whitespace-nowrap text-amber-200'>Lanzamiento brutal</span> sobre un objetivo aleatorio. Es obligatorio aplicar aturdimientos o cortes rápidos en grupo." },
+                    { name: "Chamán de guerra", mechanic: "Pilar del daño mágico en la sala, canaliza la temible <span class='whitespace-nowrap text-amber-200'>Cadena de relámpagos</span>. Fíjalo como foco (Focus target) y no dejes que termine un solo casteo." }
                 ] 
             },
             { 
@@ -721,62 +686,62 @@
                         name: "Trinidad", 
                         desc: "Consejo de sacerdotes lumínicos.", 
                         abilities: [
-                            "Ataca continuamente con <span class='whitespace-nowrap text-amber-200'>Castigo divino</span>.",
-                            "Protege a sus aliados con <span class='whitespace-nowrap text-amber-200'>Barrera de luz</span>.",
-                            "Se sanan entre sí mediante <span class='whitespace-nowrap text-amber-200'>Curación radiante</span>."
+                            "Azotan aleatoriamente al grupo con lluvia incesante de <span class='whitespace-nowrap text-amber-200'>Castigo divino</span>.",
+                            "Protegen a sus aliados canalizando un escudo masivo con <span class='whitespace-nowrap text-amber-200'>Barrera de luz</span>.",
+                            "Al intentar estabilizar la pelea, se levantan la salud lanzando <span class='whitespace-nowrap text-amber-200'>Curación radiante</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Junta a los tres sacerdotes para optimizar el daño en área (*Cleave*).",
-                            "💚 <b>Sanador:</b> Disipa la <span class='whitespace-nowrap text-amber-200'>Barrera de luz</span> si puedes y sana el daño sostenido.",
-                            "⚔️ <b>DPS:</b> Interrumpe de manera rotativa la <span class='whitespace-nowrap text-amber-200'>Curación radiante</span> y equilibra el daño."
+                            "🛡️ <b>Tanque:</b> Maximiza el daño aglutinando a los tres sacerdotes en un solo punto, permitiendo que todas las habilidades de daño de área (*Cleave*) golpeen en conjunto.",
+                            "💚 <b>Sanador:</b> Si juegas Sacerdote o Chamán, ayuda activamente aplicando Disipar Magia o Purgar sobre la <span class='whitespace-nowrap text-amber-200'>Barrera de luz</span> para ahorrar tiempo a los DPS.",
+                            "⚔️ <b>DPS:</b> Rotación de interrupciones de voz alta (Discord/Chat): nadie pisa el corte de la <span class='whitespace-nowrap text-amber-200'>Curación radiante</span>. Balanceen la vida del trío, ya que al morir uno los demás se potencian."
                         ] 
                     },
                     { 
                         name: "Ikuzz el Cazador de Luz", 
                         desc: "Acechador de los claros místicos.", 
                         abilities: [
-                            "Fija un <span class='whitespace-nowrap text-amber-200'>Haz petrificante</span> que inmoviliza al objetivo.",
-                            "Coloca una <span class='whitespace-nowrap text-amber-200'>Trampa lumínica</span> en el suelo.",
-                            "Ataca aleatoriamente con <span class='whitespace-nowrap text-amber-200'>Disparo ciego</span>."
+                            "Fija un ojo sobre un jugador e inicia su imparable <span class='whitespace-nowrap text-amber-200'>Haz petrificante</span> inmovilizador.",
+                            "Siembra el suelo tras de sí con una trampa explosiva de <span class='whitespace-nowrap text-amber-200'>Trampa lumínica</span>.",
+                            "Dispara a la retaguardia sin previo aviso usando <span class='whitespace-nowrap text-amber-200'>Disparo ciego</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Posiciona al acechador cerca de las raíces seguras del escenario.",
-                            "💚 <b>Sanador:</b> Vigila la vida de quienes caigan en la <span class='whitespace-nowrap text-amber-200'>Trampa lumínica</span>.",
-                            "⚔️ <b>DPS:</b> Kitea al jefe pasando detrás de las raíces para romper la línea de visión del <span class='whitespace-nowrap text-amber-200'>Haz petrificante</span>."
+                            "🛡️ <b>Tanque:</b> Control del terreno: pasea al jefe siempre cerca y alrededor de las raíces gigantes para ofrecer cobertura a tu grupo.",
+                            "💚 <b>Sanador:</b> Reserva sanaciones urgentes instantáneas (Palabras sagradas / Marea) para reaccionar ante quien pise una <span class='whitespace-nowrap text-amber-200'>Trampa lumínica</span> por error.",
+                            "⚔️ <b>DPS:</b> Si sale la flecha sobre tu cabeza indicando el <span class='whitespace-nowrap text-amber-200'>Haz petrificante</span>, rompe la línea de visión ubicándote *detrás* del tronco gordo de la raíz más cercana."
                         ] 
                     },
                     { 
                         name: "Luzguarda Ruia", 
                         desc: "Paladín corrompido por la luz ciega.", 
                         abilities: [
-                            "Canaliza <span class='whitespace-nowrap text-amber-200'>Ira sagrada</span> wipeando al grupo si no se corta.",
-                            "Golpea al tanque con <span class='whitespace-nowrap text-amber-200'>Martillo del justiciero</span>.",
-                            "Deja charcos de <span class='whitespace-nowrap text-amber-200'>Consagración</span> gigante."
+                            "Inicia la canalización letal de su <span class='whitespace-nowrap text-amber-200'>Ira sagrada</span>, que acabará con la llave si culmina.",
+                            "Apoya todo el peso de su arma sobre el tanque usando <span class='whitespace-nowrap text-amber-200'>Martillo del justiciero</span>.",
+                            "Quema el suelo lentamente dejando charcos enormes de <span class='whitespace-nowrap text-amber-200'>Consagración</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Utiliza mitigación activa sólida justo antes del <span class='whitespace-nowrap text-amber-200'>Martillo del justiciero</span>.",
-                            "💚 <b>Sanador:</b> Rota tus CDs defensivos grupales durante las ráfagas de luz.",
-                            "⚔️ <b>DPS:</b> Las interrupciones en la <span class='whitespace-nowrap text-amber-200'>Ira sagrada</span> son prioridad absoluta."
+                            "🛡️ <b>Tanque:</b> El daño es contundente; usa un defensivo fuerte justo un milisegundo antes de que conecte el <span class='whitespace-nowrap text-amber-200'>Martillo del justiciero</span> para no drenar el maná del sanador.",
+                            "💚 <b>Sanador:</b> Este enfrentamiento es un check de HPS brutal; rota tus CDs defensivos grupales para mitigar las ráfagas que emite la paladín caída.",
+                            "⚔️ <b>DPS:</b> La <span class='whitespace-nowrap text-amber-200'>Ira sagrada</span> debe cortarse SIEMPRE al último segundo posible del casteo para maximizar el tiempo sin daño en área."
                         ] 
                     },
                     { 
                         name: "Ziekket", 
                         desc: "Horror de esporas lumínicas.", 
                         abilities: [
-                            "Envuelve la sala en una <span class='whitespace-nowrap text-amber-200'>Nube de oscuridad</span>.",
-                            "Invoca una <span class='whitespace-nowrap text-amber-200'>Espora corrupta</span> letal.",
-                            "Absorbe curación mediante <span class='whitespace-nowrap text-amber-200'>Luz devorada</span>."
+                            "Apaga la luz del sol en la sala e inicia su fase mortal sumiendo al grupo en <span class='whitespace-nowrap text-amber-200'>Nube de oscuridad</span>.",
+                            "Vomita una pegajosa <span class='whitespace-nowrap text-amber-200'>Espora corrupta</span> secundaria por las esquinas.",
+                            "Aplica un debuff de curación negada marcando a jugadores con <span class='whitespace-nowrap text-amber-200'>Luz devorada</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Conduce al horror alejándolo de las zonas de esporas densas.",
-                            "💚 <b>Sanador:</b> Reserva habilidades masivas para la fase de <span class='whitespace-nowrap text-amber-200'>Nube de oscuridad</span> total.",
-                            "⚔️ <b>DPS:</b> Quienes tengan alta movilidad deben limpiar la <span class='whitespace-nowrap text-amber-200'>Espora corrupta</span> secundaria."
+                            "🛡️ <b>Tanque:</b> Conduce y arrastra al horror esquivando proactivamente las zonas donde se están formando parches nuevos de esporas.",
+                            "💚 <b>Sanador:</b> El daño sube exponencialmente en la fase de la <span class='whitespace-nowrap text-amber-200'>Nube de oscuridad</span>; aquí es donde tiras Enlace de espíritu, Tranquilidad o Himno Divino.",
+                            "⚔️ <b>DPS:</b> Asignen a su jugador con mayor agilidad (Cazador de demonios, Monje o Pícaro) para hacer el trabajo sucio e ir a limpiar mecánicamente cada <span class='whitespace-nowrap text-amber-200'>Espora corrupta</span>."
                         ] 
                     }
                 ], 
                 trash: [
-                    { name: "Tejedor corrupto", mechanic: "Levanta <span class='whitespace-nowrap text-amber-200'>Barrera radiante</span>. Purgar el escudo mágico o robar hechizo de inmediato." },
-                    { name: "Vigilante Ciego", mechanic: "Castea <span class='whitespace-nowrap text-amber-200'>Explosión cegadora</span> y <span class='whitespace-nowrap text-amber-200'>Sentencia</span>. Voltear la cámara o aturdir." }
+                    { name: "Tejedor corrupto", mechanic: "Encierra a sus aliados tras una <span class='whitespace-nowrap text-amber-200'>Barrera radiante</span> masiva. Solo Sacerdotes (Disipar magia en masa), Chamanes (Purgar) o Magos (Robar hechizo) la pueden quitar rápidamente." },
+                    { name: "Vigilante Ciego", mechanic: "La unidad castea a nivel de área la odiosa <span class='whitespace-nowrap text-amber-200'>Explosión cegadora</span>. Dale la espalda al monitor en el juego para no quedar desorientado 5 segundos, o aplícale un aturdimiento masivo en área." }
                 ] 
             },
             { 
@@ -793,49 +758,49 @@
                         name: "Taz'Rah", 
                         desc: "Hechicero del vacío y las sombras.", 
                         abilities: [
-                            "Dispara continuamente <span class='whitespace-nowrap text-amber-200'>Descarga de vacío</span>.",
-                            "Abre un enorme <span class='whitespace-nowrap text-amber-200'>Pozo de sombras</span>.",
-                            "Aterroriza con <span class='whitespace-nowrap text-amber-200'>Terror profundo</span>."
+                            "Castiga incesantemente usando como ataque básico la <span class='whitespace-nowrap text-amber-200'>Descarga de vacío</span>.",
+                            "Abre una dimensión miniatura a los pies del grupo desatando un <span class='whitespace-nowrap text-amber-200'>Pozo de sombras</span> inesquivable.",
+                            "Aplica efecto de control de masas al sanador o DPS infligiendo <span class='whitespace-nowrap text-amber-200'>Terror profundo</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Ancla al hechicero en la orilla de la arena para dejar el <span class='whitespace-nowrap text-amber-200'>Pozo de sombras</span> pegado a la pared.",
-                            "💚 <b>Sanador:</b> Cura el daño sostenido y disipa cualquier miedo restante.",
-                            "⚔️ <b>DPS:</b> Asigna turnos estrictos de interrupción en las <span class='whitespace-nowrap text-amber-200'>Descarga de vacío</span>."
+                            "🛡️ <b>Tanque:</b> Toma control absoluto de la arena arrinconando a Taz'Rah en las orillas para que los charcos del <span class='whitespace-nowrap text-amber-200'>Pozo de sombras</span> no manchen el medio del ring.",
+                            "💚 <b>Sanador:</b> Cura sin pausa el daño de las sombras en el tanque, vigila las alertas y disipa inmediatamente con Purificar cualquier miedo en grupo.",
+                            "⚔️ <b>DPS:</b> Tienen que coordinarse: pateen al menos una de cada dos <span class='whitespace-nowrap text-amber-200'>Descarga de vacío</span>. Si dejan castear libremente al jefe, el sanador se quedará sin maná antes de la mitad de la pelea."
                         ] 
                     },
                     { 
                         name: "Atroxus", 
                         desc: "Gladiador mutado por la entropía.", 
                         abilities: [
-                            "Atropella con <span class='whitespace-nowrap text-amber-200'>Embestida entrópica</span>.",
-                            "Aplica <span class='whitespace-nowrap text-amber-200'>Sangre ponzoñosa</span> a todo el grupo.",
-                            "Wipea al grupo temblando con <span class='whitespace-nowrap text-amber-200'>Grito aterrador</span>."
+                            "Corre hacia adelante arrasando con su <span class='whitespace-nowrap text-amber-200'>Embestida entrópica</span> frontal.",
+                            "Infecta pasivamente a los atacantes cercanos con <span class='whitespace-nowrap text-amber-200'>Sangre ponzoñosa</span> de naturaleza.",
+                            "Gasta energía y sacude los cimientos con su ensordecedor <span class='whitespace-nowrap text-amber-200'>Grito aterrador</span> de daño inevitable."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Resiste la <span class='whitespace-nowrap text-amber-200'>Embestida entrópica</span> sin mover al jefe del centro.",
-                            "💚 <b>Sanador:</b> Limpia la <span class='whitespace-nowrap text-amber-200'>Sangre ponzoñosa</span> de inmediato usando <b>Limpiar toxinas</b>.",
-                            "⚔️ <b>DPS:</b> Guarda el Heroísmo / Ansiedad de la sangre para quemar el 30% de vida."
+                            "🛡️ <b>Tanque:</b> El jefe debe ser una estatua. Absorbe firmemente su <span class='whitespace-nowrap text-amber-200'>Embestida entrópica</span> sin mover un ápice para que los DPS melee no pierdan *uptime* por tu culpa.",
+                            "💚 <b>Sanador:</b> Todo sanador con facultad de disipar envenenamientos (Paladín, Druida, Evocador) debe usarla a cooldown al ver subir las marcas de <span class='whitespace-nowrap text-amber-200'>Sangre ponzoñosa</span>.",
+                            "⚔️ <b>DPS:</b> Paciencia táctica. Fijen todos sus tiempos de reutilización pesados y pociones para usarlos bajo heroísmo recién cuando toque el 30% de salud."
                         ] 
                     },
                     { 
                         name: "Charonus", 
                         desc: "Coloso blindado del vacío.", 
                         abilities: [
-                            "Lanza el demoledor <span class='whitespace-nowrap text-amber-200'>Rayo partemundos</span>.",
-                            "Inicia una fase de <span class='whitespace-nowrap text-amber-200'>Aniquilación</span> grupal.",
-                            "Se recubre con un <span class='whitespace-nowrap text-amber-200'>Escudo de entropía</span>."
+                            "Lanza un cañonazo de energía cósmica pura mediante su <span class='whitespace-nowrap text-amber-200'>Rayo partemundos</span>.",
+                            "Sobrecarga la sala forzando a la banda a correr durante la fase de <span class='whitespace-nowrap text-amber-200'>Aniquilación</span>.",
+                            "Absorbe golpes de forma defensiva si no se esquiva levantando su <span class='whitespace-nowrap text-amber-200'>Escudo de entropía</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Alterna tus facultades defensivas de forma milimétrica durante las descargas.",
-                            "💚 <b>Sanador:</b> Sostén al grupo con curaciones de área durante la <span class='whitespace-nowrap text-amber-200'>Aniquilación</span> intermitente.",
-                            "⚔️ <b>DPS:</b> Jamás cruces las líneas que deja el <span class='whitespace-nowrap text-amber-200'>Rayo partemundos</span> en el suelo."
+                            "🛡️ <b>Tanque:</b> Usa tus facultades menores en los golpes blancos pero exprime tus defensivos más fuertes (Barrera de Escudo, Escudo de Vengador) para las descargas clave.",
+                            "💚 <b>Sanador:</b> Coordina tu movilidad. Levanta el grupo y dales curación de HoTs (curación sobre el tiempo) antes de que la <span class='whitespace-nowrap text-amber-200'>Aniquilación</span> te obligue a correr sin castear.",
+                            "⚔️ <b>DPS:</b> Máxima disciplina espacial: Jamás atravieses corriendo las marcas y líneas residuales de fuego cósmico que deja el <span class='whitespace-nowrap text-amber-200'>Rayo partemundos</span>."
                         ] 
                     }
                 ], 
                 trash: [
-                    { name: "Magi tocado por vacío", mechanic: "Spamea <span class='whitespace-nowrap text-amber-200'>Descarga de sombras</span>. Zurrar u silenciar obligatorio." },
-                    { name: "Gladiador Despiadado", mechanic: "Ejecuta <span class='whitespace-nowrap text-amber-200'>Acometida mortal</span> reduciendo curación en el tanque." },
-                    { name: "Acechador del foso", mechanic: "Aplica <span class='whitespace-nowrap text-amber-200'>Fijar objetivo</span> a un DPS o Sanador. Correr o controlar." }
+                    { name: "Magi tocado por vacío", mechanic: "Hechicero que inflige daño bestial. Su <span class='whitespace-nowrap text-amber-200'>Descarga de sombras</span> es mortal. Mantener cortes activos como Zurrar, Patada, o Silencio constantemente en su barra." },
+                    { name: "Gladiador Despiadado", mechanic: "La <span class='whitespace-nowrap text-amber-200'>Acometida mortal</span> es un clásico debuff anti-tanque. Reduce severamente la curación recibida; el tanque DEBE mitigarla de forma proactiva con su rotación defensiva." },
+                    { name: "Acechador del foso", mechanic: "Aplica el temido efecto <span class='whitespace-nowrap text-amber-200'>Fijar objetivo</span> (Fixate). Si clava sus ojos en ti, usa talentos de reducción de velocidad (Trampas de Brea, Tótem de nexo) y corre como alma que lleva el diablo." }
                 ] 
             },
             { 
@@ -852,63 +817,63 @@
                         name: "Serpiente dorada", 
                         desc: "Constructo imperial dorado.", 
                         abilities: [
-                            "Deja charcos mortales con <span class='whitespace-nowrap text-amber-200'>Escupitajo de oro</span>.",
-                            "Crea adds de <span class='whitespace-nowrap text-amber-200'>Oro animado</span> imparables.",
-                            "Golpea al tanque durísimo con <span class='whitespace-nowrap text-amber-200'>Latigazo de cola</span>."
+                            "Marca con furia a un jugador para dejar tras de sí un charco mortal con el <span class='whitespace-nowrap text-amber-200'>Escupitajo de oro</span>.",
+                            "Vuelve a la vida los remanentes emitiendo una <span class='whitespace-nowrap text-amber-200'>Llamada serpentina</span> que genera gotas de oro en movimiento.",
+                            "Barrerá hacia atrás infligiendo daño masivo al tanque mediante el letal <span class='whitespace-nowrap text-amber-200'>Latigazo de cola</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Mantén al constructo de espaldas al grupo y sácalo de los charcos dorados.",
-                            "💚 <b>Sanador:</b> Alerta máxima con el jugador marcado por <span class='whitespace-nowrap text-amber-200'>Escupitajo de oro</span>.",
-                            "⚔️ <b>DPS:</b> Aplica <i>Stun</i> a los elementales de <span class='whitespace-nowrap text-amber-200'>Oro animado</span> antes de que exploten."
+                            "🛡️ <b>Tanque:</b> Fija la cara de la serpiente hacia la pared y dándole la espalda al grupo en todo momento; además, camina lentamente hacia atrás sacándola de los charcos dorados.",
+                            "💚 <b>Sanador:</b> Alerta roja: el jugador que sea enfocado por el <span class='whitespace-nowrap text-amber-200'>Escupitajo de oro</span> requiere mitigación fuerte instantánea (Supresión de dolor / Bendición de sacrificio).",
+                            "⚔️ <b>DPS:</b> En cuanto escuchen la llamada serpentina y los elementales emerjan, apliquen parálisis masivas, stuns en área y ráfaga (Burst) para que no absorban el oro del jefe."
                         ] 
                     },
                     { 
                         name: "Mchimba el Embalsamador", 
                         desc: "Gólem de preservación y sarcófagos.", 
                         abilities: [
-                            "Seca a un jugador con el perjuicio <span class='whitespace-nowrap text-amber-200'>Desecación</span>.",
-                            "Castiga en área con <span class='whitespace-nowrap text-amber-200'>Quemar corrupción</span>.",
-                            "Encierra a un aliado vivo usando <span class='whitespace-nowrap text-amber-200'>Sepultar</span>."
+                            "Afecta el cuerpo del jugador aplicando un escudo inverso (Sanación absorbida) mediante el debuff <span class='whitespace-nowrap text-amber-200'>Desecación</span>.",
+                            "Obliga al grupo a moverse de inmediato castigando la sala entera con <span class='whitespace-nowrap text-amber-200'>Quemar corrupción</span>.",
+                            "Atrapa a un jugador y lo confina en completa oscuridad aplicando <span class='whitespace-nowrap text-amber-200'>Sepultar</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Controla a los esbirros momificados y mantén al jefe estático.",
-                            "💚 <b>Sanador:</b> Cura al afectado por <span class='whitespace-nowrap text-amber-200'>Desecación</span> por encima del 90% para quitárselo.",
-                            "⚔️ <b>DPS:</b> Cambien de objetivo de inmediato al sarcófago correcto cuando lance <span class='whitespace-nowrap text-amber-200'>Sepultar</span>."
+                            "🛡️ <b>Tanque:</b> El jefe golpea de forma dura y continua. Controla pacientemente a las momias adicionales cuando los sarcófagos incorrectos sean abiertos para evitar colapso.",
+                            "💚 <b>Sanador:</b> Concentra la curación de ráfaga (*Flash Heals*) para eliminar la <span class='whitespace-nowrap text-amber-200'>Desecación</span> superando la barrera del 90% de la salud máxima del jugador antes de que estalle.",
+                            "⚔️ <b>DPS:</b> Si alguien queda atrapado por <span class='whitespace-nowrap text-amber-200'>Sepultar</span>, busquen inmediatamente el sarcófago agitado y gástenle todo su daño; tienen escasos segundos para liberarlo."
                         ] 
                     },
                     { 
                         name: "El Consejo de las Tribus", 
                         desc: "Monarcas trols resucitados.", 
                         abilities: [
-                            "Kula lanza <span class='whitespace-nowrap text-amber-200'>Hachas giratorias</span> letales.",
-                            "Aka'ali persigue con <span class='whitespace-nowrap text-amber-200'>Avance arrollador</span>.",
-                            "Zanazal spamea <span class='whitespace-nowrap text-amber-200'>Descarga de relámpagos</span> y tótems."
+                            "Kula arremete llenando la sala con <span class='whitespace-nowrap text-amber-200'>Hachas giratorias</span> que aplican sangrado acumulativo y letal.",
+                            "Aka'ali selecciona un objetivo lejano y carga violentamente usando <span class='whitespace-nowrap text-amber-200'>Avance arrollador</span>.",
+                            "Zanazal fustiga con <span class='whitespace-nowrap text-amber-200'>Descarga de relámpagos</span> y lanza la letal habilidad de <span class='whitespace-nowrap text-amber-200'>Llamada a los elementos</span> (invoca tótems elementales masivos)."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Intercepta el <span class='whitespace-nowrap text-amber-200'>Avance arrollador</span> si es necesario.",
-                            "💚 <b>Sanador:</b> Prepárate para curar el sangrado masivo de las <span class='whitespace-nowrap text-amber-200'>Hachas giratorias</span>.",
-                            "⚔️ <b>DPS:</b> Corten la <span class='whitespace-nowrap text-amber-200'>Descarga de relámpagos</span> y destruyan el tótem de invulnerabilidad."
+                            "🛡️ <b>Tanque:</b> Posicionamiento limpio; toma al rey activo pero jamás lo pares encima de las áreas ucrónicas dejadas por las mecánicas pasadas.",
+                            "💚 <b>Sanador:</b> Este enfrentamiento pondrá a prueba tu maná; prioriza curar a los objetivos sangrantes de las <span class='whitespace-nowrap text-amber-200'>Hachas giratorias</span> y mantén HoTs constantes en las transiciones.",
+                            "⚔️ <b>DPS:</b> Córtenle absolutamente todas las descargas a Zanazal. En la fase de tótems, prioricen el <span class='whitespace-nowrap text-amber-200'>Tótem Explosivo</span> de inmediato antes de que vaporice a la banda."
                         ] 
                     },
                     { 
                         name: "Dazar", 
                         desc: "Primer rey de los zandalaris.", 
                         abilities: [
-                            "Inicia fase aérea con <span class='whitespace-nowrap text-amber-200'>Salto sísmico</span> masivo.",
-                            "Dispara una <span class='whitespace-nowrap text-amber-200'>Tromba de lanzas</span> cruzada.",
-                            "Hace un ataque frontal giratorio <span class='whitespace-nowrap text-amber-200'>Tajo de vendaval</span>."
+                            "Rompe la tierra y sacude todo a su paso durante las transiciones con su devastador <span class='whitespace-nowrap text-amber-200'>Salto sísmico</span>.",
+                            "Ordena a las lanzas de los muros que se activen forzando evasión masiva en la fase de la <span class='whitespace-nowrap text-amber-200'>Tromba de lanzas</span>.",
+                            "Realiza un ataque de ciclón inesquivable frente a él conocido como <span class='whitespace-nowrap text-amber-200'>Tajo de vendaval</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Voltea al jefe al apartarlo del grupo para aislar el <span class='whitespace-nowrap text-amber-200'>Tajo de vendaval</span>.",
-                            "💚 <b>Sanador:</b> Anticipa el daño masivo en grupo del <span class='whitespace-nowrap text-amber-200'>Salto sísmico</span>.",
-                            "⚔️ <b>DPS:</b> Reviertan daño total sobre el raptor Reban en cuanto aparezca."
+                            "🛡️ <b>Tanque:</b> En cuanto el rey monte en su raptor, gíralo con precisión para que la onda letal del <span class='whitespace-nowrap text-amber-200'>Tajo de vendaval</span> impacte solo en los muros perimetrales.",
+                            "💚 <b>Sanador:</b> Aléjate cuando Dazar levante vuelo para su <span class='whitespace-nowrap text-amber-200'>Salto sísmico</span> y usa tus mayores *cool downs* para levantar a los compañeros golpeados por las ráfagas laterales.",
+                            "⚔️ <b>DPS:</b> Tienen que coordinar movilidad. Guardar el daño en área (AoE) explosivo exclusivamente para aniquilar al raptor Reban el instante exacto en que descienda a la arena."
                         ] 
                     }
                 ], 
                 trash: [
-                    { name: "Guardián de la tumba", mechanic: "Lanza <span class='whitespace-nowrap text-amber-200'>Grito de desesperación</span> que causa miedo en área. Cortar obligatorio." },
-                    { name: "Bruto purificado", mechanic: "Golpea duro con embate. El tanque debe kitear si las cargas suben." },
-                    { name: "Esbirro de Zul", mechanic: "Castea <span class='whitespace-nowrap text-amber-200'>Atado por la sombra</span>. Purgar escudo mágico al instante." }
+                    { name: "Guardián de la tumba", mechanic: "Lanza alocado <span class='whitespace-nowrap text-amber-200'>Grito de desesperación</span> infligiendo miedo en todo el rango cuerpo a cuerpo y rompiendo el posicionamiento. Un solo corte fallido significa la muerte." },
+                    { name: "Bruto purificado", mechanic: "Golpea excepcionalmente duro con su embate descontrolado. El tanque debe medir el daño, usar defensivos mayores y *kitear* la amenaza cuando las cargas suban demasiado." },
+                    { name: "Esbirro de Zul", mechanic: "Aplica de forma innata un escudo de sombra masiva llamado <span class='whitespace-nowrap text-amber-200'>Atado por la sombra</span>. Si le purgan o roban el escudo de magia, esta criatura muere automáticamente." }
                 ] 
             },
             { 
@@ -925,61 +890,61 @@
                         name: "Adderis y Aspix", 
                         desc: "Dúo de guardianes serpiente de rayos.", 
                         abilities: [
-                            "Golpean en cono frontal con <span class='whitespace-nowrap text-amber-200'>Tajo de relámpago</span>.",
-                            "Cruzan la sala letalmente con <span class='whitespace-nowrap text-amber-200'>Carga de arco</span>.",
-                            "Suman cargas mortales con <span class='whitespace-nowrap text-amber-200'>Escudo de relámpagos</span>."
+                            "Adderis embiste con furia destrozando a los meles usando el arco frontal <span class='whitespace-nowrap text-amber-200'>Tajo de relámpago</span> y atraviesa la sala como un relámpago inesquivable en su forma de <span class='whitespace-nowrap text-amber-200'>Carga de arco</span>.",
+                            "Aspix, por su parte, castiga desde la distancia aplicando <span class='whitespace-nowrap text-amber-200'>Choque estático</span> sostenido y el poderoso letargo <span class='whitespace-nowrap text-amber-200'>Conducción</span>.",
+                            "Ambos rotan un campo electromagnético denso y reflectivo: el <span class='whitespace-nowrap text-amber-200'>Escudo de relámpagos</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Fija la posición sin cruzar la <span class='whitespace-nowrap text-amber-200'>Carga de arco</span>.",
-                            "💚 <b>Sanador:</b> Mantén sanación constante contra el daño pasivo de chispa.",
-                            "⚔️ <b>DPS:</b> Sepárense obligatoriamente cuando uno tenga el <span class='whitespace-nowrap text-amber-200'>Escudo de relámpagos</span>."
+                            "🛡️ <b>Tanque:</b> Toma a Adderis con agresividad y clávalo fijo; no te cruces nunca en la trayectoria visual que usa para prepararse para la <span class='whitespace-nowrap text-amber-200'>Carga de arco</span>.",
+                            "💚 <b>Sanador:</b> Mantén activa y refrescada tu sanación sobre el tiempo (Rejuvenecimiento, Mareas Vivas) en todo el grupo para lidiar con el goteo constante de vida del daño residual de chispas.",
+                            "⚔️ <b>DPS:</b> Alerta roja: paren el daño *inmediatamente* al jefe que levante el <span class='whitespace-nowrap text-amber-200'>Escudo de relámpagos</span> (les reflejará daño pasivo en cadena mortal) y enfoquen sus interrupciones en Aspix."
                         ] 
                     },
                     { 
                         name: "Merektha", 
                         desc: "Madre de las serpientes colosales.", 
                         abilities: [
-                            "Barre el terreno con <span class='whitespace-nowrap text-amber-200'>Aliento nocivo</span> venenoso.",
-                            "Desorienta a todo el grupo con <span class='whitespace-nowrap text-amber-200'>Polvo cegador</span>.",
-                            "Inmoviliza a jugadores en un <span class='whitespace-nowrap text-amber-200'>Nudo de serpientes</span>."
+                            "Mueve su gigantesca cabeza para bañar un cono amplio con <span class='whitespace-nowrap text-amber-200'>Aliento nocivo</span> de puro veneno cáustico.",
+                            "Exige dar la espalda violentamente esparciendo una nube ofuscante de <span class='whitespace-nowrap text-amber-200'>Polvo cegador</span>.",
+                            "Sumérgese en la arena y embosca a jugadores, enredándolos mortalmente en un apretado <span class='whitespace-nowrap text-amber-200'>Nudo de serpientes</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Voltea a la serpiente para evitar que el <span class='whitespace-nowrap text-amber-200'>Aliento nocivo</span> toque al grupo.",
-                            "💚 <b>Sanador:</b> Da la espalda cuando castee <span class='whitespace-nowrap text-amber-200'>Polvo cegador</span> para no quedar incapacitado.",
-                            "⚔️ <b>DPS:</b> Liberen rápidamente a quien quede atrapado en el <span class='whitespace-nowrap text-amber-200'>Nudo de serpientes</span>."
+                            "🛡️ <b>Tanque:</b> El control de orientación es sagrado. Voltea a la jefa 180° grados lejos de tus curanderos o de la línea de *casters* para que el <span class='whitespace-nowrap text-amber-200'>Aliento nocivo</span> no manche el posicionamiento seguro.",
+                            "💚 <b>Sanador:</b> Anticípate a la ceguera masiva volteando la cámara para no interrumpir tu sanación y quita los venenos residuales del suelo en cuanto la jefa vuelva de las profundidades.",
+                            "⚔️ <b>DPS:</b> Giren la cámara por completo al ver el casteo de polvo. Guarden ataques de gran ráfaga *Cleave* (Filotormenta / Danza de hojas) únicamente para romper el agarre del <span class='whitespace-nowrap text-amber-200'>Nudo de serpientes</span>."
                         ] 
                     },
                     { 
                         name: "Galvazzt", 
                         desc: "Concentrador de energía pura.", 
                         abilities: [
-                            "Carga energía letal al <span class='whitespace-nowrap text-amber-200'>Consumir carga</span>.",
-                            "Ataca con relámpagos por medio de <span class='whitespace-nowrap text-amber-200'>Galvanizar</span>."
+                            "Drena y canaliza la energía masiva emanada de las torres elementales usando su absorción conocida como <span class='whitespace-nowrap text-amber-200'>Consumir carga</span>.",
+                            "Sobrecarga a los jugadores que se interpongan aumentando un 20% el daño que reciben subsecuentemente a través del castigo <span class='whitespace-nowrap text-amber-200'>Galvanizar</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Sostén al concentrador en el centro exacto de la plataforma.",
-                            "💚 <b>Sanador:</b> Vigila de cerca la salud de quienes bloquean los haces de luz.",
-                            "⚔️ <b>DPS:</b> Intercepta los haces de luz hacia el jefe para bloquear <span class='whitespace-nowrap text-amber-200'>Consumir carga</span>, turnándose entre jugadores."
+                            "🛡️ <b>Tanque:</b> Mantén un perfil inamovible justo en el ojo de la plataforma y toma un haz electromagnético con CDs defensivos activos solo en casos de emergencia total si falta rotación de jugadores.",
+                            "💚 <b>Sanador:</b> Vigila ferozmente la ventana de sanación de los jugadores asignados a cortar los láseres. El daño de las chispas se volverá incontrolable en las últimas fases.",
+                            "⚔️ <b>DPS:</b> Pónganse de frente y pongan su cuerpo bloqueando la trayectoria exacta de los haces de luz de las torres para anular el <span class='whitespace-nowrap text-amber-200'>Consumir carga</span>. Alternen turnos a las 10 o 15 acumulaciones."
                         ] 
                     },
                     { 
                         name: "Avatar de Sethraliss", 
                         desc: "Serpiente guardiana caída.", 
                         abilities: [
-                            "Hace caer una asquerosa <span class='whitespace-nowrap text-amber-200'>Lluvia de sapos</span>.",
-                            "Aturde y hiere con <span class='whitespace-nowrap text-amber-200'>Choque cardíaco</span>.",
-                            "Lanza un <span class='whitespace-nowrap text-amber-200'>Pulso</span> constante de daño oscuro."
+                            "Los médicos de peste envenenan implacablemente castigando toda la sala mediante una molesta <span class='whitespace-nowrap text-amber-200'>Lluvia de sapos</span>.",
+                            "Un golpe devastador que stunea y anula la regeneración temporal bautizado como <span class='whitespace-nowrap text-amber-200'>Choque cardíaco</span>.",
+                            "El corazón del avatar latirá en agonía arrojando un letal <span class='whitespace-nowrap text-amber-200'>Pulso</span> oscuro a todos si el combate se alarga."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Atrapa rápido a los guardianes del corazón y colócalos en grupo.",
-                            "💚 <b>Sanador:</b> Tu rol principal es curar a tope al Avatar de Sethraliss.",
-                            "⚔️ <b>DPS:</b> Bloqueen la <span class='whitespace-nowrap text-amber-200'>Lluvia de sapos</span> y restrinjan los casteos de los Médicos de la peste."
+                            "🛡️ <b>Tanque:</b> Usa hechizos de provocación a distancia constante sobre los magos y rompecorazones corruptos para apilarlos, permitiendo un daño AoE eficiente y ordenado.",
+                            "💚 <b>Sanador:</b> Tú eres el protagonista y tú ganarás este combate. Enlaza tu sanación y mete a Sethraliss al 100% de vida pura lo más rápido posible combinando ansias y tus sanaciones crudas directas (*Heal bom*).",
+                            "⚔️ <b>DPS:</b> Intercepten y aplasten físicamente a la <span class='whitespace-nowrap text-amber-200'>Lluvia de sapos</span> con el cuerpo si es necesario para evitar que infecten a los curadores que están reviviendo el Avatar de luz."
                         ] 
                     }
                 ], 
                 trash: [
-                    { name: "Clérigo del Templo", mechanic: "Lanza <span class='whitespace-nowrap text-amber-200'>Sanación relámpago</span> sobre enemigos heridos. Interrupción máxima prioridad." },
-                    { name: "Jinete de escamas", mechanic: "Su rugido aplica ola de choque frontal. Esquivar o aplicar *Stun*." }
+                    { name: "Clérigo del Templo", mechanic: "Enemigo de rango letal en grupos grandes. Sostiene el *pull* levantando a los caídos con su gigantesca <span class='whitespace-nowrap text-amber-200'>Sanación relámpago</span>. Su interrupción es tu prioridad de supervivencia máxima número uno." },
+                    { name: "Jinete de escamas", mechanic: "La criatura desata toda su furia en un inmenso rugido frontal que paraliza aplicando *stun*. Debes esquivarlo saliendo del triángulo dibujado o usar un CC pesado." }
                 ] 
             },
             { 
@@ -996,49 +961,49 @@
                         name: "Melidrussa Caracoluz", 
                         desc: "Maestra de los dracónidos de escarcha.", 
                         abilities: [
-                            "Atrae a la banda con <span class='whitespace-nowrap text-amber-200'>Oleada de frío</span>.",
-                            "Inicia una brutal <span class='whitespace-nowrap text-amber-200'>Tormenta de granizo</span> masiva.",
-                            "Lanza un debuff al tanque de <span class='whitespace-nowrap text-amber-200'>Frío del despertar</span>."
+                            "Atrae a la banda completa al mismo pozo y rompe formaciones castigando con la incansable <span class='whitespace-nowrap text-amber-200'>Oleada de frío</span>.",
+                            "Genera un enorme escudo gélido bloqueando todo daño para detonar la letal <span class='whitespace-nowrap text-amber-200'>Tormenta de granizo</span> masiva.",
+                            "Incrusta en el tanque un debuff de presión mágica que se acumula conocido como el temible <span class='whitespace-nowrap text-amber-200'>Frío del despertar</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Mueve el jefe para asegurar espacio limpio lejos de la <span class='whitespace-nowrap text-amber-200'>Oleada de frío</span>.",
-                            "💚 <b>Sanador:</b> Prepara mitigaciones fuertes cuando estalle la <span class='whitespace-nowrap text-amber-200'>Tormenta de granizo</span>.",
-                            "⚔️ <b>DPS:</b> Destruye rápidamente los huevos de hielo para evitar crías abrumadoras."
+                            "🛡️ <b>Tanque:</b> El hielo y las crías dominarán el suelo. Reposiciona al dracónido rotando constantemente el campo para asegurar un lugar abierto libre antes de que empiece la succión de la <span class='whitespace-nowrap text-amber-200'>Oleada de frío</span>.",
+                            "💚 <b>Sanador:</b> Usa los escudos previos e inmunidades (como la Barrera del Sacerdote Disciplina o el Vínculo del Chaman) coordinadamente en cuanto la <span class='whitespace-nowrap text-amber-200'>Tormenta de granizo</span> comience a latir y estallar.",
+                            "⚔️ <b>DPS:</b> En este jefe se gasta el todo o nada. Cuiden la alineación del Heroísmo/Bloodlust y vuelquen su máxima rotación de *burst* destructiva al escudo antes de que el invierno los elimine."
                         ] 
                     },
                     { 
                         name: "Kokia Pezuña de Fuego", 
                         desc: "Comandante primigenia.", 
                         abilities: [
-                            "Invoca un <span class='whitespace-nowrap text-amber-200'>Ritual abrasador</span> invocando un add feroz.",
-                            "Grita con una <span class='whitespace-nowrap text-amber-200'>Llamarada</span> que inflige gran daño.",
-                            "Patea una <span class='whitespace-nowrap text-amber-200'>Roca de lava</span> cruzando la sala."
+                            "Fija un punto y evoca el destructivo <span class='whitespace-nowrap text-amber-200'>Ritual abrasador</span> atrayendo un esbirro de llamas que empuja a todos al invocar.",
+                            "Vocifera un daño sónico general inflamando toda la sala mediante una abrumadora <span class='whitespace-nowrap text-amber-200'>Llamarada</span>.",
+                            "Golpea o patea una esfera incandescente pesada en forma de <span class='whitespace-nowrap text-amber-200'>Roca de lava</span> cruzando mortalmente los caminos."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Mueve a Kokia para abrir un ángulo seguro ante la <span class='whitespace-nowrap text-amber-200'>Roca de lava</span>.",
-                            "💚 <b>Sanador:</b> Cura la explosión de la <span class='whitespace-nowrap text-amber-200'>Llamarada</span> rápidamente.",
-                            "⚔️ <b>DPS:</b> Cambia de objetivo al *add* del <span class='whitespace-nowrap text-amber-200'>Ritual abrasador</span> y córtale todos sus hechizos de fuego."
+                            "🛡️ <b>Tanque:</b> Tira fuerte del jefe arrastrando a Kokia a las orillas limpias de la plataforma ovalada, manteniendo una línea de visión que permita a todo tu equipo ver claramente la trayectoria del cono y las esferas rodantes.",
+                            "💚 <b>Sanador:</b> Prepárate mentalmente y recarga recursos para curar rápido y en movimiento, la <span class='whitespace-nowrap text-amber-200'>Llamarada</span> quema parejo y disipa todo tipo de absorciones ligeras de tu equipo.",
+                            "⚔️ <b>DPS:</b> Cambia *ipso facto* de objetivo central al add gigante de fuego cuando el <span class='whitespace-nowrap text-amber-200'>Ritual abrasador</span> levante, córtale incesantemente su casteo mientras evitas que las rocas trituren tu posicionamiento de ataque."
                         ] 
                     },
                     { 
                         name: "Kyrakka y Erkhart Venapiedra", 
                         desc: "Dúo de jinetes de dragones primigenios.", 
                         abilities: [
-                            "Kyrakka escupe un <span class='whitespace-nowrap text-amber-200'>Aliento de fuego rugiente</span> mortal.",
-                            "Aplica <span class='whitespace-nowrap text-amber-200'>Núcleo infernal</span> a objetivos aleatorios.",
-                            "Erkhart invoca una <span class='whitespace-nowrap text-amber-200'>Tormenta ininterrumpida</span>."
+                            "El enorme dragón rojo asolará a todos con su inmenso cono inesquivable si no está posicionado llamado <span class='whitespace-nowrap text-amber-200'>Aliento de fuego rugiente</span>.",
+                            "Aplicará sin asco DoTs de vida o muerte castigando a DPS aleatorios clavándoles el fiero <span class='whitespace-nowrap text-amber-200'>Núcleo infernal</span> ardiente.",
+                            "El jinete desatará todo su odio mediante un debuff y casteo soplante al interrumpiblemente brutal <span class='whitespace-nowrap text-amber-200'>Vientos interruptores</span> y el constante daño letal al tanque del <span class='whitespace-nowrap text-amber-200'>Tajo de tormenta</span>."
                         ],
                         strategy: [
-                            "🛡️ <b>Tanque:</b> Orienta el <span class='whitespace-nowrap text-amber-200'>Aliento de fuego rugiente</span> siempre lejos del grupo.",
-                            "💚 <b>Sanador:</b> Los afectados por <span class='whitespace-nowrap text-amber-200'>Núcleo infernal</span> dejarán fuego, sana ese daño continuo.",
-                            "⚔️ <b>DPS:</b> Córtale siempre a Erkhart y haz daño compartido equitativo para no prolongar la fase final."
+                            "🛡️ <b>Tanque:</b> Concentra la amenaza absoluta en Erkhart (el jinete) mientras vuela, pero una vez descienda Kyrakka gira rígidamente todo el <span class='whitespace-nowrap text-amber-200'>Aliento de fuego rugiente</span> apuntando lejos del sanador.",
+                            "💚 <b>Sanador:</b> El <span class='whitespace-nowrap text-amber-200'>Núcleo infernal</span> obligará a los marcados a dejar charcos letales, curalos en todo momento y no disipes a menos que estés totalmente seguro del posicionamiento libre de la mancha que dejará al irse.",
+                            "⚔️ <b>DPS:</b> Fijan interrupciones de 15 segundos estrictas sobre los vientos del jinete. Bajen equitativamente y de manera constante las barras de salud de ambos (Daño esparcido o DoTs múltiples) para evitar que uno al morir exalte de poder inmanejable al que quede vivo."
                         ] 
                     }
                 ], 
                 trash: [
-                    { name: "Crio-canalizadora primigenia", mechanic: "Levanta una gruesa <span class='whitespace-nowrap text-amber-200'>Barrera de hielo</span>. Purgar o robar hechizo urgente (Mago/Sacerdote)." },
-                    { name: "Bailatormentas primigenio", mechanic: "Entra en frenesí. <span class='whitespace-nowrap text-amber-200'>Sed de sangre</span> debe calmarse con Disparo tranquilizante o Calmar." },
-                    { name: "Defensor de la fragua", mechanic: "Realiza <span class='whitespace-nowrap text-amber-200'>Embestida de magma</span>. Nunca pararse frente a él." }
+                    { name: "Crio-canalizadora primigenia", mechanic: "Desata escudos protectores de alta defensa canalizando <span class='whitespace-nowrap text-amber-200'>Barrera de hielo</span>. El equipo completo debe interrumpir antes o un Mago / Chaman (Purgar) debe robarla para hacerla inútil." },
+                    { name: "Bailatormentas primigenio", mechanic: "Ciega y aturde masivamente de no ser mitigado, entra en un estado inmanejable al activar la sanguinaria habilidad <span class='whitespace-nowrap text-amber-200'>Sed de sangre</span>. Un cazador con Disparo Tranquilizante o Druida con Calmar salvan la piedra aquí." },
+                    { name: "Defensor de la fragua", mechanic: "Rómpete los dientes por posicionamiento o esquivando su aplastadora <span class='whitespace-nowrap text-amber-200'>Embestida de magma</span> en línea recta. Mantente 100% de lado o detrás si eres melé." }
                 ] 
             }
         ];
@@ -1184,23 +1149,25 @@
                     </div>
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <div class="lg:col-span-2 space-y-4">
-                            <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-crown text-amber-500 mr-2"></i>Jefes y Estrategias</h3>
+                            <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-crown text-amber-500 mr-2"></i>Jefes y Estrategias Completas</h3>
                             ${d.bosses.map(b => `
-                                <div class="bg-[#141210] p-4 rounded-lg border border-stone-700 space-y-2">
-                                    <h4 class="font-bold text-amber-300 text-sm font-cinzel">
-                                        <i class="fa-solid fa-skull-crossbones text-amber-500 mr-1.5"></i>${b.name}
-                                    </h4>
-                                    <p class="text-xs text-stone-300">${b.desc}</p>
+                                <div class="bg-[#141210] p-4 rounded-lg border border-stone-700 space-y-3">
+                                    <div>
+                                        <h4 class="font-bold text-amber-300 text-sm font-cinzel">
+                                            <i class="fa-solid fa-skull-crossbones text-amber-500 mr-1.5"></i>${b.name}
+                                        </h4>
+                                        <p class="text-xs text-stone-400 italic">${b.desc}</p>
+                                    </div>
                                     ${b.abilities ? `
-                                    <div class="mb-3">
-                                        <p class="text-[10px] font-bold text-purple-400 uppercase tracking-wider mb-1"><i class="fa-solid fa-bolt mr-1"></i>Habilidades Clave:</p>
-                                        <ul class="list-disc pl-4 space-y-1 text-xs text-stone-300">
+                                    <div class="bg-stone-900/60 p-3 rounded border border-stone-800/60">
+                                        <p class="text-[10px] font-bold text-purple-400 uppercase tracking-wider mb-2"><i class="fa-solid fa-bolt mr-1"></i>Habilidades Clave:</p>
+                                        <ul class="list-disc pl-4 space-y-1.5 text-xs text-stone-300">
                                             ${b.abilities.map(a => `<li>${a}</li>`).join('')}
                                         </ul>
                                     </div>` : ''}
-                                    <div class="bg-stone-900 p-3 rounded border border-stone-800 space-y-1.5">
+                                    <div class="bg-stone-900 p-3 rounded border border-stone-800 space-y-2">
                                         <p class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-1">Estrategia por Rol:</p>
-                                        <ul class="space-y-2 text-xs text-stone-200">
+                                        <ul class="space-y-2.5 text-xs text-stone-200">
                                             ${b.strategy.map(item => `<li class="flex items-start gap-2">${item}</li>`).join('')}
                                         </ul>
                                     </div>
@@ -1209,7 +1176,12 @@
                         </div>
                         <div class="space-y-4">
                             <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-biohazard text-amber-500 mr-2"></i>Trash Peligroso</h3>
-                            ${d.trash.map(t => `<div class="bg-[#141210] p-3.5 rounded-lg border border-stone-700 text-xs"><b>${t.name}</b><p class="text-stone-300 mt-1">${t.mechanic}</p></div>`).join('')}
+                            ${d.trash.map(t => `
+                                <div class="bg-[#141210] p-3.5 rounded-lg border border-stone-700 text-xs">
+                                    <b class="text-red-400">${t.name}</b>
+                                    <p class="text-stone-300 mt-1 leading-relaxed">${t.mechanic}</p>
+                                </div>
+                            `).join('')}
                         </div>
                     </div>
                 `;
