@@ -88,23 +88,30 @@
         .fade-out-slide { opacity: 0; transform: translateX(30px); }
         .fade-in-slide { opacity: 1; transform: translateX(0); }
 
+       /* Botón Clásico Blizzard: Rojo en Relieve con bordes redondeados y glow sutil */
         .blizzard-btn {
-            background: linear-gradient(to bottom, #ef4444 0%, #dc2626 50%, #991b1b 100%);
-            border: 2px solid #78716c;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 8px rgba(0, 0, 0, 0.6);
-            clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
+            background: linear-gradient(to bottom, #7f1d1d 0%, #991b1b 50%, #7f1d1d 100%);
+            border: 1px solid #b45309; /* Borde bronce/dorado oscuro */
+            border-radius: 6px; /* Adiós al recorte octagonal, bordes limpios */
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 8px rgba(0, 0, 0, 0.8);
             color: #facc15;
             font-family: 'Cinzel', serif;
             font-weight: 700;
             text-shadow: 1px 1px 2px #000;
-            transition: all 0.2s ease;
+            transition: all 0.2s ease-in-out;
+            letter-spacing: 0.05em;
         }
         .blizzard-btn:hover {
-            background: linear-gradient(to bottom, #f87171 0%, #ef4444 50%, #b91c1c 100%);
-            filter: brightness(1.15);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 6px 12px rgba(220, 38, 38, 0.4);
+            background: linear-gradient(to bottom, #991b1b 0%, #b91c1c 50%, #991b1b 100%);
+            border-color: #f59e0b; /* El borde brilla en ámbar al pasar el dedo/mouse */
+            filter: brightness(1.1);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 12px rgba(245, 158, 11, 0.4); /* Resplandor de magia */
+            transform: translateY(-1px);
         }
-        .blizzard-btn:active { transform: translateY(1px); }
+        .blizzard-btn:active {
+            transform: translateY(1px);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.6), 0 1px 2px rgba(0, 0, 0, 0.8);
+        }
 
         .tab-btn { color: #a8a29e; background-color: #141210; border: 1px solid #292524; }
         .tab-btn:hover { color: #facc15; background-color: #1c1917; }
