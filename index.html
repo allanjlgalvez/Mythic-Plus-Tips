@@ -207,13 +207,14 @@
             </div>
 
             <div id="dungeon-detail-view" class="view-transition fade-out-slide hidden space-y-4">
-                <button onclick="backToDungeonGrid()" class="blizzard-btn px-5 py-2.5 text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 shadow-lg">
+                <button onclick="backToDungeonGrid()" class="blizzard-btn px-5 py-2.5 text-xs font-bold uppercase tracking-wider inline-flex items-center gap-2 shadow-lg mb-2">
                     <i class="fa-solid fa-arrow-left"></i> Volver al Selector de Mazmorras
                 </button>
                 <div id="dungeon-detail-container" class="companion-panel rounded-xl p-6"></div>
             </div>
         </section>
 
+        <!-- TAB 2: ECOSISTEMA Y MÉTRICAS -->
         <section id="tab-overview" class="hidden space-y-6">
             <div class="companion-panel p-6 rounded-xl">
                 <h2 class="font-cinzel text-2xl font-bold text-amber-400 mb-2">
@@ -286,6 +287,7 @@
             </div>
         </section>
 
+        <!-- TAB 3: MATRIZ DE CONTRAMEDIDAS -->
         <section id="tab-matrix" class="hidden space-y-6">
             <div class="companion-panel p-5 rounded-xl">
                 <h2 class="font-cinzel text-xl sm:text-2xl font-bold text-amber-400 mb-2"><i class="fa-solid fa-book-bookmark text-amber-500 mr-2"></i>Matriz de Contramedidas</h2>
@@ -346,6 +348,7 @@
             </div>
         </section>
 
+        <!-- TAB 4: ANALIZADOR DE COBERTURA -->
         <section id="tab-analyzer" class="hidden space-y-6">
             <div class="companion-panel p-5 rounded-xl">
                 <h2 class="font-cinzel text-xl sm:text-2xl font-bold text-amber-400 mb-2"><i class="fa-solid fa-users-viewfinder text-amber-500 mr-2"></i>Analizador de Cobertura de Grupo M+</h2>
@@ -1018,8 +1021,8 @@
         ];
 
         const matrixData = [
-            { dungeon: "Altar de los Colmillos", enemy: "Espiral Retorcida", mechanic: "Atrofia tóxica", type: "Interrupción", counter: "Guerrero: Zurrar / Mago: Contrahechizo" },
-            { dungeon: "Altar de los Colmillos", enemy: "Zul'jan", mechanic: "Veneno ritual", type: "Magia", counter: "Purga táctica: Interceptar sangrado de jefe" },
+            { dungeon: "Altar de los Colmillos", enemy: "La Espiral Retorcida", mechanic: "Atrofia tóxica", type: "Interrupción", counter: "Guerrero: Zurrar / Mago: Contrahechizo" },
+            { dungeon: "Altar de los Colmillos", enemy: "Zul'jan", mechanic: "Veneno de ritual", type: "Magia", counter: "Purga táctica: Interceptar sangrado de jefe" },
             { dungeon: "Arena Rajavacío", enemy: "Magi tocado", mechanic: "Tormenta atronadora", type: "Interrupción", counter: "Guerrero: Zurrar / Pícaro: Patada / Chamán: Corte de viento" },
             { dungeon: "Reposo de Reyes", enemy: "Sombra de Zul", mechanic: "Maleficio", type: "Magia", counter: "Paladín: Escudo divino / Sacerdote: Disipar magia" },
             { dungeon: "El Valle Enceguecedor", enemy: "Tejedor corrupto", mechanic: "Barrera radiante", type: "Purga", counter: "Sacerdote: Disipar magia / Chamán: Purgar / Mago: Robar hechizo" },
@@ -1098,6 +1101,21 @@
 
         function renderDungeonSelector() {
             const container = document.getElementById('dungeon-selector');
+            
+            // Mini barra superior en la vista de detalle
+            const miniNavHtml = `
+                <div class="flex gap-2 overflow-x-auto pb-4 mb-4 border-b border-stone-700/50 custom-scrollbar">
+                    ${dungeonsData.map(dMap => `
+                        <button onclick="selectDungeon('${dMap.id}')"
+                                title="${dMap.name}"
+                                style="background-image: url('images/${dMap.id}.webp');"
+                                id="mini-nav-${dMap.id}"
+                                class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded bg-cover bg-center border-2 transition-all border-stone-600 opacity-50 hover:opacity-100 hover:border-amber-500">
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+
             container.innerHTML = dungeonsData.map(d => `
                 <button onclick="selectDungeon('${d.id}')" 
                         style="background-image: url('images/${d.id}.webp');"
@@ -1113,6 +1131,9 @@
                     </div>
                 </button>
             `).join('');
+
+            // Guardamos la barra de navegación en una variable global para inyectarla en el detalle
+            window.miniNavHtmlTemplate = miniNavHtml;
         }
 
         function renderMobileDungeonMenu() {
@@ -1130,69 +1151,79 @@
             const gridView = document.getElementById('dungeon-grid-view');
             const detailView = document.getElementById('dungeon-detail-view');
 
-            gridView.classList.add('fade-out-slide');
-            
-            setTimeout(() => {
-                gridView.classList.add('hidden');
-                gridView.classList.remove('fade-out-slide');
-                
-                detailView.classList.remove('hidden');
-                detailView.classList.add('fade-out-slide');
-                
+            if (!gridView.classList.contains('hidden')) {
+                gridView.classList.add('fade-out-slide');
                 setTimeout(() => {
-                    detailView.classList.remove('fade-out-slide');
-                    detailView.classList.add('fade-in-slide');
-                }, 20);
+                    gridView.classList.add('hidden');
+                    gridView.classList.remove('fade-out-slide');
+                    detailView.classList.remove('hidden');
+                    detailView.classList.add('fade-out-slide');
+                    setTimeout(() => {
+                        detailView.classList.remove('fade-out-slide');
+                        detailView.classList.add('fade-in-slide');
+                    }, 20);
+                }, 200);
+            }
 
-                document.getElementById('dungeon-detail-container').innerHTML = `
-                    <div class="flex flex-col lg:flex-row justify-between mb-6 gap-3 border-b border-stone-700 pb-4">
-                        <div>
-                            <span class="bg-amber-950/60 border border-amber-600/50 text-amber-400 text-xs font-bold px-2.5 py-0.5 rounded-full">${d.expansion}</span>
-                            <h2 class="font-cinzel text-2xl font-bold text-amber-400 mt-2">${d.name}</h2>
-                        </div>
-                        <div class="bg-stone-900 p-3 rounded-lg border border-amber-600/40 text-xs text-stone-300 max-w-lg">
-                            <p class="font-bold text-amber-400"><i class="fa-solid fa-gem text-amber-500 mr-1"></i>Ventaja de Ruta: ${d.hiddenBuff}</p>
-                        </div>
+            document.getElementById('dungeon-detail-container').innerHTML = `
+                ${window.miniNavHtmlTemplate}
+                <div class="flex flex-col lg:flex-row justify-between mb-6 gap-3 border-b border-stone-700 pb-4">
+                    <div>
+                        <span class="bg-amber-950/60 border border-amber-600/50 text-amber-400 text-xs font-bold px-2.5 py-0.5 rounded-full">${d.expansion}</span>
+                        <h2 class="font-cinzel text-2xl font-bold text-amber-400 mt-2">${d.name}</h2>
                     </div>
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <div class="lg:col-span-2 space-y-4">
-                            <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-crown text-amber-500 mr-2"></i>Jefes y Estrategias Tácticas</h3>
-                            ${d.bosses.map(b => `
-                                <div class="bg-[#141210] p-4 rounded-lg border border-stone-700 space-y-3">
-                                    <div>
-                                        <h4 class="font-bold text-amber-300 text-sm font-cinzel">
-                                            <i class="fa-solid fa-skull-crossbones text-amber-500 mr-1.5"></i>${b.name}
-                                        </h4>
-                                        <p class="text-xs text-stone-400 italic">${b.desc}</p>
-                                    </div>
-                                    ${b.abilities ? `
-                                    <div class="bg-stone-900/60 p-3 rounded border border-stone-800/60">
-                                        <p class="text-[10px] font-bold text-purple-400 uppercase tracking-wider mb-2"><i class="fa-solid fa-bolt mr-1"></i>Mecánicas y *Wipe Checks*:</p>
-                                        <ul class="list-disc pl-4 space-y-2 text-xs text-stone-300">
-                                            ${b.abilities.map(a => `<li class="leading-snug">${a}</li>`).join('')}
-                                        </ul>
-                                    </div>` : ''}
-                                    <div class="bg-stone-900 p-3 rounded border border-stone-800 space-y-2">
-                                        <p class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-1">Órdenes de Combate:</p>
-                                        <ul class="space-y-2.5 text-xs text-stone-200">
-                                            ${b.strategy.map(item => `<li class="leading-relaxed mb-1.5">${item}</li>`).join('')}
-                                        </ul>
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                        <div class="space-y-4">
-                            <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-biohazard text-amber-500 mr-2"></i>Trash Letal Prioritario</h3>
-                            ${d.trash.map(t => `
-                                <div class="bg-[#141210] p-3.5 rounded-lg border border-stone-700 text-xs">
-                                    <b class="text-red-400 uppercase tracking-wider block mb-1">${t.name}</b>
-                                    <p class="text-stone-300 mt-1 leading-relaxed">${t.mechanic}</p>
-                                </div>
-                            `).join('')}
-                        </div>
+                    <div class="bg-stone-900 p-3 rounded-lg border border-amber-600/40 text-xs text-stone-300 max-w-lg">
+                        <p class="font-bold text-amber-400"><i class="fa-solid fa-gem text-amber-500 mr-1"></i>Ventaja de Ruta: ${d.hiddenBuff}</p>
                     </div>
-                `;
-            }, 200);
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 space-y-4">
+                        <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-crown text-amber-500 mr-2"></i>Jefes y Estrategias Tácticas</h3>
+                        ${d.bosses.map(b => `
+                            <div class="bg-[#141210] p-4 rounded-lg border border-stone-700 space-y-3">
+                                <div>
+                                    <h4 class="font-bold text-amber-300 text-sm font-cinzel">
+                                        <i class="fa-solid fa-skull-crossbones text-amber-500 mr-1.5"></i>${b.name}
+                                    </h4>
+                                    <p class="text-xs text-stone-400 italic">${b.desc}</p>
+                                </div>
+                                ${b.abilities ? `
+                                <div class="bg-stone-900/60 p-3 rounded border border-stone-800/60">
+                                    <p class="text-[10px] font-bold text-purple-400 uppercase tracking-wider mb-2"><i class="fa-solid fa-bolt mr-1"></i>Mecánicas y *Wipe Checks*:</p>
+                                    <ul class="list-disc pl-4 space-y-2 text-xs text-stone-300">
+                                        ${b.abilities.map(a => `<li class="leading-snug">${a}</li>`).join('')}
+                                    </ul>
+                                </div>` : ''}
+                                <div class="bg-stone-900 p-3 rounded border border-stone-800 space-y-2">
+                                    <p class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-1">Órdenes de Combate:</p>
+                                    <ul class="space-y-2.5 text-xs text-stone-200">
+                                        ${b.strategy.map(item => `<li class="leading-relaxed mb-1.5">${item}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-biohazard text-amber-500 mr-2"></i>Trash Letal Prioritario</h3>
+                        ${d.trash.map(t => `
+                            <div class="bg-[#141210] p-3.5 rounded-lg border border-stone-700 text-xs">
+                                <b class="text-red-400 uppercase tracking-wider block mb-1">${t.name}</b>
+                                <p class="text-stone-300 leading-relaxed">${t.mechanic}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            // Resaltar el botón activo en la mini-barra
+            const allMiniButtons = document.querySelectorAll('[id^="mini-nav-"]');
+            allMiniButtons.forEach(btn => {
+                btn.className = "flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded bg-cover bg-center border-2 transition-all border-stone-600 opacity-50 hover:opacity-100 hover:border-amber-500";
+            });
+            const activeMiniButton = document.getElementById(`mini-nav-${id}`);
+            if(activeMiniButton) {
+                activeMiniButton.className = "flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded bg-cover bg-center border-2 transition-all border-amber-400 scale-105 shadow-[0_0_8px_rgba(251,191,36,0.8)] opacity-100";
+            }
         }
 
         function selectDungeonFromMobile(id) {
