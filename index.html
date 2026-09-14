@@ -461,7 +461,7 @@
                         <label class="block text-xs font-semibold text-stone-300 mb-1">Selecciona Mazmorra</label>
                         <select id="calc-dungeon" onchange="calculateKeyTimes()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg">
                             <option value="28">Estanques de Vida Rubí (28 min)</option>
-                            <option value="30">Altar de los Colmillos (30 min)</option>
+                            <option value="29">Altar de los Colmillos (29 min)</option>
                             <option value="30">Arena Rajavacío (30 min)</option>
                             <option value="31">El Valle Enceguecedor (31 min)</option>
                             <option value="32">Guarida de Nalorakk (32 min)</option>
@@ -497,6 +497,65 @@
 
     <script>
         const dungeonsData = [
+            { 
+                id: "altar-of-fangs", 
+                name: "Altar de los Colmillos", 
+                nameEn: "Altar of Fangs", 
+                expansion: "Midnight (12.1)", 
+                timer: "29:00", 
+                bossesCount: 3, 
+                tacticalFeature: "Posicionamiento y Soak", 
+                hiddenBuff: "Huesos Malditos: Interactuar invoca un espíritu que otorga +1% daño infligido por acumulación.", 
+                bosses: [
+                    { 
+                        name: "Rav'i", 
+                        desc: "Hidra voraz de los fosos.", 
+                        abilities: [
+                            "<span class='spell-link'>Carroñear</span> / <span class='spell-link'>Estallido de carroña</span>: Escudo de absorción y daño grupal de Naturaleza continuo. Romper escudo es máxima prioridad (*DPS check*).",
+                            "<span class='spell-link'>Carne fresca</span>: Al consumir, entra en <span class='spell-link'>Frenesí alimenticio</span>. El daño detona cada 1.5s en lugar de 3s. Evasión de tanque obligatoria.",
+                            "<span class='spell-link'>Comedor descuidado</span>: Expulsa trozos de carne al escenario. En dificultad M+ la intercepción (*Soak*) es obligatoria o detonan estallidos letales."
+                        ],
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Táctica posicional estricta. Alejar al jefe de las Pilas de Carroña marcadas con Carne Fresca tras cada Pisotón voraz.",
+                            "💚 <b>Sanador:</b> Presión máxima de HPS en la fase de escudo. Curar explosiones de estallido y daño de veneno del Disparo triple.",
+                            "⚔️ <b>DPS:</b> Interceptar los trozos de carne del suelo en M+. Guardar habilidades de ráfaga (*Burst*) exclusivamente para demoler el escudo."
+                        ] 
+                    },
+                    { 
+                        name: "La Espiral Retorcida", 
+                        desc: "Enjambre de serpientes unificadas.", 
+                        abilities: [
+                            "<span class='spell-link'>Estertor de la muerte</span>: Canalización letal masiva. El grupo debe usar <span class='spell-link'>Agarre de enredadera</span> para alejar al jefe y forzar la mecánica de desenrollar. Si alguien falla, es *wipe*.",
+                            "<span class='spell-link'>Desenrollar</span>: Fase vulnerable donde el jefe se divide en serpientes. El daño infligido a las serpientes individuales se transfiere directamente al jefe al reunificarse.",
+                            "<span class='spell-link'>Atrofia tóxica</span>: Perjuicio venenoso acumulativo. Requiere rotación militar de cortes e interrupciones obligatorias."
+                        ],
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Absorber daño físico de la Guadaña de cola. Dirigir la huida del grupo en la mecánica de enredadera.",
+                            "💚 <b>Sanador:</b> Sanación en movimiento intensiva durante Chorro de veneno y la separación en fase de estertor.",
+                            "⚔️ <b>DPS:</b> Ventana de *Burst* puro durante el Desenrollar, ya que el daño se conserva. Rotación de cortes impecable en la Atrofia tóxica."
+                        ] 
+                    },
+                    { 
+                        name: "Zul'jan", 
+                        desc: "Señor de la guerra Amani.", 
+                        abilities: [
+                            "<span class='spell-link'>Ritual del Colmillo</span>: Invocación de 4 haces de energía. Intercepción (*Soak*) grupal obligatoria; si el jefe los absorbe, gana el potenciador de daño permanente <span class='spell-link'>Colmillo potenciado</span>.",
+                            "<span class='spell-link'>Veneno de ritual</span>: Perjuicio letal aplicado al interceptar rayos. Mecánica de purga: usar el sangrado del hacha <span class='spell-link'>Rebanahuesos</span> o la Sangría del jefe para limpiarlo.",
+                            "<span class='spell-link'>Talar</span>: Doble golpe físico destructivo (*Tank Buster*). Requiere mitigación pesada exclusiva para esta habilidad."
+                        ],
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Reservar tiempos de reutilización defensivos mayores exclusivamente para sobrevivir los impactos de Talar.",
+                            "💚 <b>Sanador:</b> Daño pasivo alto y continuo. Las hachas de Afilahachas rebotan e ignoran la armadura. Mantener *HoTs* activos para el daño de grupo.",
+                            "⚔️ <b>DPS:</b> Posición fija en las 4 esquinas para interceptar rayos. Interceptar voluntariamente el hacha para aplicar el sangrado y disipar el veneno."
+                        ] 
+                    }
+                ], 
+                trash: [
+                    { name: "Evolucionador Superior", mechanic: "<span class='spell-link'>Casteo letal</span>: Aplicación de magia enemiga de alta prioridad. Interrupción obligatoria o aniquilación de escuadra." },
+                    { name: "Elegido de Ula'tek", mechanic: "<span class='spell-link'>Daño incesante</span>: Foco de aturdimiento y control de masas (CC) requerido." },
+                    { name: "Serpiente Primigenia", mechanic: "<span class='spell-link'>Daño AoE</span>: Cortar y aturdir a la vista." }
+                ] 
+            },
             { 
                 id: "ruby-life-pools", 
                 name: "Estanques de Vida Rubí", 
@@ -700,64 +759,6 @@
                     { name: "Clérigo del templo", mechanic: "<span class='spell-link'>Sanación relámpago</span>: Curación masiva a enemigos. Interrupción o aturdimiento de máxima prioridad." },
                     { name: "Jinete de escamas infiel", mechanic: "<span class='spell-link'>Onda de choque</span>: Aturdimiento cónico frontal de 5 segundos. Evasión obligatoria." },
                     { name: "Marcaarena infiel", mechanic: "<span class='spell-link'>Ciclón de arena</span>: Invocación de torbellinos obstructivos. Reposicionamiento continuo de la banda." }
-                ] 
-            },
-            { 
-                id: "altar-of-fangs", 
-                name: "Altar de los Colmillos", 
-                nameEn: "Altar of Fangs", 
-                expansion: "Midnight (12.1)", 
-                timer: "30:00", 
-                bossesCount: 3, 
-                tacticalFeature: "Venenos masivos", 
-                hiddenBuff: "Mezclas inconclusas: +5% daño de veneno.", 
-                bosses: [
-                    { 
-                        name: "Suma sacerdotisa Sitala", 
-                        desc: "Líder arácnida corrupta por el Vacío.", 
-                        abilities: [
-                            "<span class='spell-link'>Sangre hirviente</span>: DoT irremovible en objetivos aleatorios. Requiere sanación directa de alta intensidad.",
-                            "<span class='spell-link'>Hueste de crías</span>: Invocación masiva de arácnidos explosivos. Agrupar y aplicar daño de área (*Cleave*).",
-                            "<span class='spell-link'>Coraza de Vacío</span>: Escudo de protección masiva. Romper mediante ráfaga de daño (*Burst*) antes de la detonación."
-                        ],
-                        strategy: [
-                            "🛡️ <b>Tanque:</b> Concentrar amenaza de enjambres sobre la posición de la jefa para facilitar la aniquilación rápida.",
-                            "💚 <b>Sanador:</b> *Triage* continuo. Mantener enfoque en objetivos afectados por daño residual y quemaduras mágicas.",
-                            "⚔️ <b>DPS:</b> Verificación de daño (*DPS check*). Guardar todas las recargas ofensivas para demoler la coraza inmediatamente."
-                        ] 
-                    },
-                    { 
-                        name: "La Matriarca de Sangre", 
-                        desc: "Mole sanguinaria inamovible.", 
-                        abilities: [
-                            "<span class='spell-link'>Zarpazo desgarrador</span>: Golpe frontal que destroza armadura física. Requiere mitigación activa y gestión de amenaza.",
-                            "<span class='spell-link'>Capullo asfixiante</span>: Inhabilitación total de un jugador. Objetivo secundario de máxima prioridad para los DPS.",
-                            "<span class='spell-link'>Lluvia de icor</span>: Daño tóxico masivo en área. Despliegue de escudos de banda (*Cooldowns* defensivos) requerido."
-                        ],
-                        strategy: [
-                            "🛡️ <b>Tanque:</b> Uso de mitigación defensiva (*Shield Block / Ignore Pain*) exclusivo para el impacto frontal.",
-                            "💚 <b>Sanador:</b> Rotación de barreras y tótems protectores obligatoria durante el daño zonal.",
-                            "⚔️ <b>DPS:</b> Cese de fuego al objetivo principal. Liberación inmediata de compañero incapacitado."
-                        ] 
-                    },
-                    { 
-                        name: "Reptador atiborrado de Vacío", 
-                        desc: "Pesadilla en forma de enjambre.", 
-                        abilities: [
-                            "<span class='spell-link'>Pulso corruptor</span>: Daño periódico asfixiante a toda la banda. *Check* de sanación grupal.",
-                            "<span class='spell-link'>Temblor de abismo</span>: Daño físico inesquivable en área. Mantener niveles de salud estables.",
-                            "<span class='spell-link'>Tejer realidad</span>: Escudo de inmunidad canalizado. Rotación estricta de interrupciones requerida."
-                        ],
-                        strategy: [
-                            "🛡️ <b>Tanque:</b> Fijación de posición. Absorción de impactos físicos estáticos.",
-                            "💚 <b>Sanador:</b> Uso de *Heroísmo* y habilidades de sanación máxima (*Ascendance, Divine Hymn*) para la fase de pulsos.",
-                            "⚔️ <b>DPS:</b> Disciplina militar de cortes. Interrupciones escalonadas y precisas, fallo resulta en fase prolongada letal."
-                        ] 
-                    }
-                ], 
-                trash: [
-                    { name: "Tejeveneno oscuro", mechanic: "<span class='spell-link'>Trampa paralizante</span>: Canalización de aturdimiento letal. Interrumpir o aplicar *Disipar magia* de inmediato." },
-                    { name: "Cultista Sangriento", mechanic: "<span class='spell-link'>Ritual de sangre</span>: Mejora de daño del 50% a aliados. Aturdir, interrumpir y aplicar daño concentrado (*Focus*)." }
                 ] 
             },
             { 
@@ -1023,13 +1024,14 @@
         ];
 
         const matrixData = [
+            { dungeon: "Altar de los Colmillos", enemy: "La Espiral Retorcida", mechanic: "Atrofia tóxica", type: "Interrupción", counter: "Guerrero: Zurrar / Mago: Contrahechizo" },
+            { dungeon: "Altar de los Colmillos", enemy: "Zul'jan", mechanic: "Veneno de ritual", type: "Magia", counter: "Purga táctica: Interceptar sangrado de jefe" },
             { dungeon: "Arena Rajavacío", enemy: "Magi tocado", mechanic: "Descarga Sombras", type: "Interrupción", counter: "Guerrero: Zurrar / Pícaro: Patada / Chamán: Corte de viento" },
             { dungeon: "Reposo de Reyes", enemy: "Sombra de Zul", mechanic: "Maleficio oscuridad", type: "Magia", counter: "Paladín: Escudo divino / Sacerdote: Disipar magia" },
             { dungeon: "El Valle Enceguecedor", enemy: "Tejedor corrupto", mechanic: "Barrera radiante", type: "Purga", counter: "Sacerdote: Disipar magia / Chamán: Purgar / Mago: Robar hechizo" },
             { dungeon: "El Frontal de la Muerte", enemy: "Asesino Sombras", mechanic: "Rastro veneno", type: "Veneno", counter: "Paladín: Limpiar toxinas / Monje: Desintoxicar / Evocador: Exfoliar veneno" },
             { dungeon: "Guarida de Nalorakk", enemy: "Matriarca Amani", mechanic: "Ira de la madre", type: "Enfurecimiento", counter: "Druida: Calmar / Cazador: Disparo tranquilizante" },
-            { dungeon: "Estanques de Vida Rubí", enemy: "Bailatormentas", mechanic: "Sed de sangre", type: "Enfurecimiento", counter: "Druida: Calmar / Cazador: Disparo tranquilizante" },
-            { dungeon: "Reposo de Reyes", enemy: "Esbirro de Zul", mechanic: "Atado por la sombra", type: "Purga", counter: "Sacerdote: Disipar en masa / Brujo: Devorar magia / Cazador de Demonios: Consumir magia" }
+            { dungeon: "Estanques de Vida Rubí", enemy: "Bailatormentas", mechanic: "Sed de sangre", type: "Enfurecimiento", counter: "Druida: Calmar / Cazador: Disparo tranquilizante" }
         ];
 
         const classColors = {
@@ -1078,7 +1080,7 @@
                 type: 'bar',
                 data: {
                     labels: ['Estanques', 'Rajavacío', 'Colmillos', 'Enceguecedor', 'Nalorakk', 'Reyes', 'Sethraliss', 'Frontal'],
-                    datasets: [{ label: 'Minutos', data: [28, 30, 30, 31, 32, 33, 33, 34], backgroundColor: '#d97706', borderRadius: 4 }]
+                    datasets: [{ label: 'Minutos', data: [28, 30, 29, 31, 32, 33, 33, 34], backgroundColor: '#d97706', borderRadius: 4 }]
                 },
                 options: { 
                     responsive: true, 
