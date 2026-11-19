@@ -1,11 +1,12 @@
 // Sube la versión cada vez que cambien los archivos precacheados.
-const CACHE_NAME = 'mythic-plus-v4';
+const CACHE_NAME = 'mythic-plus-v5';
 
 // Todo lo que la app necesita para funcionar sin conexión.
 const PRECACHE_ASSETS = [
     './',
     './index.html',
     './manifest.json',
+    './data/dungeons.json',
     './css/tailwind.css',
     './vendor/chart.umd.min.js',
     './vendor/fontawesome/css/all.min.css',
@@ -30,11 +31,6 @@ const PRECACHE_ASSETS = [
     './images/temple-of-sethraliss.webp',
     './images/the-blinding-vale.webp',
     './images/voidscar-arena.webp',
-    './images/icon-16.png',
-    './images/icon-180.png',
-    './images/icon-192.png',
-    './images/icon-32.png',
-    './images/icon-512.png',
     './images/launchericon-144x144.png',
     './images/launchericon-192x192.png',
     './images/launchericon-48x48.png',
