@@ -5,19 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guía Mítica Plus - Matriz Táctica y Contramedidas M+</title>
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- FontAwesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Recursos locales (funcionan sin conexión) -->
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="vendor/fonts/fonts.css">
+    <script src="vendor/chart.umd.min.js"></script>
 
     <!-- PWA Setup -->
     <link rel="manifest" href="manifest.json">
@@ -834,6 +826,10 @@
         function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
 
         function initTimersChart() {
+            if (typeof Chart === 'undefined') {
+                console.warn('Chart.js no disponible; se omite la gráfica de tiempos.');
+                return;
+            }
             const ctx = document.getElementById('timersChart').getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
@@ -901,6 +897,7 @@
 
         function renderMobileDungeonMenu() {
             const list = document.getElementById('mobile-dungeon-list');
+            if (!list) return;
             list.innerHTML = dungeonsData.map(d => `
                 <button onclick="selectDungeonFromMobile('${d.id}')" class="w-full text-left px-2 py-1.5 text-xs text-stone-300 hover:bg-stone-900 hover:text-amber-400 rounded flex items-center justify-between">
                     <span><i class="fa-solid fa-shield-halved text-[10px] mr-1.5 text-amber-500"></i>${d.name}</span>
