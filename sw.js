@@ -1,5 +1,5 @@
 // Sube la versión cada vez que cambien los archivos precacheados.
-const CACHE_NAME = 'mythic-plus-v5';
+const CACHE_NAME = 'mythic-plus-v6';
 
 // Todo lo que la app necesita para funcionar sin conexión.
 const PRECACHE_ASSETS = [

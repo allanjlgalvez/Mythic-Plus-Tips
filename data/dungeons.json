@@ -355,41 +355,41 @@
       "hiddenBuff": null,
       "bosses": [
         {
-          "name": "Melidrussa Chillworn",
+          "name": "Melidrussa Tejescarcha",
           "desc": "Invocadora de escarcha primigenia.",
           "strategy": [
-            "🛡️ <b>Tanque:</b> En la Temporada 2 <span class='spell-link'>Frigid Shard</span> se puede interrumpir: cada interrupción es un golpe fuerte menos para ti. Coordina el orden de *kicks* con el grupo y guarda un defensivo por si alguno se escapa.",
-            "💚 <b>Sanador:</b> El daño llega en oleadas durante <span class='spell-link'>Frost Overload</span>. Cuanto más rápido rompa el grupo el <span class='spell-link'>Ice Bulwark</span>, más corta es la fase; ten listo un CD de área para ese momento.",
-            "⚔️ <b>DPS:</b> Cuando aparezca el <span class='spell-link'>Ice Bulwark</span>, cambien todo el daño al escudo para acortar <span class='spell-link'>Frost Overload</span>. Fuera de esa fase, ayuden a rotar interrupciones sobre <span class='spell-link'>Frigid Shard</span>."
+            "🛡️ <b>Tanque:</b> En la Temporada 2 <span class='spell-link'>Fragmento frígido</span> se puede interrumpir: cada interrupción es un golpe fuerte menos para ti. Coordina el orden de interrupciones con el grupo y guarda un defensivo por si alguna se escapa.",
+            "💚 <b>Sanador:</b> Durante <span class='spell-link'>Sobrecarga de escarcha</span> el jefe daña a todo el grupo de forma periódica. Mientras el <span class='spell-link'>Baluarte de hielo</span> siga activo no se puede interrumpir, así que ten listo un CD de área.",
+            "⚔️ <b>DPS:</b> Cuando aparezca el <span class='spell-link'>Baluarte de hielo</span>, cambien todo el daño al escudo: al romperlo se puede cortar <span class='spell-link'>Sobrecarga de escarcha</span>. Fuera de esa fase, ayuden a rotar interrupciones sobre <span class='spell-link'>Fragmento frígido</span>."
           ]
         },
         {
-          "name": "Kokia Blazehoof",
+          "name": "Kokia Pezuña Ardiente",
           "desc": "Centauro de fuego primigenio.",
           "strategy": [
-            "🛡️ <b>Tanque:</b> Mantén a Kokia quieto y lejos de lo que dejan sus mecánicas de fuego para que el grupo tenga espacio limpio donde moverse. Usa defensivos en sus golpes fuertes.",
-            "💚 <b>Sanador:</b> <span class='spell-link'>Ritual of Blazebinding</span> ahora marca al jugador objetivo antes del casteo. Úsalo para anticipar la curación sobre esa persona.",
-            "⚔️ <b>DPS:</b> Si te marca <span class='spell-link'>Ritual of Blazebinding</span>, aléjate del grupo con tiempo. Prioricen cualquier add que invoque antes de volver al jefe."
+            "🛡️ <b>Tanque:</b> Mantén a Kokia en un lugar fijo para que el grupo tenga espacio limpio donde moverse. Usa defensivos en sus golpes fuertes.",
+            "💚 <b>Sanador:</b> Al llegar a 100 de energía, Kokia lanza <span class='spell-link'>Ritual de enardecimiento ígneo</span>, que invoca una tormenta de fuego en la posición de un jugador y daña a quienes estén cerca. En la Temporada 2 el objetivo queda marcado antes del casteo: úsalo para anticipar la curación.",
+            "⚔️ <b>DPS:</b> Si te marca <span class='spell-link'>Ritual de enardecimiento ígneo</span>, aléjate del grupo con tiempo. Las tormentas de fuego siguen lanzando habilidades hasta que mueren: elimínenlas rápido."
           ]
         },
         {
-          "name": "Kyrakka y Erkhart Stormvein",
-          "desc": "Dúo de dragona de fuego y jinete de tormenta.",
+          "name": "Kyrakka y Erkhart Sangre Tormentosa",
+          "desc": "Dragona de fuego y su jinete de tormenta.",
           "strategy": [
-            "🛡️ <b>Tanque:</b> Controla a ambos objetivos y oriéntalos lejos del grupo. Es una pelea de dos objetivos: mantenlos juntos para que los DPS puedan hacer *cleave*.",
-            "💚 <b>Sanador:</b> En la Temporada 2 las <span class='spell-link'>Flaming Embers</span> ya no aplican <span class='spell-link'>Infernocore</span>, así que el daño acumulado es más manejable. Aun así, cura al grupo antes de las mecánicas de área.",
-            "⚔️ <b>DPS:</b> Hagan *cleave* a los dos objetivos y esquiven las <span class='spell-link'>Flaming Embers</span>. No se queden encima de zonas en el suelo; el encuentro castiga el daño evitable."
+            "🛡️ <b>Tanque:</b> Es una pelea de dos objetivos: mantenlos juntos y orientados lejos del grupo para que los DPS puedan hacer daño en área.",
+            "💚 <b>Sanador:</b> El <span class='spell-link'>Escupitajo infernal</span> de Kyrakka quema a sus objetivos y, al terminar, explota y deja charcos de <span class='spell-link'>Brasas llameantes</span>. Prepara curación para esas explosiones.",
+            "⚔️ <b>DPS:</b> Hagan daño en área a los dos objetivos y no pisen las <span class='spell-link'>Brasas llameantes</span>. Ojo: los vientos de Erkhart empujan tanto a los jugadores como a las brasas."
           ]
         }
       ],
       "trash": [
         {
-          "name": "Patrullas (Thunderhead / Flamegullet)",
-          "mechanic": "En la Temporada 2 estas patrullas se movieron al suelo. Coordinen el pull para no agregarlas por accidente."
+          "name": "Tronatesta y Pirogarganta",
+          "mechanic": "Élites con ataques de aliento. En la Temporada 2 sus patrullas se movieron al suelo: coordinen el pull para no agregarlos por accidente."
         },
         {
-          "name": "Cargas con Blazing Rush",
-          "mechanic": "Para <span class='spell-link'>Blazing Rush</span>, apílense cerca de una pared y provoquen la carga ahí, para que el enemigo no arrastre al grupo por la sala."
+          "name": "Enemigos con Arremetida llameante",
+          "mechanic": "<span class='spell-link'>Arremetida llameante</span> es una carga de fuego que además causa sangrado a todos los que golpea. Apílense cerca de una pared y provoquen la carga ahí para que no arrastre al grupo por la sala."
         }
       ]
     },
@@ -405,62 +405,58 @@
       "hiddenBuff": null,
       "bosses": [
         {
-          "name": "Lightblossom Trinity",
-          "desc": "Tres guardianes (Meittik, Lekshi y Kezkitt) que comparten vida.",
+          "name": "Meittik, Lekshi y Kezkitt",
+          "desc": "Tres guardianes unidos que comparten todo el daño.",
           "strategy": [
-            "🛡️ <b>Tanque:</b> Usa un defensivo para <span class='spell-link'>Bedrock Slam</span>. Agrupa a los tres jefes cerca de uno de los círculos de <span class='spell-link'>Fertile Loam</span>.",
-            "💚 <b>Sanador:</b> <span class='spell-link'>Lightblossom Beam</span> convierte los círculos en zonas de *soak*; si nadie entra, el daño de área es mucho mayor. Prepárate para curar a quienes intercepten.",
-            "⚔️ <b>DPS:</b> Los tres jefes comparten todo el daño con <span class='spell-link'>Thicket's Trinity</span>, así que hagan *cleave* sin preocuparse por el objetivo. Entren rápido a los círculos cuando <span class='spell-link'>Lightblossom Beam</span> los active."
+            "🛡️ <b>Tanque:</b> Usa un defensivo para <span class='spell-link'>Golpe de cimientos</span> de Meittik: además del golpe, crea charcos de <span class='spell-link'>Marga fértil</span> que ralentizan y dañan. Agrupa a los tres jefes cerca de uno de esos charcos.",
+            "💚 <b>Sanador:</b> Kezkitt canaliza <span class='spell-link'>Haz de broteluz</span> sobre las semillas que Lekshi siembra en la <span class='spell-link'>Marga fértil</span>. Si nadie se pone en el haz, la semilla madura y estalla en daño de área; cura a quienes intercepten.",
+            "⚔️ <b>DPS:</b> Los tres comparten el daño por <span class='spell-link'>Trinidad de zarzal</span>, así que hagan daño en área sin preocuparse por el objetivo. Entren rápido al <span class='spell-link'>Haz de broteluz</span> para frenar el crecimiento de la semilla."
           ]
         },
         {
-          "name": "Ikuzz the Light Hunter",
+          "name": "Ikuzz, el cazador de luz",
           "desc": "Cazador corrompido por la luz.",
           "strategy": [
-            "🛡️ <b>Tanque:</b> Usa defensivos para <span class='spell-link'>Verdant Stomp</span> y ayuda a romper las <span class='spell-link'>Bloodthorn Roots</span>.",
-            "💚 <b>Sanador:</b> El daño sube durante <span class='spell-link'>Verdant Stomp</span>; ten el grupo con vida alta antes del golpe.",
-            "⚔️ <b>DPS:</b> Si te toca <span class='spell-link'>Bloodthirsty Gaze</span>, corre lejos del jefe y llévalo por encima de las raíces para limpiar la zona. Rompan las <span class='spell-link'>Bloodthorn Roots</span> rápido."
+            "🛡️ <b>Tanque:</b> Usa defensivos para <span class='spell-link'>Pisotón verde</span>, que daña a todo el grupo y lo empuja. Después, ayuda a romper las <span class='spell-link'>Raíces espinosangrientas</span>.",
+            "💚 <b>Sanador:</b> Ten al grupo con vida alta antes de <span class='spell-link'>Pisotón verde</span>: 4 segundos después brotan <span class='spell-link'>Raíces espinosangrientas</span> bajo cada jugador y lo inmovilizan hasta que se destruyen.",
+            "⚔️ <b>DPS:</b> Rompan las <span class='spell-link'>Raíces espinosangrientas</span> rápido. Con 100 de energía, Ikuzz fija a un jugador con <span class='spell-link'>Mirada sanguinaria</span> y lo persigue 10 segundos: si eres tú, corre lejos del jefe y llévalo por encima de las raíces."
           ]
         },
         {
-          "name": "Lightwarden Ruia",
+          "name": "Celador de la luz Ruia",
           "desc": "Guardián que cambia de forma según su vida.",
           "strategy": [
-            "🛡️ <b>Tanque:</b> Hasta el 70% de vida está en forma de lechúcico: el grupo debe interrumpir <span class='spell-link'>Warden's Wrath</span> para reducir tu daño recibido.",
-            "💚 <b>Sanador:</b> <span class='spell-link'>Lightfire</span> pone un debuff a tres jugadores; deben apilarse para esquivar los tornados. Desde el 40% entra en forma Haranir y alterna sus habilidades cada 8 segundos: prepárate para daño constante.",
-            "⚔️ <b>DPS:</b> Rotar interrupciones en <span class='spell-link'>Warden's Wrath</span> es obligatorio. Esquiven los círculos de <span class='spell-link'>Lightfall</span>."
+            "🛡️ <b>Tanque:</b> Hasta el 70% de vida está en <span class='spell-link'>Forma de lechúcico lunar</span> y reemplaza sus ataques cuerpo a cuerpo con <span class='spell-link'>Cólera del celador</span>: el grupo debe interrumpirla para reducir tu daño recibido.",
+            "💚 <b>Sanador:</b> En M+ <span class='spell-link'>Fuegoluz</span> quema a tres jugadores; al terminar deja haces que dañan y silencian a quien los pise. Al 40% vuelve a forma Haranir y canaliza <span class='spell-link'>Espíritus del valle</span>, lanzando todas sus habilidades en ráfaga: prepárate para daño constante.",
+            "⚔️ <b>DPS:</b> Rotar interrupciones en <span class='spell-link'>Cólera del celador</span> es obligatorio. Esquiven los impactos de <span class='spell-link'>Lluvia de luz</span> y no pisen los haces de <span class='spell-link'>Fuegoluz</span>."
           ]
         },
         {
           "name": "Ziekket",
           "desc": "Jefe final del valle.",
           "strategy": [
-            "🛡️ <b>Tanque:</b> Mantén al jefe en posición y ayuda a controlar a los <span class='spell-link'>Lightspawn Lashers</span>.",
-            "💚 <b>Sanador:</b> Cura a quienes intercepten <span class='spell-link'>Lightbloom's Essence</span>.",
-            "⚔️ <b>DPS:</b> Maten rápido a los <span class='spell-link'>Lightspawn Lashers</span>. Intercepten el orbe de <span class='spell-link'>Lightbloom's Essence</span> antes de que llegue a Ziekket; si llega, el jefe gana un escudo acumulable en M+."
+            "🛡️ <b>Tanque:</b> Mantén al jefe en posición y ayuda a controlar a los Azotadores engendro de luz que invoca con <span class='spell-link'>Despertar de la floraluz</span>.",
+            "💚 <b>Sanador:</b> Quien toca un orbe de <span class='spell-link'>Esencia de floraluz</span> gana 10% de daño y sanación, pero recibe daño Sagrado durante 12 segundos: cúralos.",
+            "⚔️ <b>DPS:</b> Los Azotadores engendro de luz se entierran al 1% de vida y <span class='spell-link'>Despertar de la floraluz</span> los vuelve a levantar: bájenlos juntos. Intercepten los orbes de <span class='spell-link'>Esencia de floraluz</span> antes de que lleguen a Ziekket."
           ]
         }
       ],
       "trash": [
         {
-          "name": "Radiant Spellsower",
-          "mechanic": "El lanzador más importante de la mazmorra. Interrumpan <span class='spell-link'>Light Bolt Volley</span> en cada casteo, y usen las interrupciones sobrantes en <span class='spell-link'>Light Bolt</span>. Si lo dejan solo, despierta a los Dormant Lashers con <span class='spell-link'>Call the Grove</span>."
+          "name": "Siembrahechizos radiante",
+          "mechanic": "El lanzador más importante de la mazmorra. Interrumpan <span class='spell-link'>Salva de saetas de luz</span> en cada casteo."
         },
         {
-          "name": "Lightfeather Petalwing",
-          "mechanic": "Interrumpan <span class='spell-link'>Disorienting Screech</span> siempre: desorienta a todo el grupo."
+          "name": "Alapétalo de pluma ligera",
+          "mechanic": "Interrumpan <span class='spell-link'>Chirrido desorientador</span> siempre: desorienta a todo el grupo."
         },
         {
-          "name": "Leafy Grovecrawler",
-          "mechanic": "<span class='spell-link'>Seed Shot</span> golpea a jugadores al azar. Es buena interrupción secundaria cuando lo peligroso ya está cubierto."
-        },
-        {
-          "name": "Lightgorged Lasher",
+          "name": "Azotador atiborrado de luz",
           "mechanic": "Cura a los enemigos cercanos mientras tiene el escudo activo. Rompan el escudo primero."
         },
         {
-          "name": "Sporeblight Belcher",
-          "mechanic": "Objetivo prioritario en su grupo. No lo junten con otros pulls de mucho daño."
+          "name": "Eructador esporañublo",
+          "mechanic": "Objetivo prioritario en su grupo: lanza ráfagas de proyectiles. No lo junten con otros pulls de mucho daño."
         }
       ]
     }
