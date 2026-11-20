@@ -13,6 +13,9 @@
 
     <!-- PWA Setup -->
     <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a1614">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -195,7 +198,7 @@
                         <i class="fa-solid fa-map-location-dot text-amber-500 mr-2"></i>Centro de Mando: Mazmorras
                     </h2>
                     <p class="text-stone-300 text-xs sm:text-sm leading-relaxed">
-                        Selecciona un calabozo para desplegar su información táctica. Las explicaciones han sido adaptadas directamente de las guías de Method.gg y Wowhead para garantizar que entiendas cada *Wipe Check* al detalle.
+                        Elige una mazmorra para ver su guía: jefes, habilidades, trash y ruta recomendada. Nombres y descripciones oficiales en español, verificados en Wowhead.
                     </p>
                 </div>
                 <div id="dungeon-selector" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
@@ -405,6 +408,11 @@
         </section>
     </main>
 
+    <footer class="max-w-7xl mx-auto px-4 py-6 text-[11px] text-stone-500 text-center space-y-1">
+        <p>Guía de fans no oficial. Sin afiliación con Blizzard Entertainment. World of Warcraft es una marca de Blizzard Entertainment, Inc.</p>
+        <p>Nombres y descripciones de habilidades: <a href="https://www.wowhead.com/mx" target="_blank" rel="noopener" class="underline hover:text-stone-300">Wowhead</a> · <a href="privacidad.html" class="underline hover:text-stone-300">Política de privacidad</a></p>
+    </footer>
+
     <script>
         // Los datos viven en data/dungeons.json (se cargan al iniciar).
         let dungeonsData = [];
@@ -462,6 +470,9 @@
             renderClassFilterBadges();
             renderMatrixTable();
             calculatePartyCoverage();
+            // Accesos directos del manifest (p. ej. #tab-matrix) abren esa pestaña.
+            const tabFromHash = location.hash.slice(1);
+            if (document.getElementById(tabFromHash)?.matches('section[id^="tab-"]')) switchTab(tabFromHash);
             calculateKeyTimes();
         });
 

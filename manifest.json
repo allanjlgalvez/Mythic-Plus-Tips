@@ -2,17 +2,23 @@
   "id": "/Mythic-Plus-Tips/",
   "name": "Guía Mítica Plus",
   "short_name": "Guía Mítica+",
-  "description": "Guía táctica y matriz de contramedidas para pushear llaves Míticas+ en World of Warcraft. Basado en datos de Archon y Wowhead.",
+  "description": "Guía no oficial de mazmorras Míticas+ de World of Warcraft en español: jefes, habilidades, interrupciones, disipaciones, rutas y analizador de grupo.",
   "start_url": "/Mythic-Plus-Tips/index.html",
   "scope": "/Mythic-Plus-Tips/",
   "lang": "es-419",
   "dir": "ltr",
   "display": "standalone",
-  "display_override": ["window-controls-overlay", "minimal-ui"],
+  "display_override": [
+    "window-controls-overlay",
+    "minimal-ui"
+  ],
   "background_color": "#0c0a09",
   "theme_color": "#1a1614",
   "orientation": "portrait",
-  "categories": ["games", "utilities"],
+  "categories": [
+    "games",
+    "utilities"
+  ],
   "icons": [
     {
       "src": "images/launchericon-48x48.png",
@@ -49,31 +55,75 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
+    },
+    {
+      "src": "images/maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "images/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "screenshots": [
     {
-      "src": "https://dummyimage.com/1080x1920/1c1917/ea580c.png&text=Matriz+Mobile",
+      "src": "store/telefono-1-mazmorras.png",
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Vista móvil de la Matriz Táctica"
+      "label": "Selector de mazmorras"
     },
     {
-      "src": "https://dummyimage.com/1920x1080/1c1917/ea580c.png&text=Matriz+Desktop",
+      "src": "store/telefono-3-jefe.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Guía de jefe con habilidades y táctica"
+    },
+    {
+      "src": "store/telefono-4-matriz.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Matriz de contramedidas por clase"
+    },
+    {
+      "src": "store/telefono-5-analizador.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Analizador de cobertura del grupo"
+    },
+    {
+      "src": "store/escritorio-1-guia.png",
       "sizes": "1920x1080",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Analizador de grupo en escritorio"
+      "label": "Guía de mazmorra en escritorio"
+    },
+    {
+      "src": "store/escritorio-2-matriz.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Matriz de contramedidas en escritorio"
     }
   ],
   "shortcuts": [
     {
-      "name": "Matriz de Clases",
+      "name": "Guía de mazmorras",
+      "url": "/Mythic-Plus-Tips/index.html#tab-dungeons"
+    },
+    {
+      "name": "Matriz de contramedidas",
       "url": "/Mythic-Plus-Tips/index.html#tab-matrix"
     },
     {
-      "name": "Analizador de Grupo",
+      "name": "Analizador de grupo",
       "url": "/Mythic-Plus-Tips/index.html#tab-analyzer"
     }
   ]
