@@ -1,10 +1,11 @@
 // CACHE_NAME y PRECACHE_ASSETS los genera tools/build-sw.js (npm run build:sw).
-const CACHE_NAME = 'mythic-plus-eba663aa1d';
+const CACHE_NAME = 'mythic-plus-58f1a1142a';
 
 // Todo lo que la app necesita para funcionar sin conexión.
 const PRECACHE_ASSETS = [
     './',
     './index.html',
+    './privacidad.html',
     './manifest.json',
     './css/tailwind.css',
     './data/classes.json',
@@ -25,7 +26,9 @@ const PRECACHE_ASSETS = [
     './vendor/fonts/inter-latin-600-normal.woff2',
     './vendor/fonts/inter-latin-700-normal.woff2',
     './images/altar-of-fangs.webp',
+    './images/apple-touch-icon.png',
     './images/den-of-nalorakk.webp',
+    './images/favicon-32.png',
     './images/kings-rest.webp',
     './images/launchericon-144x144.png',
     './images/launchericon-192x192.png',
@@ -33,6 +36,8 @@ const PRECACHE_ASSETS = [
     './images/launchericon-512x512.png',
     './images/launchericon-72x72.png',
     './images/launchericon-96x96.png',
+    './images/maskable-192.png',
+    './images/maskable-512.png',
     './images/murder-row.webp',
     './images/ruby-life-pools.webp',
     './images/spells/ability_boss_kilrogg_heartseeker.jpg',

@@ -13,7 +13,7 @@ const ROOT = path.join(__dirname, '..');
 const SW_FILE = path.join(ROOT, 'sw.js');
 
 // Carpetas y archivos que la app necesita sin conexión.
-const INCLUDE = ['index.html', 'manifest.json', 'css', 'data', 'vendor', 'images'];
+const INCLUDE = ['index.html', 'privacidad.html', 'manifest.json', 'css', 'data', 'vendor', 'images'];
 // Archivos que existen en el repo pero la app no usa.
 const EXCLUDE = [/^images\/icon-\d+\.png$/, /LICENSE/i, /\.map$/];
 
