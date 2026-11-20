@@ -780,6 +780,105 @@
                     { name: "Magi tocado por vacío", mechanic: "La artillería principal de los prisioneros del vacío; su <span class='spell-link'>Descarga de sombras</span> es un ataque destructivo que ignora armadura simple. Deben establecerse como prioridad táctica de aturdimiento masivo en área (AoE Stun) y patadas en serie ininterrumpidas." },
                     { name: "Acechador del foso", mechanic: "Horrendo escarabajo que ignora el 100% de la amenaza del tanque aplicando <span class='spell-link'>Fijar objetivo</span> (Fixate). Seguirá implacablemente al curador o a un DPS. Los afectados deben correr en un *Kiteo* circular constante usando ralentizaciones grupales; prohibido enfrentarlo a melé." }
                 ] 
+            },
+            {
+                id: "ruby-life-pools",
+                name: "Estanques de Vida Rubí",
+                nameEn: "Ruby Life Pools",
+                expansion: "Dragonflight (regresa en Midnight S2)",
+                timer: "28:00",
+                bossesCount: 3,
+                tacticalFeature: "Interrupciones y Ataques de Área",
+                hiddenBuff: "Pendiente de verificar en la guía de Method.",
+                bosses: [
+                    {
+                        name: "Melidrussa Chillworn",
+                        desc: "Dragona de hielo que domina la sala con escarcha.",
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Usa defensivos para el <span class='spell-link'>Golpe de fragmento gélido</span> cuando lo necesites. A 66 % y 33 % aparecen las <span class='spell-link'>Crías despertadas</span>; tienes que tomarlas en cuanto spawneen.",
+                            "💚 <b>Sanador:</b> Mantengan al grupo junto durante el <span class='spell-link'>Ráfaga de granizo</span> y rota cuando el hielo cubra la sala. Quien reciba <span class='spell-link'>Escarcha de Chillstorm</span> debe salir del grupo y usar curación o defensivos propios.",
+                            "⚔️ <b>DPS:</b> Interrumpan el <span class='spell-link'>Fragmento gélido</span> para reducir el daño al tanque. Guarden el daño para la <span class='spell-link'>Sobrecarga de escarcha</span>, porque termina rápido el daño de grupo."
+                        ]
+                    },
+                    {
+                        name: "Kokia Blazehoof",
+                        desc: "Bestia de fuego que usa rituales de ataduras.",
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Usa un defensivo en cada <span class='spell-link'>Golpes ardientes</span>. Lleva la <span class='spell-link'>Bola de magma</span> lejos de tu camino, porque explota al tocar el terreno.",
+                            "💚 <b>Sanador:</b> Prepárate para la <span class='spell-link'>Llamarada</span> del add <span class='spell-link'>Tormenta ígnea ligada</span>. Si te toca el <span class='spell-link'>Ritual de ataduras</span>, aléjate del grupo y mata al add antes de sanar a los demás.",
+                            "⚔️ <b>DPS:</b> Mantengan las interrupciones sobre la <span class='spell-link'>Descarga de llamas</span>. Si el <span class='spell-link'>Ritual de ataduras</span> te alcanza, sepárate y elimina primero el add de tormenta de fuego."
+                        ]
+                    },
+                    {
+                        name: "Kyrakka y Erkhart Stormvein",
+                        desc: "Dúo de dragona y guerrero de tormenta; en la fase 2 Erkhart monta a Kyrakka.",
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> En la fase 1, Erkhart usa <span class='spell-link'>Embate de tormenta</span> sobre el tanque; usen defensivos. En la fase 2 el daño sube con <span class='spell-link'>Escupitajo de fuego</span> a tres jugadores, así que aguanten con defensivos en coordinación.",
+                            "💚 <b>Sanador:</b> Disipen el debuff mágico de <span class='spell-link'>Embate de tormenta</span> antes del siguiente lanzamiento. Cuando Erkhart use <span class='spell-link'>Ráfaga interruptora</span>, dejen de castear. Los charcos de <span class='spell-link'>Escupitajo de fuego</span> hay que soltarlos fuera del grupo.",
+                            "⚔️ <b>DPS:</b> En la fase 1, quienes reciban <span class='spell-link'>Escupitajo de fuego</span> salen del grupo para soltar el charco. Eviten el frontal <span class='spell-link'>Aliento de llamas rugientes</span> cuando Kyrakka aterrice. Los <span class='spell-link'>Vientos de cambio</span> rotan en cuatro direcciones; posicionen los charcos para que el empuje los aleje del grupo."
+                        ]
+                    }
+                ],
+                trash: [
+                    { name: "Guerrero de tormenta", mechanic: "Hace daño de área ocasional con <span class='spell-link'>Pisotón de trueno</span>. Los sanadores deben anticiparlo." },
+                    { name: "Canalizador de tempestad", mechanic: "Inmune a control. Interrumpe <span class='spell-link'>Explosión de trueno</span> y usa defensivos para <span class='spell-link'>Torrente de rayos</span>. Invoca nubes de tormenta." },
+                    { name: "Portador de tormenta ruinosa", mechanic: "<span class='spell-link'>Golpe de tormenta</span> debe interrumpirse. Usa defensivos para <span class='spell-link'>Pararrayos</span> y cuida el empuje de la <span class='spell-link'>Tormenta</span> a 100 de energía." },
+                    { name: "Nube de trueno primigenia", mechanic: "Quita su escudo con purga para provocar la <span class='spell-link'>Detonación de nube</span>, que daña a un jugador al azar. Cuidado si explotan varias a la vez." }
+                ]
+            },
+            {
+                id: "the-blinding-vale",
+                name: "El Valle Enceguecedor",
+                nameEn: "The Blinding Vale",
+                expansion: "Midnight (12.1)",
+                timer: "31:00",
+                bossesCount: 4,
+                tacticalFeature: "Raíces, Enredaderas y Rutas de Buff",
+                hiddenBuff: "Ruta izquierda: Flor de luz (+20 % velocidad y +5 % celeridad por 2 min para Paladín, Sacerdote y Herbolario). Ruta derecha: Cría del reptaverde (ayuda en combate 1 min para Cazador y Druida).",
+                bosses: [
+                    {
+                        name: "Lightblossom Trinity",
+                        desc: "Triple flor de luz con círculos de suelo fértil.",
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Usa defensivos para el <span class='spell-link'>Golpe de roca</span>. Coloca al jefe cerca de uno de los tres círculos de <span class='spell-link'>Suelo fértil</span> y evita la línea de <span class='spell-link'>Embestida de luz</span> que los cruza todos.",
+                            "💚 <b>Sanador:</b> Interrumpe el <span class='spell-link'>Rayo de luz</span>, que apunta a un jugador al azar. Si el <span class='spell-link'>Espinazo</span> alcanza a alguien, cura al afectado y limpia el sangrado si hace falta.",
+                            "⚔️ <b>DPS:</b> Durante el <span class='spell-link'>Rayo floral</span>, los círculos se vuelven zonas de absorción con daño periódico. Entren rápido para no recibir el daño de área de <span class='spell-link'>Desborde de floración</span>."
+                        ]
+                    },
+                    {
+                        name: "Ikuzz el Cazador de Luz",
+                        desc: "Cazador de luz que deja raíces en el suelo.",
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Mantén el jefe alejado de las <span class='spell-link'>Raíces sangrientas</span>. Si el <span class='spell-link'>Golpe de estampida</span> te empuja hacia una raíz, reposiciona al jefe enseguida.",
+                            "💚 <b>Sanador:</b> Prepárate para el daño de banda de los pulsos de <span class='spell-link'>Rugido de espino</span>. Al 50 % de vida se activa la <span class='spell-link'>Frenesí de luz</span>, que aumenta mucho el daño.",
+                            "⚔️ <b>DPS:</b> Destruyan las raíces o usen un efecto de libertad si las pisan. Cuando el jefe fije a alguien con <span class='spell-link'>Mirada sangrienta</span>, aléjense y atráiganlo sobre raíces existentes para romperlas."
+                        ]
+                    },
+                    {
+                        name: "Guardián de Luz Ruia",
+                        desc: "Tres fases: forma Moonkin, forma oso y forma Haranir.",
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> En la fase 2, vigilen el pasivo <span class='spell-link'>Garras mutiladas</span> y usen autocuración o limpiezas para el sangrado de <span class='spell-link'>Desgarro cruel</span>. Si el objetivo de <span class='spell-link'>Golpes pulverizadores</span> recibe el frontal, sepárense para no dañar a los aliados.",
+                            "💚 <b>Sanador:</b> En la fase 1, prepara defensivos para <span class='spell-link'>Llama de luz</span>, que afecta a 3 jugadores. En la fase 3, rota los cooldowns para <span class='spell-link'>Llama de luz</span>, <span class='spell-link'>Desgarro cruel</span>, <span class='spell-link'>Caída de luz</span> y <span class='spell-link'>Golpes pulverizadores</span> cada 8 s.",
+                            "⚔️ <b>DPS:</b> En la fase 1, interrumpan la <span class='spell-link'>Ira del guardián</span> y eviten los círculos de <span class='spell-link'>Caída de luz</span>. Esquiven los tornados que salen al expirar la <span class='spell-link'>Llama de luz</span>."
+                        ]
+                    },
+                    {
+                        name: "Ziekket",
+                        desc: "Jefe final con adds que explotan y charcos grandes.",
+                        strategy: [
+                            "🛡️ <b>Tanque:</b> Usa defensivo o limpieza de sangrado para la <span class='spell-link'>Púa espinosa</span>, que golpea y empuja. Posiciona al jefe y a los adds cerca del borde de la plataforma.",
+                            "💚 <b>Sanador:</b> El pasivo <span class='spell-link'>Xilema viscoso</span> causa daño grupal constante. Reparte los orbes de <span class='spell-link'>Esencia de floración</span> antes de que lleguen al jefe para que el DoT no se acumule.",
+                            "⚔️ <b>DPS:</b> Eliminen los adds de <span class='spell-link'>Despertar la floración</span>. Interrupciones y control reducen los lanzamientos de <span class='spell-link'>Disparo de espora de luz</span>. Al morir, los adds dejan un charco grande con <span class='spell-link'>Haz de luz concentrado</span>, así que muévanse fuera de esa zona."
+                        ]
+                    }
+                ],
+                trash: [
+                    { name: "Lanzador de luz radiante", mechanic: "Interrumpe cada <span class='spell-link'>Descarga de rayo de luz</span>. El rayo apunta a un jugador al azar; usa las interrupciones sobrantes." },
+                    { name: "Mariposa de pluma luminosa", mechanic: "Interrumpe todos los lanzamientos de <span class='spell-link'>Chillido desorientador</span>." },
+                    { name: "Hidra crecida", mechanic: "Inmune a control. Su <span class='spell-link'>Rayos de Lightmaw</span> canaliza sobre 3 jugadores al azar: aléjate de tus aliados o usa defensivos." },
+                    { name: "Matriarca Potatoad (mini jefe)", mechanic: "Inmune a control. Su <span class='spell-link'>Lanzamiento de lengua</span> va al tanque y lanza a un jugador por los aires. Prepara la limpieza de veneno para <span class='spell-link'>Derrame tóxico</span> y destruye los huevos antes de que eclosionen." }
+                ]
             }
         ];
 
