@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Sincroniza data/dungeons.json con Wowhead en español (es-MX).
+// Sincroniza data/dungeons.json y data/classes.json con Wowhead en español (es-MX).
 //
 // Para cada objeto con `spellId` rellena `name`, `icon` y `officialDesc`;
 // para cada objeto con `npcId` rellena `name`. Descarga los íconos a
@@ -13,7 +13,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const DATA_FILE = path.join(ROOT, 'data', 'dungeons.json');
+const DATA_FILES = ['dungeons.json', 'classes.json'].map(f => path.join(ROOT, 'data', f));
 const ICON_DIR = path.join(ROOT, 'images', 'spells');
 const TOOLTIP = 'https://nether.wowhead.com/tooltip';
 const ICON_URL = icon => `https://wow.zamimg.com/images/wow/icons/large/${icon}.jpg`;
@@ -43,6 +43,9 @@ function cleanDescription(html) {
         .replace(/<br\s*\/?>/gi, ' ')
         .replace(/<[^>]+>/g, '')
         .replace(/&nbsp;/g, ' ')
+        // Notas condicionales de Blizzard: "[]" vacío se quita y "[texto]" pasa a "(texto)".
+        .replace(/\[\]/g, ' ')
+        .replace(/\[([^\]]*)\]/g, '($1)')
         // "116379 p. de daño", "387930 p de daño", "7274 de daño" -> "daño";
         // "29095 p. más de daño" -> "más daño". Los porcentajes se conservan.
         .replace(/\b\d[\d.,]*\s+(?:p\.?\s+)?(más\s+)?de\s+(daño|sanación|curación)/gi, '$1$2')
@@ -68,13 +71,18 @@ function collect(node, found = []) {
 }
 
 async function main() {
-    const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-    const targets = collect(data.dungeons);
+    const files = DATA_FILES.map(file => ({ file, data: JSON.parse(fs.readFileSync(file, 'utf8')) }));
+    const targets = files.flatMap(f => collect(f.data));
     fs.mkdirSync(ICON_DIR, { recursive: true });
 
     let changes = 0;
     const note = (obj, field, value) => {
         if (value == null || obj[field] === value) return;
+        // Wowhead muestra entre corchetes los nombres que aún no tienen traducción.
+        if (field === 'name' && /^\[.*\]$/.test(value)) {
+            console.warn(`  AVISO ${obj.spellId ? 'spell ' + obj.spellId : 'npc ' + obj.npcId}: nombre sin traducir en Wowhead (${value}), se conserva ${JSON.stringify(obj.name)}.`);
+            return;
+        }
         console.log(`  ${obj.spellId ? 'spell ' + obj.spellId : 'npc ' + obj.npcId} ${field}: ${JSON.stringify(obj[field])} -> ${JSON.stringify(value)}`);
         if (!CHECK_ONLY) obj[field] = value;
         changes++;
@@ -106,7 +114,9 @@ async function main() {
     }
 
     console.log(`${targets.length} entradas revisadas, ${changes} cambios${CHECK_ONLY ? ' (sin escribir)' : ''}.`);
-    if (!CHECK_ONLY && changes) fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2) + '\n');
+    if (!CHECK_ONLY && changes) {
+        for (const { file, data } of files) fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
+    }
     if (CHECK_ONLY && changes) process.exitCode = 1;
 }
 
