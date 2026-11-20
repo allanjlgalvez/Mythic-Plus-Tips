@@ -901,6 +901,7 @@
 
         function renderMobileDungeonMenu() {
             const list = document.getElementById('mobile-dungeon-list');
+            if (!list) return; // El contenedor no existe en el menú móvil; sin esto se detiene todo el arranque
             list.innerHTML = dungeonsData.map(d => `
                 <button onclick="selectDungeonFromMobile('${d.id}')" class="w-full text-left px-2 py-1.5 text-xs text-stone-300 hover:bg-stone-900 hover:text-amber-400 rounded flex items-center justify-between">
                     <span><i class="fa-solid fa-shield-halved text-[10px] mr-1.5 text-amber-500"></i>${d.name}</span>
