@@ -1,0 +1,587 @@
+{
+  "note": "Contramedidas por clase y rol. Nombres e íconos oficiales (es-MX) los rellena npm run sync:wowhead.",
+  "classes": {
+    "Guerrero": {
+      "color": "#C69B6D",
+      "roles": [
+        "tank",
+        "dps"
+      ],
+      "counters": [
+        {
+          "spellId": 6552,
+          "tags": [
+            "interrumpir"
+          ],
+          "name": "Zurrar",
+          "icon": "inv_gauntlets_04",
+          "officialDesc": "Zurra al objetivo, interrumpe el lanzamiento de hechizos e impide que se lancen hechizos de la misma escuela durante 5 s."
+        },
+        {
+          "spellId": 46968,
+          "tags": [
+            "aturdir"
+          ],
+          "name": "Ola de choque",
+          "icon": "ability_warrior_shockwave",
+          "officialDesc": "Envía una oleada de fuerza en un cono frontal que inflige ((20% of Attack Power)) p. de daño y aturde a todos los enemigos que están en un radio de 10 m durante 2 s."
+        }
+      ]
+    },
+    "Paladín": {
+      "color": "#F48CBA",
+      "roles": [
+        "tank",
+        "healer",
+        "dps"
+      ],
+      "counters": [
+        {
+          "spellId": 96231,
+          "tags": [
+            "interrumpir"
+          ],
+          "name": "Reprimenda",
+          "icon": "spell_holy_rebuke",
+          "officialDesc": "Interrumpe el lanzamiento de hechizos y evita que se lancen hechizos de esa misma escuela durante 5 s."
+        },
+        {
+          "spellId": 4987,
+          "tags": [
+            "disipar-magia",
+            "disipar-veneno",
+            "disipar-enfermedad"
+          ],
+          "roles": [
+            "healer"
+          ],
+          "name": "Limpiar",
+          "icon": "spell_holy_purify",
+          "officialDesc": "Purifica a un objetivo aliado, lo que elimina todos los efectos mágicos (Limpiar mejorado: de veneno y de enfermedad)."
+        },
+        {
+          "spellId": 213644,
+          "tags": [
+            "disipar-veneno",
+            "disipar-enfermedad"
+          ],
+          "roles": [
+            "tank",
+            "dps"
+          ],
+          "name": "Limpiar toxinas",
+          "icon": "spell_holy_renew",
+          "officialDesc": "Purga a un objetivo amistoso, lo que elimina todos los efectos de veneno y de enfermedad."
+        },
+        {
+          "spellId": 853,
+          "tags": [
+            "aturdir"
+          ],
+          "name": "Martillo de Justicia",
+          "icon": "spell_holy_sealofmight",
+          "officialDesc": "Aturde al objetivo durante 6 s."
+        }
+      ]
+    },
+    "Cazador": {
+      "color": "#AAD372",
+      "roles": [
+        "dps"
+      ],
+      "counters": [
+        {
+          "spellId": 147362,
+          "tags": [
+            "interrumpir"
+          ],
+          "name": "Contradisparo",
+          "icon": "inv_ammo_arrow_03",
+          "officialDesc": "Interrumpe el lanzamiento de hechizos, lo que evita que se lance cualquier hechizo de esa escuela durante 5 s."
+        },
+        {
+          "spellId": 19801,
+          "tags": [
+            "calmar",
+            "purgar"
+          ],
+          "name": "Disparo tranquilizante",
+          "icon": "spell_nature_drowsy",
+          "officialDesc": "Elimina 1 efecto de Enfurecer y 1 efecto mágico de un objetivo enemigo."
+        }
+      ]
+    },
+    "Pícaro": {
+      "color": "#FFF468",
+      "roles": [
+        "dps"
+      ],
+      "counters": [
+        {
+          "spellId": 1766,
+          "tags": [
+            "interrumpir"
+          ],
+          "name": "Patada",
+          "icon": "ability_kick",
+          "officialDesc": "Una patada rápida que interrumpe el lanzamiento de hechizos y evita que se puedan lanzar hechizos de esa misma escuela durante 6 s."
+        },
+        {
+          "spellId": 5938,
+          "tags": [
+            "calmar"
+          ],
+          "name": "Puyazo",
+          "icon": "inv_throwingknife_04",
+          "officialDesc": "Ataca con (Puyazo mejorado: tus cuchillas envenenadas / tu mano izquierda) para infligir ((125.4% of Attack Power))% p. de daño físico, disipar todos los efectos de enfurecimiento y aplicar una forma concentrada de tu veneno no letal activo. Otorga 1 p. de combo."
+        },
+        {
+          "spellId": 408,
+          "tags": [
+            "aturdir"
+          ],
+          "name": "Golpe en los riñones",
+          "icon": "ability_rogue_kidneyshot",
+          "officialDesc": "Remate que aturde al objetivo. Dura más por cada punto de combo, hasta un máximo de 8 s: 1 p.: 4 s 2 p.: 5 s 3 p.: 6 s 4 p.: 7 s 5 p.: 8 s"
+        }
+      ]
+    },
+    "Sacerdote": {
+      "color": "#FFFFFF",
+      "roles": [
+        "healer",
+        "dps"
+      ],
+      "counters": [
+        {
+          "spellId": 15487,
+          "tags": [
+            "interrumpir"
+          ],
+          "roles": [
+            "dps"
+          ],
+          "name": "Silencio",
+          "icon": "ability_priest_silence",
+          "officialDesc": "Silencia al objetivo y le impide lanzar hechizos durante 5 s. Contra los que no son jugadores, también interrumpe el lanzamiento de hechizos e impide que se lancen hechizos de esa misma escuela durante 4 s."
+        },
+        {
+          "spellId": 527,
+          "tags": [
+            "disipar-magia",
+            "disipar-enfermedad"
+          ],
+          "roles": [
+            "healer"
+          ],
+          "name": "Purificar",
+          "icon": "spell_holy_dispelmagic",
+          "officialDesc": "Disipa los efectos dañinos del objetivo y elimina todos los efectos mágicos (Purificar mejorado: y de enfermedad)."
+        },
+        {
+          "spellId": 213634,
+          "tags": [
+            "disipar-enfermedad"
+          ],
+          "roles": [
+            "dps"
+          ],
+          "name": "Purificar enfermedad",
+          "icon": "spell_holy_nullifydisease",
+          "officialDesc": "Elimina todos los efectos de enfermedad de un objetivo amistoso."
+        },
+        {
+          "spellId": 528,
+          "tags": [
+            "purgar"
+          ],
+          "name": "Disipar magia",
+          "icon": "spell_nature_nullifydisease",
+          "officialDesc": "Elimina 1 efecto mágico beneficioso del objetivo enemigo."
+        }
+      ]
+    },
+    "Caballero de la Muerte": {
+      "color": "#C41E3A",
+      "roles": [
+        "tank",
+        "dps"
+      ],
+      "counters": [
+        {
+          "spellId": 47528,
+          "tags": [
+            "interrumpir"
+          ],
+          "name": "Helada mental",
+          "icon": "spell_deathknight_mindfreeze",
+          "officialDesc": "Golpea la mente del objetivo con frío e interrumpe el lanzamiento de hechizos, evitando que se lancen hechizos de esa escuela durante 5 s."
+        },
+        {
+          "spellId": 221562,
+          "tags": [
+            "aturdir"
+          ],
+          "name": "Asfixiar",
+          "icon": "ability_deathknight_asphixiate",
+          "officialDesc": "Eleva a un enemigo del suelo y le oprime la garganta con energía oscura, lo que lo aturde durante 5 s."
+        }
+      ]
+    },
+    "Chamán": {
+      "color": "#0070DD",
+      "roles": [
+        "healer",
+        "dps"
+      ],
+      "counters": [
+        {
+          "spellId": 57994,
+          "tags": [
+            "interrumpir"
+          ],
+          "name": "Corte de viento",
+          "icon": "spell_nature_cyclone",
+          "officialDesc": "Elemental, Mejora, Restauración Interrumpe la concentración del objetivo con una ráfaga de viento, lo que interrumpe el lanzamiento de hechizos e impide el lanzamiento de hechizos de esa escuela durante 4 s."
+        },
+        {
+          "spellId": 77130,
+          "tags": [
+            "disipar-magia",
+            "disipar-maldicion"
+          ],
+          "roles": [
+            "healer"
+          ],
+          "name": "Purificar espíritu",
+          "icon": "ability_shaman_cleansespirit",
+          "officialDesc": "Elimina todos los efectos de magia (Purificar espíritu mejorado: y maldición) de un objetivo aliado."
+        },
+        {
+          "spellId": 51886,
+          "tags": [
+            "disipar-maldicion"
+          ],
+          "roles": [
+            "dps"
+          ],
+          "name": "Limpiar espíritu",
+          "icon": "ability_shaman_cleansespirit",
+          "officialDesc": "Elimina todos los efectos de maldición de un objetivo amistoso."
+        },
+        {
+          "spellId": 383013,
+          "tags": [
+            "disipar-veneno"
+          ],
+          "name": "Tótem de limpieza contraveneno",
+          "icon": "spell_nature_poisoncleansingtotem",
+          "officialDesc": "Invoca un tótem a tus pies que elimina todos los efectos de veneno de un miembro de grupo o banda cercano en un radio de 30 m cada 1.5 s durante 6 s."
+        },
+        {
+          "spellId": 370,
+          "tags": [
+            "purgar"
+          ],
+          "name": "Purgar",
+          "icon": "spell_nature_purge",
+          "officialDesc": "Purga al objetivo enemigo, lo que elimina 1 efecto mágico beneficioso.(Purgar a un objetivo con éxito otorga una acumulación de Arma vorágine.)"
+        },
+        {
+          "spellId": 192058,
+          "tags": [
+            "aturdir"
+          ],
+          "name": "Tótem capacitador",
+          "icon": "spell_nature_brilliance",
+          "officialDesc": "Invoca un tótem en la ubicación seleccionada que absorbe energía eléctrica del aire que lo rodea, explota después de 2 s y aturde a todos los enemigos en un radio de 8 m durante 3 s."
+        }
+      ]
+    },
+    "Mago": {
+      "color": "#3FC7EB",
+      "roles": [
+        "dps"
+      ],
+      "counters": [
+        {
+          "spellId": 2139,
+          "tags": [
+            "interrumpir"
+          ],
+          "name": "Contrahechizo",
+          "icon": "spell_frost_iceshock",
+          "officialDesc": "Contrarresta el lanzamiento de hechizos del enemigo, lo que evita que lance hechizos de esa escuela de magia durante 7 s."
+        },
+        {
+          "spellId": 475,
+          "tags": [
+            "disipar-maldicion"
+          ],
+          "name": "Eliminar maldición",
+          "icon": "spell_nature_removecurse",
+          "officialDesc": "Elimina todas las maldiciones de un objetivo amistoso."
+        },
+        {
+          "spellId": 30449,
+          "tags": [
+            "purgar"
+          ],
+          "name": "Robar hechizo",
+          "icon": "spell_arcane_arcane02",
+          "officialDesc": "Roba (Cleptomanía: todos los efectos mágicos benéficos del objetivo. Estos efectos duran un máximo de 2 min / un efecto mágico benéfico del objetivo. Este efecto dura un máximo de 2 min.)"
+        }
+      ]
+    },
+    "Brujo": {
+      "color": "#8788EE",
+      "roles": [
+        "dps"
+      ],
+      "counters": [
+        {
+          "spellId": 19647,
+          "tags": [
+            "interrumpir"
+          ],
+          "name": "Bloqueo de hechizo",
+          "icon": "spell_shadow_mindrot",
+          "officialDesc": "Contrarresta el lanzamiento de hechizos del enemigo, lo que evita que lance hechizos de esa escuela de magia durante 7 s."
+        },
+        {
+          "spellId": 19505,
+          "tags": [
+            "purgar"
+          ],
+          "name": "Devorar magia",
+          "icon": "spell_nature_purge",
+          "officialDesc": "Purga 1 p. de efecto mágico beneficioso de un enemigo. Si se devora un efecto, sana al Manáfago por ((80% of Spell Power)) p. y otorga 60 de energía vil."
+        },
+        {
+          "spellId": 30283,
+          "tags": [
+            "aturdir"
+          ],
+          "name": "Furia de las Sombras",
+          "icon": "ability_warlock_shadowfurytga",
+          "officialDesc": "Aturde a todos los enemigos en un radio de 8 m durante 3 s."
+        }
+      ]
+    },
+    "Monje": {
+      "color": "#00FF98",
+      "roles": [
+        "tank",
+        "healer",
+        "dps"
+      ],
+      "counters": [
+        {
+          "spellId": 116705,
+          "tags": [
+            "interrumpir"
+          ],
+          "name": "Golpe de mano de lanza",
+          "icon": "ability_monk_spearhand",
+          "officialDesc": "Da un golpe rápido al objetivo en la garganta, lo que interrumpe el lanzamiento de hechizos e impide el lanzamiento de cualquier hechizo de esa escuela de magia durante 5 s."
+        },
+        {
+          "spellId": 115450,
+          "tags": [
+            "disipar-magia",
+            "disipar-veneno",
+            "disipar-enfermedad"
+          ],
+          "roles": [
+            "healer"
+          ],
+          "name": "Depuración",
+          "icon": "ability_rogue_imrovedrecuperate",
+          "officialDesc": "Elimina todos los efectos mágicos del objetivo."
+        },
+        {
+          "spellId": 218164,
+          "tags": [
+            "disipar-veneno",
+            "disipar-enfermedad"
+          ],
+          "roles": [
+            "tank",
+            "dps"
+          ],
+          "name": "Depuración",
+          "icon": "ability_rogue_imrovedrecuperate",
+          "officialDesc": "Elimina todos los efectos de veneno y enfermedad del objetivo."
+        },
+        {
+          "spellId": 119381,
+          "tags": [
+            "aturdir"
+          ],
+          "name": "Barrido de pierna",
+          "icon": "ability_monk_legsweep",
+          "officialDesc": "Derriba a todos los enemigos en un radio de 6 m y los aturde durante 3 s."
+        }
+      ]
+    },
+    "Druida": {
+      "color": "#FF7C0A",
+      "roles": [
+        "tank",
+        "healer",
+        "dps"
+      ],
+      "counters": [
+        {
+          "spellId": 106839,
+          "tags": [
+            "interrumpir"
+          ],
+          "roles": [
+            "tank",
+            "dps"
+          ],
+          "name": "Testarazo",
+          "icon": "inv_bone_skull_04",
+          "officialDesc": "Cargas contra el objetivo y lo aporreas en la cabeza, lo que interrumpe e impide el lanzamiento de hechizos de esa escuela durante 5 s."
+        },
+        {
+          "spellId": 2908,
+          "tags": [
+            "calmar"
+          ],
+          "name": "Calmar",
+          "icon": "ability_hunter_beastsoothe",
+          "officialDesc": "Calma al objetivo y disipa todos los efectos de enfurecimiento."
+        },
+        {
+          "spellId": 88423,
+          "tags": [
+            "disipar-magia",
+            "disipar-maldicion",
+            "disipar-veneno"
+          ],
+          "roles": [
+            "healer"
+          ],
+          "name": "Cura de la Naturaleza",
+          "icon": "ability_shaman_cleansespirit",
+          "officialDesc": "Cura los efectos dañinos sobre el objetivo aliado y elimina todos los efectos mágicos (Cura de la naturaleza mejorada: de maldiciones y venenos)."
+        },
+        {
+          "spellId": 2782,
+          "tags": [
+            "disipar-maldicion",
+            "disipar-veneno"
+          ],
+          "roles": [
+            "tank",
+            "dps"
+          ],
+          "name": "Eliminar corrupción",
+          "icon": "spell_holy_removecurse",
+          "officialDesc": "Anula todos los efectos de corrupción en el objetivo amistoso, lo que elimina todos los efectos de maldiciones y de venenos."
+        },
+        {
+          "spellId": 99,
+          "tags": [
+            "aturdir"
+          ],
+          "name": "Rugido incapacitante",
+          "icon": "ability_druid_demoralizingroar",
+          "officialDesc": "Adopta la forma de oso e invoca al espíritu de Ursol para proferir un rugido ensordecedor que incapacita a todos los enemigos en un radio de 10 m durante 3 s. El daño puede cancelar el efecto."
+        }
+      ]
+    },
+    "Cazador de Demonios": {
+      "color": "#A330C9",
+      "roles": [
+        "tank",
+        "dps"
+      ],
+      "counters": [
+        {
+          "spellId": 183752,
+          "tags": [
+            "interrumpir"
+          ],
+          "name": "Interrumpir",
+          "icon": "ability_demonhunter_consumemagic",
+          "officialDesc": "Interrumpe el lanzamiento de hechizos del enemigo e impide que lance hechizos de esa escuela durante 5 s. (Furia interruptora: Genera 30 p. de furia tras una interrupción exitosa)"
+        },
+        {
+          "spellId": 278326,
+          "tags": [
+            "purgar"
+          ],
+          "name": "Consumir magia",
+          "icon": "spell_misc_zandalari_council_soulswap",
+          "officialDesc": "Consume 1 efecto mágico beneficioso, lo que lo elimina del objetivo (Cólera devorada: y te otorga 20 p. de furia)."
+        },
+        {
+          "spellId": 179057,
+          "tags": [
+            "aturdir"
+          ],
+          "name": "Nova de caos",
+          "icon": "spell_fire_felfirenova",
+          "officialDesc": "Desata una erupción de energía vil que inflige ((27.4816% of Attack Power)) p. de daño de caos y aturde a todos los enemigos cercanos durante 3 s. (Fragmentos de caos: Cada enemigo aturdido con Nova de caos tiene un 30% de probabilidad de generar un fragmento de alma menor)"
+        }
+      ]
+    },
+    "Evocador": {
+      "color": "#33937F",
+      "roles": [
+        "healer",
+        "dps"
+      ],
+      "counters": [
+        {
+          "spellId": 351338,
+          "tags": [
+            "interrumpir"
+          ],
+          "name": "Reprimir",
+          "icon": "ability_evoker_quell",
+          "officialDesc": "Interrumpe el lanzamiento de hechizos de un enemigo y evita que lance hechizos de esa escuela de magia durante 6 s."
+        },
+        {
+          "spellId": 360823,
+          "tags": [
+            "disipar-magia",
+            "disipar-veneno"
+          ],
+          "roles": [
+            "healer"
+          ],
+          "name": "Naturalizar",
+          "icon": "ability_evoker_fontofmagic_green",
+          "officialDesc": "Limpia los efectos dañinos del objetivo y elimina todos los efectos mágicos y de envenenamiento."
+        },
+        {
+          "spellId": 365585,
+          "tags": [
+            "disipar-veneno"
+          ],
+          "roles": [
+            "dps"
+          ],
+          "name": "Expurgar",
+          "icon": "ability_evoker_fontofmagic_green",
+          "officialDesc": "Elimina las toxinas que afectan a un aliado y elimina todos los efectos de veneno."
+        },
+        {
+          "spellId": 374251,
+          "tags": [
+            "disipar-maldicion",
+            "disipar-enfermedad",
+            "disipar-veneno"
+          ],
+          "name": "Llama cauterizante",
+          "icon": "ability_evoker_fontofmagic_red",
+          "officialDesc": "Cauteriza las heridas de un aliado y elimina todos los efectos de sangrado, veneno, maldición y enfermedad. Sana ((350% of Spell Power)) p. de salud cuando elimina cualquier efecto."
+        }
+      ]
+    }
+  }
+}

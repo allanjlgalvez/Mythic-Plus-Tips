@@ -34,4 +34,10 @@ Los nombres oficiales en español (es-MX), las descripciones y los íconos se ob
 npm run sync:wowhead
 ```
 
-Rellena `name`, `icon` y `officialDesc` de cada `spellId`, el `name` de cada `npcId`, y descarga los íconos a `images/spells/`. Si Wowhead aún no tradujo una descripción, la omite y lo avisa. Con `-- --check` solo informa diferencias.
+También sincroniza `data/classes.json`. Rellena `name`, `icon` y `officialDesc` de cada `spellId`, el `name` de cada `npcId`, y descarga los íconos a `images/spells/`. Si Wowhead aún no tradujo una descripción, la omite y lo avisa. Con `-- --check` solo informa diferencias.
+
+### Matriz, analizador y rutas
+
+- La **Matriz de Contramedidas** se genera sola: cada habilidad con etiqueta `interrumpir`, `aturdir`, `disipar-*`, `calmar` o `purgar` aparece como fila, con las clases que la pueden resolver.
+- El **Analizador de grupo** cruza esas mismas etiquetas con `data/classes.json` (qué habilidad de cada clase resuelve cada etiqueta y en qué rol) y avisa qué mecánicas de cada mazmorra no cubre el grupo.
+- Cada mazmorra tiene una **ruta** (`route`): una lista de pasos en orden.

@@ -32,6 +32,12 @@
         .font-cinzel { font-family: 'Cinzel', serif; }
         
         /* Enlace de hechizo estilo Wowhead / Juego */
+        /* Matriz en móvil: cada fila se muestra como tarjeta. */
+        @media (max-width: 640px) {
+            #matrix-table thead { display: none; }
+            #matrix-table tr { display: block; padding: 10px 0; }
+            #matrix-table td { display: block; padding: 3px 16px; white-space: normal; }
+        }
         .spell-link {
             color: #fcd34d; /* Dorado / Ámbar claro */
             font-weight: 600;
@@ -285,33 +291,15 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div>
                         <label class="block text-xs font-semibold text-stone-300 mb-1">Buscar Habilidad/Enemigo</label>
-                        <input type="text" id="matrix-search" oninput="filterMatrix()" placeholder="Ej. Zurrar, Escudo..." class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg focus:border-amber-500 outline-none">
+                        <input type="text" id="matrix-search" oninput="filterMatrix()" placeholder="Ej. Zurrar, Rav'i, Nova de veneno..." class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg focus:border-amber-500 outline-none">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-stone-300 mb-1">Mazmorra</label>
-                        <select id="matrix-dungeon-filter" onchange="filterMatrix()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg focus:border-amber-500 outline-none">
-                            <option value="ALL">Todas las Mazmorras</option>
-                            <option value="Altar de los Colmillos">Altar de los Colmillos</option>
-                            <option value="El Frontal de la Muerte">El Frontal de la Muerte</option>
-                            <option value="Guarida de Nalorakk">Guarida de Nalorakk</option>
-                            <option value="El Valle Enceguecedor">El Valle Enceguecedor</option>
-                            <option value="Arena Rajavacío">Arena Rajavacío</option>
-                            <option value="Reposo de Reyes">Reposo de Reyes</option>
-                            <option value="Templo de Sethraliss">Templo de Sethraliss</option>
-                            <option value="Estanques de Vida Rubí">Estanques de Vida Rubí</option>
-                        </select>
+                        <select id="matrix-dungeon-filter" onchange="filterMatrix()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg focus:border-amber-500 outline-none"></select>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-stone-300 mb-1">Tipo Mecánica</label>
-                        <select id="matrix-type-filter" onchange="filterMatrix()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg focus:border-amber-500 outline-none">
-                            <option value="ALL">Todas</option>
-                            <option value="Veneno">Veneno</option>
-                            <option value="Maldición">Maldición</option>
-                            <option value="Magia">Magia / Disipar</option>
-                            <option value="Enfurecimiento">Enfurecimiento (Calmar)</option>
-                            <option value="Purga">Purga de Escudo</option>
-                            <option value="Interrupción">Interrupción / Cortar</option>
-                        </select>
+                        <select id="matrix-type-filter" onchange="filterMatrix()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg focus:border-amber-500 outline-none"></select>
                     </div>
                 </div>
                 <div>
@@ -321,14 +309,14 @@
             </div>
             <div class="companion-panel rounded-xl overflow-hidden">
                 <div class="overflow-x-auto custom-scrollbar">
-                    <table class="min-w-full text-left text-xs text-stone-300">
+                    <table id="matrix-table" class="min-w-full text-left text-xs text-stone-300">
                         <thead class="bg-[#141210] text-amber-400 font-cinzel border-b border-stone-700">
                             <tr>
                                 <th class="py-3 px-4">Mazmorra</th>
                                 <th class="py-3 px-4">Enemigo</th>
                                 <th class="py-3 px-4">Mecánica Letal</th>
                                 <th class="py-3 px-4">Tipo</th>
-                                <th class="py-3 px-4">Contramedida Exacta</th>
+                                <th class="py-3 px-4">Contramedidas por clase</th>
                             </tr>
                         </thead>
                         <tbody id="matrix-table-body" class="divide-y divide-stone-800"></tbody>
@@ -347,79 +335,23 @@
                     <h3 class="font-cinzel font-bold text-amber-400 text-base border-b border-stone-700 pb-2">Composición del Grupo</h3>
                     <div>
                         <label class="block text-xs font-semibold text-stone-300 mb-1">Tanque</label>
-                        <select id="party-tank" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg">
-                            <option value="Guerrero">Guerrero Protección (Zurrar / Reflejo)</option>
-                            <option value="Paladín">Paladín Protección (Limpiar toxinas)</option>
-                            <option value="Caballero de la Muerte">Caballero de la Muerte Sangre (Helada mental)</option>
-                            <option value="Druida">Druida Guardián (Calmar / Limpiar)</option>
-                            <option value="Monje">Monje Maestro Cervecero (Desintoxicar)</option>
-                            <option value="Cazador de Demonios">Cazador de Demonios Venganza (Consumir magia)</option>
-                        </select>
+                        <select id="party-tank" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg"></select>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-stone-300 mb-1">Sanador</label>
-                        <select id="party-healer" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg">
-                            <option value="Sacerdote">Sacerdote Disciplina / Sagrado (Purificar / Disipar)</option>
-                            <option value="Chamán">Chamán Restauración (Purgar / Purificar)</option>
-                            <option value="Paladín">Paladín Sagrado (Limpiar toxinas)</option>
-                            <option value="Druida">Druida Restauración (Calmar / Cura natural)</option>
-                            <option value="Monje">Monje Tejedor de Niebla (Desintoxicar)</option>
-                            <option value="Evocador">Evocador Preservación (Exfoliar veneno)</option>
-                        </select>
+                        <select id="party-healer" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg"></select>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-stone-300 mb-1">DPS 1</label>
-                        <select id="party-dps1" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg">
-                            <option value="Druida">Druida Feral / Equilibrio (Testarazo / Calmar)</option>
-                            <option value="Pícaro">Pícaro (Patada / Estocada)</option>
-                            <option value="Paladín">Paladín Reprensión (Limpiar toxinas)</option>
-                            <option value="Chamán">Chamán Mejora / Elemental (Purgar / Corte)</option>
-                            <option value="Guerrero">Guerrero Armas / Furia (Zurrar / Ola de choque)</option>
-                            <option value="Cazador">Cazador (Disparo tranquilizante)</option>
-                            <option value="Mago">Mago (Robar hechizo / Contrahechizo)</option>
-                            <option value="Brujo">Brujo (Portal / Devorar magia)</option>
-                            <option value="Monje">Monje Viajero del Viento (Paralización)</option>
-                            <option value="Cazador de Demonios">Cazador de Demonios Devastación (Consumir magia)</option>
-                            <option value="Caballero de la Muerte">Caballero de la Muerte (Helada mental)</option>
-                            <option value="Evocador">Evocador Devastación / Aumentativo (Corte temporal)</option>
-                            <option value="Sacerdote">Sacerdote Sombra (Disipar en masa)</option>
-                        </select>
+                        <select id="party-dps1" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg"></select>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-stone-300 mb-1">DPS 2</label>
-                        <select id="party-dps2" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg">
-                            <option value="Mago" selected>Mago (Robar hechizo / Contrahechizo)</option>
-                            <option value="Cazador">Cazador (Disparo tranquilizante)</option>
-                            <option value="Brujo">Brujo (Portal / Devorar magia)</option>
-                            <option value="Druida">Druida Feral / Equilibrio (Testarazo / Calmar)</option>
-                            <option value="Pícaro">Pícaro (Patada / Estocada)</option>
-                            <option value="Paladín">Paladín Reprensión (Limpiar toxinas)</option>
-                            <option value="Chamán">Chamán Mejora / Elemental (Purgar / Corte)</option>
-                            <option value="Guerrero">Guerrero Armas / Furia (Zurrar / Ola de choque)</option>
-                            <option value="Monje">Monje Viajero del Viento (Paralización)</option>
-                            <option value="Cazador de Demonios">Cazador de Demonios Devastación (Consumir magia)</option>
-                            <option value="Caballero de la Muerte">Caballero de la Muerte (Helada mental)</option>
-                            <option value="Evocador">Evocador Devastación / Aumentativo (Corte temporal)</option>
-                            <option value="Sacerdote">Sacerdote Sombra (Disipar en masa)</option>
-                        </select>
+                        <select id="party-dps2" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg"></select>
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-stone-300 mb-1">DPS 3 (Flex)</label>
-                        <select id="party-dps3" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg">
-                            <option value="Cazador" selected>Cazador (Disparo tranquilizante)</option>
-                            <option value="Mago">Mago (Robar hechizo / Contrahechizo)</option>
-                            <option value="Brujo">Brujo (Portal / Devorar magia)</option>
-                            <option value="Druida">Druida Feral / Equilibrio (Testarazo / Calmar)</option>
-                            <option value="Pícaro">Pícaro (Patada / Estocada)</option>
-                            <option value="Paladín">Paladín Reprensión (Limpiar toxinas)</option>
-                            <option value="Chamán">Chamán Mejora / Elemental (Purgar / Corte)</option>
-                            <option value="Guerrero">Guerrero Armas / Furia (Zurrar / Ola de choque)</option>
-                            <option value="Monje">Monje Viajero del Viento (Paralización)</option>
-                            <option value="Cazador de Demonios">Cazador de Demonios Devastación (Consumir magia)</option>
-                            <option value="Caballero de la Muerte">Caballero de la Muerte (Helada mental)</option>
-                            <option value="Evocador">Evocador Devastación / Aumentativo (Corte temporal)</option>
-                            <option value="Sacerdote">Sacerdote Sombra (Disipar en masa)</option>
-                        </select>
+                        <select id="party-dps3" onchange="calculatePartyCoverage()" class="w-full px-3 py-2 text-xs bg-[#141210] border border-stone-700 text-stone-200 rounded-lg"></select>
                     </div>
                 </div>
 
@@ -478,31 +410,22 @@
         let dungeonsData = [];
         let matrixData = [];
 
-        const classColors = {
-            "Caballero de la Muerte": "#C41E3A",
-            "Cazador de Demonios": "#A330C9",
-            "Druida": "#FF7C0A",
-            "Evocador": "#33937F",
-            "Cazador": "#AAD372",
-            "Mago": "#3FC7EB",
-            "Monje": "#00FF98",
-            "Paladín": "#F48CBA",
-            "Sacerdote": "#FFFFFF",
-            "Pícaro": "#FFF468",
-            "Chamán": "#0070DD",
-            "Brujo": "#8788EE",
-            "Guerrero": "#C69B6D"
-        };
-
-        const classNames = Object.keys(classColors);
+        // Clases, colores y contramedidas viven en data/classes.json.
+        let classesData = {};
+        let classColors = {};
+        let classNames = [];
         let activeClassFilter = "ALL";
 
         async function loadData() {
-            const res = await fetch('data/dungeons.json');
-            if (!res.ok) throw new Error(`No se pudo cargar data/dungeons.json (${res.status})`);
-            const data = await res.json();
-            dungeonsData = data.dungeons;
-            matrixData = data.matrix;
+            const [dungeons, classes] = await Promise.all(['data/dungeons.json', 'data/classes.json'].map(async url => {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`No se pudo cargar ${url} (${res.status})`);
+                return res.json();
+            }));
+            dungeonsData = dungeons.dungeons;
+            classesData = classes.classes;
+            classNames = Object.keys(classesData);
+            classColors = Object.fromEntries(classNames.map(c => [c, classesData[c].color]));
         }
 
         function timerToMinutes(timer) {
@@ -533,6 +456,9 @@
             initTimersChart();
             renderDungeonSelector();
             renderMobileDungeonMenu();
+            matrixData = buildMatrixRows();
+            populateMatrixFilters();
+            populatePartySelects();
             renderClassFilterBadges();
             renderMatrixTable();
             calculatePartyCoverage();
@@ -668,10 +594,6 @@
             return `${d} ${months[m - 1]} ${y}`;
         }
 
-        function hasGuideV2(d) {
-            return d.bosses.some(b => Array.isArray(b.abilities));
-        }
-
         function renderTag(tag) {
             const t = ABILITY_TAGS[tag];
             if (!t) return '';
@@ -730,7 +652,9 @@
         function renderTrashGuide(t) {
             return `
                 <div class="bg-[#141210] p-3.5 rounded-lg border border-stone-700 text-xs">
-                    <a href="${wowheadUrl('npc', t.npcId)}" target="_blank" rel="noopener" class="text-red-400 font-bold uppercase tracking-wider hover:underline">${t.name}</a>
+                    ${t.npcId
+                        ? `<a href="${wowheadUrl('npc', t.npcId)}" target="_blank" rel="noopener" class="text-red-400 font-bold uppercase tracking-wider hover:underline">${t.name}</a>`
+                        : `<span class="text-red-400 font-bold uppercase tracking-wider">${t.name}</span>`}
                     ${t.note ? `<p class="text-stone-300 leading-relaxed mt-1">${t.note}</p>` : ''}
                     ${t.abilities?.length ? `<div class="mt-1">${t.abilities.map(a => renderAbility(a, true)).join('')}</div>` : ''}
                 </div>`;
@@ -764,7 +688,21 @@
                     <nav class="flex gap-2 overflow-x-auto pb-1">
                         ${d.bosses.map((b, i) => navLink(`#guide-boss-${i}`, `${i + 1}. ${b.name}`)).join('')}
                         ${navLink('#guide-trash', 'Trash')}
+                        ${d.route?.length ? navLink('#guide-route', 'Ruta') : ''}
                     </nav>
+
+                    ${d.route?.length ? `
+                    <section id="guide-route" class="bg-[#141210] rounded-lg border border-stone-700 p-4 scroll-mt-24">
+                        <h3 class="font-cinzel font-bold text-base text-amber-400 mb-3"><i class="fa-solid fa-route text-amber-500 mr-2"></i>Ruta recomendada</h3>
+                        <ol class="space-y-2">
+                            ${d.route.map((step, i) => `
+                                <li class="flex gap-3 text-xs text-stone-300 leading-relaxed">
+                                    <span class="flex-shrink-0 w-6 h-6 rounded-full ${/^Jefe/.test(step) ? 'bg-amber-600 text-stone-950' : 'bg-stone-800 text-stone-300 border border-stone-600'} font-bold flex items-center justify-center text-[11px]">${i + 1}</span>
+                                    <span class="pt-0.5 ${/^Jefe/.test(step) ? 'font-semibold text-amber-200' : ''}">${step}</span>
+                                </li>`).join('')}
+                        </ol>
+                        <p class="text-[10px] text-stone-500 mt-3">Orden general de la mazmorra. El mapa con los pulls numerados llegará en una próxima versión.</p>
+                    </section>` : ''}
 
                     ${usedTags.length ? `
                     <div class="flex flex-wrap gap-1.5 items-center">
@@ -784,42 +722,6 @@
                         </div>
                     </div>
                 </div>`;
-        }
-
-        // Vista anterior: estrategia en texto libre por rol.
-        function renderLegacyBody(d) {
-            return `
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div class="lg:col-span-2 space-y-4">
-                        <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-crown text-amber-500 mr-2"></i>Jefes y Estrategias Tácticas</h3>
-                        ${d.bosses.map(b => `
-                            <div class="bg-[#141210] p-4 rounded-lg border border-stone-700 space-y-3">
-                                <div>
-                                    <h4 class="font-bold text-amber-300 text-sm font-cinzel">
-                                        <i class="fa-solid fa-skull-crossbones text-amber-500 mr-1.5"></i>${b.name}
-                                    </h4>
-                                    <p class="text-xs text-stone-400 italic">${b.desc}</p>
-                                </div>
-                                <div class="bg-stone-900 p-3 rounded border border-stone-800 space-y-2">
-                                    <p class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-2">Instrucciones de Combate:</p>
-                                    <ul class="space-y-3 text-xs text-stone-200">
-                                        ${b.strategy.map(item => `<li class="leading-relaxed border-l-2 border-stone-700 pl-3">${item}</li>`).join('')}
-                                    </ul>
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-biohazard text-amber-500 mr-2"></i>Trash Letal Prioritario</h3>
-                        ${d.trash.map(t => `
-                            <div class="bg-[#141210] p-3.5 rounded-lg border border-stone-700 text-xs">
-                                <b class="text-red-400 uppercase tracking-wider block mb-1.5">${t.name}</b>
-                                <p class="text-stone-300 leading-relaxed">${t.mechanic}</p>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
         }
 
         function selectDungeon(id) {
@@ -848,11 +750,8 @@
                         <span class="bg-amber-950/60 border border-amber-600/50 text-amber-400 text-xs font-bold px-2.5 py-0.5 rounded-full">${d.expansion}</span>
                         <h2 class="font-cinzel text-2xl font-bold text-amber-400 mt-2">${d.name}</h2>
                     </div>
-                    ${d.hiddenBuff ? `<div class="bg-stone-900 p-3 rounded-lg border border-amber-600/40 text-xs text-stone-300 max-w-lg">
-                        <p class="font-bold text-amber-400"><i class="fa-solid fa-gem text-amber-500 mr-1"></i>Ventaja de Ruta: ${d.hiddenBuff}</p>
-                    </div>` : ''}
                 </div>
-                ${hasGuideV2(d) ? renderGuideBody(d) : renderLegacyBody(d)}
+                ${renderGuideBody(d)}
             `;
 
             // Resaltar el botón activo en la mini-barra
@@ -892,24 +791,57 @@
             }, 200);
         }
 
+        // ===== Matriz de contramedidas y analizador: generados desde los datos =====
+        // Etiquetas que una clase puede resolver con una habilidad propia.
+        const COUNTER_TAGS = ['interrumpir', 'aturdir', 'disipar-magia', 'disipar-veneno', 'disipar-maldicion', 'disipar-enfermedad', 'calmar', 'purgar'];
+        const ROLE_LABELS = { tank: 'Tanque', healer: 'Sanador', dps: 'DPS' };
+
+        function classStyle(c) {
+            return `color: ${classColors[c] || '#fff'}; font-weight: bold; text-shadow: 0 0 4px rgba(0,0,0,0.8);`;
+        }
+
+        // Qué clases resuelven una etiqueta y con qué habilidad (y en qué rol).
+        function countersFor(tag) {
+            return classNames.flatMap(cls => classesData[cls].counters
+                .filter(c => c.tags.includes(tag))
+                .map(c => ({ cls, spell: c, roles: c.roles })));
+        }
+
+        function buildMatrixRows() {
+            const rows = [];
+            for (const d of dungeonsData) {
+                const sources = [...d.bosses.map(b => ({ enemy: b.name, kind: 'Jefe' })), ...d.trash.map(t => ({ enemy: t.name, kind: 'Trash' }))];
+                [...d.bosses, ...d.trash].forEach((src, i) => {
+                    for (const a of src.abilities || []) {
+                        for (const tag of (a.tags || []).filter(t => COUNTER_TAGS.includes(t))) {
+                            rows.push({ dungeonId: d.id, dungeon: d.name, enemy: sources[i].enemy, kind: sources[i].kind, ability: a, tag });
+                        }
+                    }
+                });
+            }
+            return rows;
+        }
+
+        function populateMatrixFilters() {
+            document.getElementById('matrix-dungeon-filter').innerHTML =
+                `<option value="ALL">Todas las mazmorras</option>` +
+                dungeonsData.map(d => `<option value="${d.id}">${d.name}</option>`).join('');
+            const usedTags = COUNTER_TAGS.filter(t => matrixData.some(r => r.tag === t));
+            document.getElementById('matrix-type-filter').innerHTML =
+                `<option value="ALL">Todas</option>` +
+                usedTags.map(t => `<option value="${t}">${ABILITY_TAGS[t].label}</option>`).join('');
+        }
+
         function renderClassFilterBadges() {
             let html = `<button onclick="setClassFilter('ALL')" class="px-2.5 py-1 text-xs rounded border transition-all ${activeClassFilter === 'ALL' ? 'bg-amber-600 border-amber-500 text-stone-950 font-bold' : 'bg-[#141210] border-stone-700 text-stone-300'}">Todas</button>`;
-            
-            for (let c of classNames) {
-                const color = classColors[c] || '#ffffff';
+            for (const c of classNames) {
+                const color = classColors[c];
                 const isActive = activeClassFilter === c;
-                const isLightColor = ["Sacerdote", "Pícaro", "Cazador", "Monje", "Paladín", "Mago"].includes(c);
-                
-                let style = "";
-                let cssClasses = "px-2.5 py-1 text-xs rounded border transition-all font-medium ";
-                
-                if (isActive) {
-                    style = `background-color: ${color}; color: ${isLightColor ? '#0c0a09' : '#ffffff'}; border-color: #facc15; font-weight: bold; box-shadow: 0 0 10px ${color};`;
-                } else {
-                    style = `background-color: #141210; color: ${color}; border-color: ${color}50;`;
-                }
-                
-                html += `<button onclick="setClassFilter('${c}')" style="${style}" class="${cssClasses} hover:opacity-80">${c}</button>`;
+                const isLightColor = ['Sacerdote', 'Pícaro', 'Cazador', 'Monje', 'Paladín', 'Mago'].includes(c);
+                const style = isActive
+                    ? `background-color: ${color}; color: ${isLightColor ? '#0c0a09' : '#ffffff'}; border-color: #facc15; font-weight: bold; box-shadow: 0 0 10px ${color};`
+                    : `background-color: #141210; color: ${color}; border-color: ${color}50;`;
+                html += `<button onclick="setClassFilter('${c}')" style="${style}" class="px-2.5 py-1 text-xs rounded border transition-all font-medium hover:opacity-80">${c}</button>`;
             }
             document.getElementById('class-filter-badges').innerHTML = html;
         }
@@ -917,71 +849,106 @@
         function setClassFilter(c) { activeClassFilter = c; renderClassFilterBadges(); filterMatrix(); }
 
         function filterMatrix() {
-            const txt = document.getElementById('matrix-search').value.toLowerCase();
+            const txt = document.getElementById('matrix-search').value.toLowerCase().trim();
             const d = document.getElementById('matrix-dungeon-filter').value;
             const t = document.getElementById('matrix-type-filter').value;
-            const filtered = matrixData.filter(i => 
-                (i.enemy.toLowerCase().includes(txt) || i.mechanic.toLowerCase().includes(txt) || i.counter.toLowerCase().includes(txt)) &&
-                (d === 'ALL' || i.dungeon.includes(d)) && (t === 'ALL' || i.type === t) &&
-                (activeClassFilter === 'ALL' || i.counter.toLowerCase().includes(activeClassFilter.toLowerCase()))
-            );
+            const filtered = matrixData.filter(r => {
+                const counters = countersFor(r.tag);
+                const haystack = [r.enemy, r.ability.name, r.dungeon, ...counters.map(c => `${c.cls} ${c.spell.name}`)].join(' ').toLowerCase();
+                return (!txt || haystack.includes(txt)) &&
+                    (d === 'ALL' || r.dungeonId === d) &&
+                    (t === 'ALL' || r.tag === t) &&
+                    (activeClassFilter === 'ALL' || counters.some(c => c.cls === activeClassFilter));
+            });
             renderMatrixTable(filtered);
         }
 
-        function formatCounterWithColors(counterText) {
-            let formatted = counterText;
-            for (let className of classNames) {
-                if (formatted.includes(className)) {
-                    const color = classColors[className];
-                    const regex = new RegExp(`(${className})`, 'g');
-                    formatted = formatted.replace(regex, `<span style="color: ${color}; font-weight: bold; text-shadow: 0 0 4px rgba(0,0,0,0.8);">$1</span>`);
-                }
-            }
-            return formatted;
+        function renderCounters(tag, onlyClass) {
+            return countersFor(tag)
+                .filter(c => !onlyClass || onlyClass === 'ALL' || c.cls === onlyClass)
+                .map(c => `<span class="inline-block mr-2 mb-1"><span style="${classStyle(c.cls)}">${c.cls}</span>: <a href="${wowheadUrl('spell', c.spell.spellId)}" target="_blank" rel="noopener" class="hover:underline">${c.spell.name}</a>${c.roles ? ` <span class="text-stone-500">(${c.roles.map(r => ROLE_LABELS[r]).join(' / ')})</span>` : ''}</span>`)
+                .join('');
         }
 
         function renderMatrixTable(data = matrixData) {
-            document.getElementById('matrix-table-body').innerHTML = data.map(r => `
-                <tr class="hover:bg-stone-900 transition-colors">
-                    <td class="py-3 px-4 font-semibold text-amber-400">${r.dungeon}</td>
-                    <td class="py-3 px-4 font-medium text-stone-200">${r.enemy}</td>
-                    <td class="py-3 px-4 text-xs font-mono"><span class="spell-link">${r.mechanic}</span></td>
-                    <td class="py-3 px-4"><span class="px-2 py-0.5 rounded text-[10px] font-bold bg-stone-800 border border-stone-700 text-stone-300">${r.type}</span></td>
-                    <td class="py-3 px-4 text-stone-200">${formatCounterWithColors(r.counter)}</td>
+            const body = document.getElementById('matrix-table-body');
+            if (!data.length) {
+                body.innerHTML = `<tr><td colspan="5" class="py-6 px-4 text-center text-stone-500">No hay mecánicas con esos filtros.</td></tr>`;
+                return;
+            }
+            body.innerHTML = data.map(r => `
+                <tr class="hover:bg-stone-900 transition-colors align-top">
+                    <td class="py-3 px-4 font-semibold text-amber-400 whitespace-nowrap">${r.dungeon}</td>
+                    <td class="py-3 px-4 font-medium text-stone-200">${r.enemy} <span class="block text-[10px] text-stone-500">${r.kind}</span></td>
+                    <td class="py-3 px-4"><a href="${wowheadUrl('spell', r.ability.spellId)}" target="_blank" rel="noopener" class="spell-link inline-flex items-center gap-1.5 hover:underline">${r.ability.icon ? `<img src="images/spells/${r.ability.icon}.jpg" alt="" class="w-5 h-5 rounded border border-stone-600">` : ''}${r.ability.name}</a></td>
+                    <td class="py-3 px-4 whitespace-nowrap">${renderTag(r.tag)}</td>
+                    <td class="py-3 px-4 text-stone-200">${renderCounters(r.tag, activeClassFilter)}</td>
                 </tr>
             `).join('');
         }
 
+        // ----- Analizador de grupo -----
+        const PARTY_SLOTS = [
+            { id: 'party-tank', role: 'tank', default: 'Guerrero' },
+            { id: 'party-healer', role: 'healer', default: 'Sacerdote' },
+            { id: 'party-dps1', role: 'dps', default: 'Mago' },
+            { id: 'party-dps2', role: 'dps', default: 'Pícaro' },
+            { id: 'party-dps3', role: 'dps', default: 'Chamán' },
+        ];
+
+        function populatePartySelects() {
+            for (const slot of PARTY_SLOTS) {
+                document.getElementById(slot.id).innerHTML = classNames
+                    .filter(c => classesData[c].roles.includes(slot.role))
+                    .map(c => `<option value="${c}" ${c === slot.default ? 'selected' : ''}>${c}</option>`)
+                    .join('');
+            }
+        }
+
+        function memberCovers(member, tag) {
+            return classesData[member.cls].counters.find(c => c.tags.includes(tag) && (!c.roles || c.roles.includes(member.role)));
+        }
+
         function calculatePartyCoverage() {
-            const p = [
-                document.getElementById('party-tank').value, 
-                document.getElementById('party-healer').value, 
-                document.getElementById('party-dps1').value, 
-                document.getElementById('party-dps2').value, 
-                document.getElementById('party-dps3').value
-            ];
-            
-            const hasPoisonOrCurse = p.some(c => ["Paladín", "Druida", "Monje", "Chamán", "Evocador"].some(k => c.includes(k)));
-            const hasMagicDispel = p.some(c => ["Sacerdote", "Paladín", "Chamán", "Druida"].some(k => c.includes(k)));
-            const hasPurge = p.some(c => ["Chamán", "Sacerdote", "Mago", "Cazador de Demonios", "Cazador", "Brujo"].some(k => c.includes(k)));
+            const party = PARTY_SLOTS.map(s => ({ cls: document.getElementById(s.id).value, role: s.role }));
+            const needed = COUNTER_TAGS.filter(t => matrixData.some(r => r.tag === t));
 
-            document.getElementById('utility-checklist').innerHTML = `
-                <div class="p-3 border rounded-lg text-xs ${hasPoisonOrCurse ? 'bg-emerald-950/40 border-emerald-800 text-emerald-300' : 'bg-red-950/40 border-red-800 text-red-300'}"><b>Dispel Toxinas/Veneno:</b> ${hasPoisonOrCurse ? 'Cubierto' : 'Falta'}</div>
-                <div class="p-3 border rounded-lg text-xs ${hasMagicDispel ? 'bg-emerald-950/40 border-emerald-800 text-emerald-300' : 'bg-red-950/40 border-red-800 text-red-300'}"><b>Dispel Mágico:</b> ${hasMagicDispel ? 'Cubierto' : 'Falta'}</div>
-                <div class="p-3 border rounded-lg text-xs ${hasPurge ? 'bg-emerald-950/40 border-emerald-800 text-emerald-300' : 'bg-red-950/40 border-red-800 text-red-300'}"><b>Purga / Robar Magia:</b> ${hasPurge ? 'Cubierto' : 'Falta'}</div>
-            `;
+            const coverage = needed.map(tag => ({
+                tag,
+                by: party.map(m => ({ m, spell: memberCovers(m, tag) })).filter(x => x.spell),
+                uses: matrixData.filter(r => r.tag === tag).length,
+            }));
+            const covered = coverage.filter(c => c.by.length).length;
+            const pct = Math.round(covered / needed.length * 100);
 
-            let warnings = "";
-            if (!hasPurge) {
-                warnings += `<div class="p-3 bg-red-950/50 text-red-300 text-xs border border-red-800 rounded-lg"><b>¡Alerta Reposo de Reyes!</b> Falta purga mágica para romper los escudos de Zul.</div>`;
-            }
-            if (!hasPoisonOrCurse) {
-                warnings += `<div class="p-3 bg-amber-950/50 text-amber-300 text-xs border border-amber-800 rounded-lg"><b>¡Atención Altar de los Colmillos!</b> Falta disipar venenos en área.</div>`;
-            }
-            if (warnings === "") {
-                warnings = `<div class="p-3 bg-emerald-950/50 text-emerald-300 text-xs border border-emerald-800 rounded-lg"><b>¡Grupo óptimo!</b> Cobertura de utilidades lista para pushear llaves altas.</div>`;
-            }
-            document.getElementById('dungeon-warnings').innerHTML = warnings;
+            const badge = document.getElementById('coverage-score-badge');
+            badge.textContent = `${pct}% Cobertura`;
+            badge.className = `text-xs px-3 py-1 rounded-full font-bold border ${pct === 100 ? 'bg-emerald-950 text-emerald-300 border-emerald-700' : pct >= 75 ? 'bg-amber-950 text-amber-300 border-amber-700' : 'bg-red-950 text-red-300 border-red-700'}`;
+
+            document.getElementById('utility-checklist').innerHTML = coverage.map(c => `
+                <div class="p-3 border rounded-lg text-xs ${c.by.length ? 'bg-emerald-950/40 border-emerald-800 text-emerald-300' : 'bg-red-950/40 border-red-800 text-red-300'}">
+                    <div class="mb-1">${renderTag(c.tag)}</div>
+                    <b>${c.by.length ? (c.tag === 'interrumpir' ? `${c.by.length} de 5 jugadores` : 'Cubierto') : 'Falta'}</b>
+                    <span class="block text-[10px] text-stone-400 mt-0.5">${c.uses} mecánica${c.uses === 1 ? '' : 's'} en la temporada</span>
+                    ${c.by.length ? `<span class="block mt-1">${c.by.map(x => `<span style="${classStyle(x.m.cls)}">${x.m.cls}</span>: ${x.spell.name}`).join('<br>')}</span>` : ''}
+                </div>`).join('');
+
+            // Avisos por mazmorra: mecánicas que el grupo no puede resolver.
+            const missing = coverage.filter(c => !c.by.length).map(c => c.tag);
+            const warnings = dungeonsData.map(d => {
+                const rows = matrixData.filter(r => r.dungeonId === d.id && missing.includes(r.tag));
+                if (!rows.length) return '';
+                return `<div class="p-3 bg-red-950/50 text-red-200 text-xs border border-red-800 rounded-lg">
+                    <b class="text-red-300">${d.name}:</b>
+                    ${rows.map(r => `<span class="spell-link">${r.ability.name}</span> (${r.enemy}) necesita <b>${ABILITY_TAGS[r.tag].label.toLowerCase()}</b>`).join('; ')}.
+                </div>`;
+            }).join('');
+            const interrupters = coverage.find(c => c.tag === 'interrumpir')?.by.length || 0;
+            const kickNote = interrupters < 4
+                ? `<div class="p-3 bg-amber-950/50 text-amber-300 text-xs border border-amber-800 rounded-lg"><b>Pocas interrupciones:</b> solo ${interrupters} de 5 jugadores pueden interrumpir. Esta temporada tiene muchos lanzadores que deben cortarse siempre.</div>`
+                : '';
+            document.getElementById('dungeon-warnings').innerHTML = (warnings + kickNote) ||
+                `<div class="p-3 bg-emerald-950/50 text-emerald-300 text-xs border border-emerald-800 rounded-lg"><b>¡Grupo completo!</b> Tu grupo puede resolver todas las mecánicas marcadas de la temporada.</div>`;
         }
 
         function calculateKeyTimes() {
