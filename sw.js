@@ -1,5 +1,5 @@
 // CACHE_NAME y PRECACHE_ASSETS los genera tools/build-sw.js (npm run build:sw).
-const CACHE_NAME = 'mythic-plus-83b38b67ff';
+const CACHE_NAME = 'mythic-plus-6d54f0d0b6';
 
 // Todo lo que la app necesita para funcionar sin conexión.
 const PRECACHE_ASSETS = [
@@ -34,20 +34,34 @@ const PRECACHE_ASSETS = [
     './images/launchericon-96x96.png',
     './images/murder-row.webp',
     './images/ruby-life-pools.webp',
+    './images/spells/ability_creature_poison_01.jpg',
+    './images/spells/ability_creature_poison_03.jpg',
+    './images/spells/ability_creature_poison_05.jpg',
     './images/spells/ability_fixated_state_red.jpg',
+    './images/spells/ability_mount_voidelfstridermount.jpg',
     './images/spells/ability_paladin_infusionoflight.jpg',
     './images/spells/ability_priest_flashoflight.jpg',
+    './images/spells/ability_racial_darkflight.jpg',
     './images/spells/inv_-misc_herb_marrowroot_leaf.jpg',
     './images/spells/inv_111_hunter_ability_harrierscall.jpg',
+    './images/spells/inv_1205_voidforge_sovereignvoidcores_cosmicvoid.jpg',
     './images/spells/inv_ability_druid_convokethespirits.jpg',
     './images/spells/inv_ability_holyfire_buff.jpg',
     './images/spells/inv_ability_holyfire_missile.jpg',
     './images/spells/inv_ability_holyfire_orb.jpg',
+    './images/spells/inv_ability_voidweaverpriest_entropicrift.jpg',
+    './images/spells/inv_cosmicvoid_groundsate.jpg',
+    './images/spells/inv_cosmicvoid_missile.jpg',
+    './images/spells/inv_cosmicvoid_orb.jpg',
+    './images/spells/inv_cosmicvoid_wave.jpg',
     './images/spells/inv_desertlasherorchid_yellow.jpg',
+    './images/spells/inv_enchant_voidsphere.jpg',
     './images/spells/inv_herbalism_70_dreamleaf.jpg',
     './images/spells/inv_raptortravelform.jpg',
+    './images/spells/spell_nature_corrosivebreath.jpg',
     './images/spells/spell_nature_earthquake.jpg',
     './images/spells/spell_nature_wispsplodegreen.jpg',
+    './images/spells/spell_shadow_psychicscream.jpg',
     './images/spells/spell_shaman_earthquake.jpg',
     './images/temple-of-sethraliss.webp',
     './images/the-blinding-vale.webp',
