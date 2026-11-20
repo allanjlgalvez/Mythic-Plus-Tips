@@ -2,8 +2,11 @@
   "name": "mythic-plus-tips",
   "private": true,
   "scripts": {
+    "build": "npm run build:css && npm run build:sw",
     "build:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --minify",
-    "watch:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --watch"
+    "build:sw": "node tools/build-sw.js",
+    "watch:css": "tailwindcss -i ./src/tailwind.css -o ./css/tailwind.css --watch",
+    "sync:wowhead": "NODE_USE_ENV_PROXY=1 node --no-warnings tools/wowhead-sync.js"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.0"
