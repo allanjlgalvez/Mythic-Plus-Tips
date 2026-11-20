@@ -43,7 +43,9 @@ function cleanDescription(html) {
         .replace(/<br\s*\/?>/gi, ' ')
         .replace(/<[^>]+>/g, '')
         .replace(/&nbsp;/g, ' ')
-        .replace(/\b\d[\d.,]*\s*p\.\s*de\s*/gi, '')
+        // "116379 p. de daño", "387930 p de daño", "7274 de daño" -> "daño";
+        // "29095 p. más de daño" -> "más daño". Los porcentajes se conservan.
+        .replace(/\b\d[\d.,]*\s+(?:p\.?\s+)?(más\s+)?de\s+(daño|sanación|curación)/gi, '$1$2')
         .replace(/\s+/g, ' ')
         .trim();
 }

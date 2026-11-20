@@ -301,45 +301,259 @@
       "expansion": "Midnight",
       "timer": "30:00",
       "bossesCount": 3,
-      "tacticalFeature": "Gladiadores del Vacío",
-      "hiddenBuff": "Ruta de los campeones: Buff de versatilidad al limpiar pasillos.",
+      "tacticalFeature": "Interrupciones y posicionamiento",
+      "hiddenBuff": null,
+      "overview": {
+        "patch": "12.1.5",
+        "updated": "2026-11-20",
+        "summary": "Arena de tres jefes donde el trash exige una rotación de interrupciones firme: un miedo o un grito sin cortar desordena al grupo sobre los efectos del suelo. Tira solo lo que tus interrupciones puedan controlar y asigna quién corta a cada enemigo antes del pull."
+      },
       "bosses": [
         {
-          "name": "Príncipe Nexo Xal",
-          "desc": "Etéreo maestro del combate interdimensional.",
-          "strategy": [
-            "🛡️ <b>Tanque:</b> El control de espacio en esta arena circular es vital. Arrincona a Xal llevándolo siempre por las orillas, obligándolo a depositar sus letales <span class='spell-link'>Pozo de sombras</span> contra los muros, garantizando que el medio de la arena quede totalmente despejado para maniobrar.",
-            "💚 <b>Sanador:</b> Cura sin pausas el constante daño mágico sobre el tanque y sé quirúrgico con tus limpiezas. El jefe intentará aterrorizar aplicando un miedo persistente mediante <span class='spell-link'>Terror profundo</span>; usa tu purificación mágica inmediatamente en *cooldown* para que el jugador afectado no corra hacia las trampas del suelo.",
-            "⚔️ <b>DPS:</b> Establezcan por chat de voz un orden estricto de interrupciones (1, 2, 3). Deben impedir implacablemente que termine sus casteos incesantes de <span class='spell-link'>Descarga de vacío</span> para frenar el daño pasivo y abrumador que, de otra forma, secará el maná del sanador en minutos."
-          ]
+          "name": "Taz'Rah",
+          "npcId": 238887,
+          "desc": "Primer campeón de la arena, acompañado de sombras etéreas.",
+          "abilities": [
+            {
+              "spellId": 1297017,
+              "tags": [
+                "golpe-tanque",
+                "mover"
+              ],
+              "note": "Golpe fuerte que además te repele. Defensivo en cada uno y cuida tu espalda para no caer en zonas del suelo.",
+              "name": "Explosión del Vacío",
+              "icon": "inv_cosmicvoid_orb",
+              "officialDesc": "Taz'rah azota al jugador objetivo con energía del Vacío, lo que le inflige daño de las sombras y lo repele."
+            },
+            {
+              "spellId": 1300259,
+              "tags": [
+                "area"
+              ],
+              "note": "Daño a todo el grupo y abre Fisuras del Vacío. Llenen la vida del grupo antes de cada casteo.",
+              "name": "Florecimiento oscuro",
+              "icon": "inv_ability_voidweaverpriest_entropicrift",
+              "officialDesc": "Taz'rah libera una ola de energía del Vacío que inflige daño de las sombras a todos los jugadores y provoca la erupción de Fisura del Vacío, lo que inflige daño de las sombras a los jugadores alcanzados."
+            },
+            {
+              "spellId": 1296967,
+              "tags": [
+                "esquivar"
+              ],
+              "note": "Las fisuras dañan cada segundo a quien se queda encima: salgan de ellas de inmediato.",
+              "name": "Fisura del Vacío",
+              "icon": "inv_1205_voidforge_sovereignvoidcores_cosmicvoid",
+              "officialDesc": "La energía del Vacío carcome al jugador y le inflige daño de las sombras cada 1 s."
+            },
+            {
+              "spellId": 1222098,
+              "tags": [
+                "esquivar"
+              ],
+              "note": "Las sombras etéreas arremeten en línea recta y dejan daño durante 15 segundos. Salgan de la línea marcada.",
+              "name": "Desplazamiento abisal",
+              "icon": "ability_mount_voidelfstridermount",
+              "officialDesc": "La sombra etérea arremete contra el objetivo y lo atraviesa, lo que inflige daño de las sombras y más daño de las sombras cada 1 s durante 15 s a los jugadores que golpea."
+            }
+          ],
+          "tips": {
+            "tank": [
+              "Defensivo en cada Explosión del Vacío.",
+              "Coloca al jefe de modo que el empuje no te mande a una fisura."
+            ],
+            "healer": [
+              "Guarda curación de área para cada Florecimiento oscuro.",
+              "Atento a quien reciba el daño en el tiempo de Desplazamiento abisal."
+            ],
+            "dps": [
+              "Esquiven las líneas de Desplazamiento abisal.",
+              "No se queden sobre las Fisuras del Vacío."
+            ]
+          }
         },
         {
-          "name": "Behemoth del Vacío",
-          "desc": "Gladiador mutado masivo.",
-          "strategy": [
-            "🛡️ <b>Tanque:</b> Eres el pilar inamovible de este encuentro. Bloquea de forma física y estática absoluta su poderosa carga frontal de <span class='spell-link'>Embestida entrópica</span>. Está terminantemente prohibido desorientar o girar el daño frontal, ya que aniquilará a los DPS cuerpo a cuerpo que se encuentren en los flancos.",
-            "💚 <b>Sanador:</b> El jefe mantiene una constante nube tóxica de <span class='spell-link'>Sangre ponzoñosa</span>. Realiza la eliminación rápida y en *cooldown* de estas marcas de veneno progresivas. Además, precastea fuertes sanaciones de ráfaga antes de que libere el inevitable daño sónico del <span class='spell-link'>Grito aterrador</span>.",
-            "⚔️ <b>DPS:</b> Paciencia y ejecución perfecta. Este jefe es un *Check* de DPS en fase de ejecución. Conserven todos sus tiempos de reutilización pesados, pociones ofensivas y el Heroísmo (*Big CDs*) exclusivamente para quemarlo cuando alcance el 30% de salud."
-          ]
+          "name": "Atroxus",
+          "npcId": 239008,
+          "desc": "Bestia venenosa que llena la arena de charcos tóxicos.",
+          "abilities": [
+            {
+              "spellId": 1222642,
+              "tags": [
+                "golpe-tanque"
+              ],
+              "note": "Golpe fuerte y daño de naturaleza durante 10 segundos. Defensivo en cada uno.",
+              "name": "Zarpazo descomunal",
+              "icon": "ability_creature_poison_03",
+              "officialDesc": "Atroxus asesta un golpe poderoso a un jugador y le inflige daño de naturaleza y más daño de naturaleza cada 1 s durante 10 s."
+            },
+            {
+              "spellId": 1222721,
+              "tags": [
+                "frontal"
+              ],
+              "note": "Cono frontal muy fuerte. El tanque lo orienta lejos del grupo y nadie se para enfrente.",
+              "name": "Aliento nocivo",
+              "icon": "ability_creature_poison_05",
+              "officialDesc": "Atroxus exhala emanaciones nocivas hacia el frente que infligen daño de naturaleza a los jugadores alcanzados."
+            },
+            {
+              "spellId": 1300351,
+              "tags": [
+                "area",
+                "esquivar"
+              ],
+              "note": "Daño a todo el grupo y deja charcos de veneno por 1 minuto. Pisar un charco reduce tu celeridad un 30%: muévanse fuera.",
+              "name": "Salpicadura de veneno",
+              "icon": "spell_nature_corrosivebreath",
+              "officialDesc": "Atroxus salpica veneno a su alrededor e inflige daño de naturaleza a todos los enemigos cada 1 s. El pegote de veneno inflige daño de naturaleza. Los jugadores alcanzados reciben más daño de naturaleza cada 1 s durante 5 s. Cada impacto crea un charco de veneno durante 1 min."
+            },
+            {
+              "spellId": 1262497,
+              "tags": [
+                "area",
+                "adds"
+              ],
+              "note": "Daño físico a todo el grupo que ignora armadura. Además, agita un charco y hace salir un trepador tóxico.",
+              "name": "Rugido monstruoso",
+              "icon": "ability_racial_darkflight",
+              "officialDesc": "Atroxus lanza un rugido poderoso que inflige daño físico a todos los jugadores; este ataque ignora la armadura. El rugido agita un charco de veneno cercano, lo que hace que surja un trepador tóxico."
+            },
+            {
+              "spellId": 1300263,
+              "tags": [
+                "prioridad"
+              ],
+              "note": "Mordida del trepador tóxico: el jugador recibe 50% más de daño de naturaleza durante 5 minutos y se acumula. Maten al trepador rápido.",
+              "name": "Mordedura infecciosa",
+              "icon": "ability_creature_poison_01",
+              "officialDesc": "El trepador tóxico muerde a un jugador, lo que hace que reciba un 50% más de daño de naturaleza durante 5 min. Este efecto se acumula."
+            }
+          ],
+          "tips": {
+            "tank": [
+              "Orienta Aliento nocivo hacia una zona vacía.",
+              "Mueve al jefe de forma ordenada para no llenar todo el espacio de charcos."
+            ],
+            "healer": [
+              "Prepara curación de área para Rugido monstruoso y Salpicadura de veneno.",
+              "Vigila a quien acumule Mordedura infecciosa."
+            ],
+            "dps": [
+              "Cambien al trepador tóxico en cuanto aparezca.",
+              "Salgan de los charcos: la pérdida de celeridad baja mucho su daño."
+            ]
+          }
         },
         {
-          "name": "Maestro Gladiador",
-          "desc": "Campeón indiscutible del Coliseo.",
-          "strategy": [
-            "🛡️ <b>Tanque:</b> Anticípate a la ráfaga de descargas. Debes realizar una rotación de tus mitigaciones más gruesas (Barreras antimagia, Muro de escudo) y ejecutar un bloqueo preciso del daño frontal inesquivable. Posiciona el daño de banda siempre a la espalda del jefe.",
-            "💚 <b>Sanador:</b> Prepárate para el movimiento caótico. Requerirás sanación móvil constante (*HoTs* y curaciones instantáneas) durante la fase de evasión aérea, ya que la caída de meteoritos de la <span class='spell-link'>Aniquilación</span> te obligará a correr sin poder detenerte a canalizar hechizos largos.",
-            "⚔️ <b>DPS:</b> Disciplina militar de desplazamiento rotativo. Sigan la coreografía moviéndose inquebrantablemente a espaldas del jefe, evadiendo con sumo cuidado los láseres orbitales giratorios del <span class='spell-link'>Rayo partemundos</span>; tocar el haz significa muerte inmediata."
-          ]
+          "name": "Carbonus",
+          "npcId": 248015,
+          "desc": "Jefe final de la arena; manipula la gravedad con singularidades y orbes.",
+          "abilities": [
+            {
+              "spellId": 1311923,
+              "tags": [
+                "golpe-tanque"
+              ],
+              "note": "Oleada de energía oscura con mucho daño. Defensivo en cada una.",
+              "name": "Oleadas oscuras",
+              "icon": "inv_cosmicvoid_wave",
+              "officialDesc": "Carbonus libera una oleada de energía oscura que inflige daño de las sombras a los jugadores golpeados."
+            },
+            {
+              "spellId": 1264191,
+              "tags": [
+                "esquivar"
+              ],
+              "note": "Crea singularidades que dañan a todo el grupo y lo atraen. Quien llega al centro queda atomizado 15 segundos sin poder atacar ni usar habilidades: aléjense.",
+              "name": "Singularidad inestable",
+              "icon": "inv_ability_voidweaverpriest_entropicrift",
+              "officialDesc": "Carbonus crea varias singularidades cerca de él. Cada singularidad inflige daño de las sombras cada 1 segundos a todos los jugadores, y los atrae lentamente hacia el centro. Los jugadores que caen en la singularidad son Atomizado."
+            },
+            {
+              "spellId": 1223298,
+              "tags": [
+                "fijar"
+              ],
+              "note": "Un orbe persigue a cada jugador y le aplica Masa condensada, que daña y ralentiza. Lleven su orbe hasta una singularidad para destruirlo.",
+              "name": "Orbes gravitacionales",
+              "icon": "inv_enchant_voidsphere",
+              "officialDesc": "Carbonus invoca un orbe gravitacional rastreador cerca de cada jugador. El orbe aplica Masa condensada al jugador objetivo cada 1 s. Si el orbe entra en un radio de 6 metros de distancia de una singularidad inestable, su esencia se desgarra y el orbe se destruye."
+            },
+            {
+              "spellId": 1227197,
+              "tags": [
+                "area",
+                "esquivar",
+                "mover"
+              ],
+              "note": "Cometas en la posición de los jugadores: daño, daño en el tiempo y empuje. Sepárense para no recibir dos impactos.",
+              "name": "Colisión cósmica",
+              "icon": "inv_cosmicvoid_groundsate",
+              "officialDesc": "Carbonus estrella cometas del Vacío en la ubicación de los jugadores, lo que inflige daño de las sombras a los jugadores que están en un radio de 8 m del impacto y más daño de las sombras cada 1 s durante 20 s. Además, los repele."
+            },
+            {
+              "spellId": 1222755,
+              "tags": [
+                "esquivar",
+                "mover"
+              ],
+              "note": "Mítica: energía cósmica que daña y repele a quien la toca. No se queden cerca del jefe cuando la lance.",
+              "name": "Cascada del Vacío",
+              "icon": "inv_cosmicvoid_missile",
+              "officialDesc": "Carbonus proyecta poder cósmico concentrado contra los jugadores cercanos. Quienes entran en contacto con esta energía reciben daño de las sombras y son repelidos."
+            }
+          ],
+          "tips": {
+            "tank": [
+              "Defensivo en cada Oleadas oscuras.",
+              "Mantén al jefe lejos de las singularidades para que el grupo pueda llevar los orbes."
+            ],
+            "healer": [
+              "El daño constante de las singularidades se suma al de Masa condensada: cura en el tiempo.",
+              "Guarda un CD para Colisión cósmica."
+            ],
+            "dps": [
+              "Lleva tu orbe a una singularidad sin caer en el centro.",
+              "Sepárense antes de cada Colisión cósmica."
+            ]
+          }
         }
       ],
       "trash": [
         {
-          "name": "Magi tocado por vacío",
-          "mechanic": "La artillería principal de los prisioneros del vacío; su <span class='spell-link'>Descarga de sombras</span> es un ataque destructivo que ignora armadura simple. Deben establecerse como prioridad táctica de aturdimiento masivo en área (AoE Stun) y patadas en serie ininterrumpidas."
+          "name": "Vociferador mortívoro",
+          "npcId": 243766,
+          "note": "La interrupción más importante de la mazmorra.",
+          "abilities": [
+            {
+              "spellId": 1233398,
+              "tags": [
+                "interrumpir"
+              ],
+              "note": "Miedo en un radio de 60 m. Si pasa, el grupo se dispersa sobre los efectos del suelo: no dejen pasar ninguno.",
+              "name": "Chillido de locura",
+              "icon": "spell_shadow_psychicscream",
+              "officialDesc": "Atemoriza a los enemigos que están en un radio de 60 m del taumaturgo durante 6 s."
+            }
+          ]
         },
         {
-          "name": "Acechador del foso",
-          "mechanic": "Horrendo escarabajo que ignora el 100% de la amenaza del tanque aplicando <span class='spell-link'>Fijar objetivo</span> (Fixate). Seguirá implacablemente al curador o a un DPS. Los afectados deben correr en un *Kiteo* circular constante usando ralentizaciones grupales; prohibido enfrentarlo a melé."
+          "name": "Luchador sometido",
+          "npcId": 248699,
+          "note": "Interrumpan su grito en cada casteo. Si tiran dos a la vez, decidan antes quién corta a cada uno. Su enfurecimiento se puede calmar.",
+          "abilities": []
+        },
+        {
+          "name": "Magi tocado por el Vacío",
+          "npcId": 252072,
+          "note": "Es inmune al control: su descarga de sombras en área solo se detiene interrumpiendo. Asignen interrupciones fijas.",
+          "abilities": []
+        },
+        {
+          "name": "Escoltavacío",
+          "npcId": 244708,
+          "note": "Canaliza curación sobre un enemigo cercano. Interrúmpanlo o contrólenlo.",
+          "abilities": []
         }
       ]
     },
@@ -703,8 +917,8 @@
     },
     {
       "dungeon": "Arena Rajavacío",
-      "enemy": "Magi tocado",
-      "mechanic": "Tormenta atronadora",
+      "enemy": "Vociferador mortívoro",
+      "mechanic": "Chillido de locura",
       "type": "Interrupción",
       "counter": "Guerrero: Zurrar / Pícaro: Patada / Chamán: Corte de viento"
     },
