@@ -631,36 +631,164 @@
             `).join('');
         }
 
-        function selectDungeon(id) {
-            const d = dungeonsData.find(x => x.id === id);
-            const gridView = document.getElementById('dungeon-grid-view');
-            const detailView = document.getElementById('dungeon-detail-view');
+        // ===== Guía estilo Method: habilidades estructuradas con etiquetas =====
+        // Las clases están escritas completas para que Tailwind las incluya al compilar.
+        const ABILITY_TAGS = {
+            'interrumpir':        { label: 'Interrumpir',        icon: 'fa-hand',              cls: 'bg-sky-950/60 border-sky-600/60 text-sky-300' },
+            'aturdir':            { label: 'Aturdir / CC',       icon: 'fa-bolt',              cls: 'bg-indigo-950/60 border-indigo-600/60 text-indigo-300' },
+            'golpe-tanque':       { label: 'Golpe al tanque',    icon: 'fa-shield-halved',     cls: 'bg-orange-950/60 border-orange-600/60 text-orange-300' },
+            'frontal':            { label: 'Frontal',            icon: 'fa-caret-up',          cls: 'bg-orange-950/60 border-orange-600/60 text-orange-300' },
+            'area':               { label: 'Daño de grupo',      icon: 'fa-users',             cls: 'bg-red-950/60 border-red-600/60 text-red-300' },
+            'esquivar':           { label: 'Esquivar',           icon: 'fa-person-running',    cls: 'bg-yellow-950/60 border-yellow-600/60 text-yellow-300' },
+            'soak':               { label: 'Interceptar',        icon: 'fa-bullseye',          cls: 'bg-emerald-950/60 border-emerald-600/60 text-emerald-300' },
+            'fijar':              { label: 'Persecución',        icon: 'fa-crosshairs',        cls: 'bg-rose-950/60 border-rose-600/60 text-rose-300' },
+            'adds':               { label: 'Adds',               icon: 'fa-seedling',          cls: 'bg-lime-950/60 border-lime-600/60 text-lime-300' },
+            'prioridad':          { label: 'Prioridad',          icon: 'fa-star',              cls: 'bg-fuchsia-950/60 border-fuchsia-600/60 text-fuchsia-300' },
+            'mover':              { label: 'Empuje',             icon: 'fa-arrows-left-right', cls: 'bg-stone-800 border-stone-600 text-stone-300' },
+            'disipar-magia':      { label: 'Disipar magia',      icon: 'fa-wand-sparkles',     cls: 'bg-blue-950/60 border-blue-600/60 text-blue-300' },
+            'disipar-veneno':     { label: 'Disipar veneno',     icon: 'fa-flask',             cls: 'bg-green-950/60 border-green-600/60 text-green-300' },
+            'disipar-maldicion':  { label: 'Disipar maldición',  icon: 'fa-skull',             cls: 'bg-purple-950/60 border-purple-600/60 text-purple-300' },
+            'disipar-enfermedad': { label: 'Disipar enfermedad', icon: 'fa-virus',             cls: 'bg-amber-950/60 border-amber-700/60 text-amber-300' },
+            'calmar':             { label: 'Calmar enfurecer',   icon: 'fa-face-angry',        cls: 'bg-red-950/60 border-red-700/60 text-red-300' },
+            'purgar':             { label: 'Purgar',             icon: 'fa-broom',             cls: 'bg-cyan-950/60 border-cyan-600/60 text-cyan-300' },
+            'info':               { label: 'Clave',              icon: 'fa-circle-info',       cls: 'bg-stone-800 border-stone-600 text-stone-300' },
+        };
 
-            if (!gridView.classList.contains('hidden')) {
-                gridView.classList.add('fade-out-slide');
-                setTimeout(() => {
-                    gridView.classList.add('hidden');
-                    gridView.classList.remove('fade-out-slide');
-                    detailView.classList.remove('hidden');
-                    detailView.classList.add('fade-out-slide');
-                    setTimeout(() => {
-                        detailView.classList.remove('fade-out-slide');
-                        detailView.classList.add('fade-in-slide');
-                    }, 20);
-                }, 200);
-            }
+        const ROLE_TIPS = [
+            { key: 'tank',   label: 'Tanque',  icon: 'fa-shield-halved', cls: 'text-sky-300' },
+            { key: 'healer', label: 'Sanador', icon: 'fa-heart-pulse',   cls: 'text-emerald-300' },
+            { key: 'dps',    label: 'DPS',     icon: 'fa-khanda',        cls: 'text-red-300' },
+        ];
 
-            document.getElementById('dungeon-detail-container').innerHTML = `
-                ${window.miniNavHtmlTemplate}
-                <div class="flex flex-col lg:flex-row justify-between mb-6 gap-3 border-b border-stone-700 pb-4">
-                    <div>
-                        <span class="bg-amber-950/60 border border-amber-600/50 text-amber-400 text-xs font-bold px-2.5 py-0.5 rounded-full">${d.expansion}</span>
-                        <h2 class="font-cinzel text-2xl font-bold text-amber-400 mt-2">${d.name}</h2>
+        const wowheadUrl = (type, id) => `https://www.wowhead.com/mx/${type}=${id}`;
+
+        function formatDateEs(iso) {
+            const [y, m, d] = iso.split('-').map(Number);
+            const months = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+            return `${d} ${months[m - 1]} ${y}`;
+        }
+
+        function hasGuideV2(d) {
+            return d.bosses.some(b => Array.isArray(b.abilities));
+        }
+
+        function renderTag(tag) {
+            const t = ABILITY_TAGS[tag];
+            if (!t) return '';
+            return `<span class="inline-flex items-center gap-1 border rounded px-1.5 py-0.5 text-[10px] font-semibold ${t.cls}"><i class="fa-solid ${t.icon}"></i>${t.label}</span>`;
+        }
+
+        function renderAbility(a, compact = false) {
+            const icon = a.icon
+                ? `<img src="images/spells/${a.icon}.jpg" alt="" loading="lazy" class="${compact ? 'w-7 h-7' : 'w-9 h-9'} rounded border border-stone-600 flex-shrink-0" onerror="this.style.visibility='hidden'">`
+                : `<div class="${compact ? 'w-7 h-7' : 'w-9 h-9'} rounded border border-stone-700 bg-stone-800 flex-shrink-0"></div>`;
+            return `
+                <div class="flex gap-3 ${compact ? 'py-2' : 'py-3'} border-t border-stone-800 first:border-t-0">
+                    ${icon}
+                    <div class="min-w-0 flex-1 space-y-1">
+                        <div class="flex flex-wrap items-center gap-1.5">
+                            <a href="${wowheadUrl('spell', a.spellId)}" target="_blank" rel="noopener" class="spell-link text-sm hover:underline">${a.name}</a>
+                            ${(a.tags || []).map(renderTag).join('')}
+                        </div>
+                        ${a.officialDesc ? `<p class="text-[11px] text-stone-400 leading-relaxed">${a.officialDesc}</p>` : ''}
+                        ${a.note ? `<p class="text-xs text-stone-200 leading-relaxed"><span class="text-amber-400 font-semibold">Táctica:</span> ${a.note}</p>` : ''}
                     </div>
-                    ${d.hiddenBuff ? `<div class="bg-stone-900 p-3 rounded-lg border border-amber-600/40 text-xs text-stone-300 max-w-lg">
-                        <p class="font-bold text-amber-400"><i class="fa-solid fa-gem text-amber-500 mr-1"></i>Ventaja de Ruta: ${d.hiddenBuff}</p>
+                </div>`;
+        }
+
+        function renderBossGuide(b, index) {
+            const npcLinks = b.npcs
+                ? b.npcs.map(n => `<a href="${wowheadUrl('npc', n.npcId)}" target="_blank" rel="noopener" class="hover:text-amber-300 hover:underline">${n.name}</a>`).join(' · ')
+                : '';
+            return `
+                <section id="guide-boss-${index}" class="bg-[#141210] rounded-lg border border-stone-700 scroll-mt-24">
+                    <header class="p-4 border-b border-stone-800">
+                        <p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold">Jefe ${index + 1}</p>
+                        <h4 class="font-cinzel font-bold text-lg text-amber-300">
+                            ${b.npcId ? `<a href="${wowheadUrl('npc', b.npcId)}" target="_blank" rel="noopener" class="hover:underline">${b.name}</a>` : b.name}
+                        </h4>
+                        <p class="text-xs text-stone-400 italic">${b.desc}</p>
+                        ${npcLinks ? `<p class="text-[11px] text-stone-400 mt-1">${npcLinks}</p>` : ''}
+                    </header>
+                    <div class="p-4">
+                        <p class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-1">Habilidades</p>
+                        ${b.abilities.map(a => renderAbility(a)).join('')}
+                    </div>
+                    ${b.tips ? `
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-stone-800 border-t border-stone-800 rounded-b-lg overflow-hidden">
+                        ${ROLE_TIPS.filter(r => b.tips[r.key]?.length).map(r => `
+                            <div class="bg-stone-900 p-3">
+                                <p class="text-[11px] font-bold uppercase tracking-wider mb-2 ${r.cls}"><i class="fa-solid ${r.icon} mr-1"></i>${r.label}</p>
+                                <ul class="space-y-1.5 text-xs text-stone-300 list-disc pl-4">
+                                    ${b.tips[r.key].map(t => `<li>${t}</li>`).join('')}
+                                </ul>
+                            </div>`).join('')}
                     </div>` : ''}
-                </div>
+                </section>`;
+        }
+
+        function renderTrashGuide(t) {
+            return `
+                <div class="bg-[#141210] p-3.5 rounded-lg border border-stone-700 text-xs">
+                    <a href="${wowheadUrl('npc', t.npcId)}" target="_blank" rel="noopener" class="text-red-400 font-bold uppercase tracking-wider hover:underline">${t.name}</a>
+                    ${t.note ? `<p class="text-stone-300 leading-relaxed mt-1">${t.note}</p>` : ''}
+                    ${t.abilities?.length ? `<div class="mt-1">${t.abilities.map(a => renderAbility(a, true)).join('')}</div>` : ''}
+                </div>`;
+        }
+
+        function renderGuideBody(d) {
+            const minutes = timerToMinutes(d.timer);
+            const o = d.overview || {};
+            const usedTags = [...new Set([...d.bosses, ...d.trash].flatMap(x => (x.abilities || []).flatMap(a => a.tags || [])))];
+            const stat = (label, value) => `
+                <div class="bg-stone-900 border border-stone-700 rounded-lg px-3 py-2">
+                    <p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold">${label}</p>
+                    <p class="text-sm font-bold text-stone-100">${value}</p>
+                </div>`;
+            const navLink = (href, label) => `<a href="${href}" onclick="event.preventDefault(); document.querySelector('${href}').scrollIntoView({behavior: 'smooth'})" class="whitespace-nowrap px-3 py-1.5 rounded-full border border-stone-700 bg-stone-900 text-xs text-stone-300 hover:border-amber-500 hover:text-amber-300">${label}</a>`;
+
+            return `
+                <div class="space-y-6">
+                    <section id="guide-overview" class="space-y-3 scroll-mt-24">
+                        ${o.summary ? `<p class="text-sm text-stone-300 leading-relaxed">${o.summary}</p>` : ''}
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+                            ${stat('Temporizador', d.timer)}
+                            ${stat('+2', formatSeconds(minutes * 60 * 0.8))}
+                            ${stat('+3', formatSeconds(minutes * 60 * 0.6))}
+                            ${stat('Jefes', d.bosses.length)}
+                            ${o.location ? stat('Ubicación', o.location) : ''}
+                            ${o.patch ? stat('Parche', `${o.patch}${o.updated ? ` · ${formatDateEs(o.updated)}` : ''}`) : ''}
+                        </div>
+                    </section>
+
+                    <nav class="flex gap-2 overflow-x-auto pb-1">
+                        ${d.bosses.map((b, i) => navLink(`#guide-boss-${i}`, `${i + 1}. ${b.name}`)).join('')}
+                        ${navLink('#guide-trash', 'Trash')}
+                    </nav>
+
+                    ${usedTags.length ? `
+                    <div class="flex flex-wrap gap-1.5 items-center">
+                        <span class="text-[10px] uppercase tracking-wider text-stone-500 font-bold mr-1">Leyenda:</span>
+                        ${usedTags.map(renderTag).join('')}
+                    </div>` : ''}
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="lg:col-span-2 space-y-4">
+                            <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-crown text-amber-500 mr-2"></i>Jefes</h3>
+                            ${d.bosses.map(renderBossGuide).join('')}
+                        </div>
+                        <div id="guide-trash" class="space-y-4 scroll-mt-24">
+                            <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-biohazard text-amber-500 mr-2"></i>Trash importante</h3>
+                            ${d.trash.map(renderTrashGuide).join('')}
+                            <p class="text-[10px] text-stone-500">Nombres y descripciones oficiales de <a href="https://www.wowhead.com/mx" target="_blank" rel="noopener" class="underline hover:text-stone-300">Wowhead</a> (es-MX).</p>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        // Vista anterior: estrategia en texto libre por rol.
+        function renderLegacyBody(d) {
+            return `
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div class="lg:col-span-2 space-y-4">
                         <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-crown text-amber-500 mr-2"></i>Jefes y Estrategias Tácticas</h3>
@@ -691,6 +819,40 @@
                         `).join('')}
                     </div>
                 </div>
+            `;
+        }
+
+        function selectDungeon(id) {
+            const d = dungeonsData.find(x => x.id === id);
+            const gridView = document.getElementById('dungeon-grid-view');
+            const detailView = document.getElementById('dungeon-detail-view');
+
+            if (!gridView.classList.contains('hidden')) {
+                gridView.classList.add('fade-out-slide');
+                setTimeout(() => {
+                    gridView.classList.add('hidden');
+                    gridView.classList.remove('fade-out-slide');
+                    detailView.classList.remove('hidden');
+                    detailView.classList.add('fade-out-slide');
+                    setTimeout(() => {
+                        detailView.classList.remove('fade-out-slide');
+                        detailView.classList.add('fade-in-slide');
+                    }, 20);
+                }, 200);
+            }
+
+            document.getElementById('dungeon-detail-container').innerHTML = `
+                ${window.miniNavHtmlTemplate}
+                <div class="flex flex-col lg:flex-row justify-between mb-6 gap-3 border-b border-stone-700 pb-4">
+                    <div>
+                        <span class="bg-amber-950/60 border border-amber-600/50 text-amber-400 text-xs font-bold px-2.5 py-0.5 rounded-full">${d.expansion}</span>
+                        <h2 class="font-cinzel text-2xl font-bold text-amber-400 mt-2">${d.name}</h2>
+                    </div>
+                    ${d.hiddenBuff ? `<div class="bg-stone-900 p-3 rounded-lg border border-amber-600/40 text-xs text-stone-300 max-w-lg">
+                        <p class="font-bold text-amber-400"><i class="fa-solid fa-gem text-amber-500 mr-1"></i>Ventaja de Ruta: ${d.hiddenBuff}</p>
+                    </div>` : ''}
+                </div>
+                ${hasGuideV2(d) ? renderGuideBody(d) : renderLegacyBody(d)}
             `;
 
             // Resaltar el botón activo en la mini-barra

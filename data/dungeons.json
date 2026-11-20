@@ -403,60 +403,285 @@
       "bossesCount": 4,
       "tacticalFeature": "Soaks e interrupciones",
       "hiddenBuff": null,
+      "overview": {
+        "location": "Harandar",
+        "patch": "12.1.5",
+        "updated": "2026-11-20",
+        "summary": "Mazmorra de cuatro jefes en el corazón de Harandar, corrompido por la luz. Castiga a los grupos que no interceptan mecánicas a tiempo (haces, orbes) y que pierden interrupciones en los lanzadores del trash. Los primeros dos jefes son obligatorios, en el orden que prefieras."
+      },
       "bosses": [
         {
           "name": "Meittik, Lekshi y Kezkitt",
-          "desc": "Tres guardianes unidos que comparten todo el daño.",
-          "strategy": [
-            "🛡️ <b>Tanque:</b> Usa un defensivo para <span class='spell-link'>Golpe de cimientos</span> de Meittik: además del golpe, crea charcos de <span class='spell-link'>Marga fértil</span> que ralentizan y dañan. Agrupa a los tres jefes cerca de uno de esos charcos.",
-            "💚 <b>Sanador:</b> Kezkitt canaliza <span class='spell-link'>Haz de broteluz</span> sobre las semillas que Lekshi siembra en la <span class='spell-link'>Marga fértil</span>. Si nadie se pone en el haz, la semilla madura y estalla en daño de área; cura a quienes intercepten.",
-            "⚔️ <b>DPS:</b> Los tres comparten el daño por <span class='spell-link'>Trinidad de zarzal</span>, así que hagan daño en área sin preocuparse por el objetivo. Entren rápido al <span class='spell-link'>Haz de broteluz</span> para frenar el crecimiento de la semilla."
-          ]
+          "npcs": [
+            {
+              "npcId": 243028,
+              "name": "Meittik"
+            },
+            {
+              "npcId": 243030,
+              "name": "Lekshi"
+            },
+            {
+              "npcId": 243029,
+              "name": "Kezkitt"
+            }
+          ],
+          "desc": "Tres guardianes unidos que comparten todo el daño recibido.",
+          "abilities": [
+            {
+              "spellId": 1253028,
+              "tags": [
+                "info"
+              ],
+              "note": "Como comparten vida, todo el daño en área cuenta triple: júntenlos y no cambien de objetivo.",
+              "name": "Trinidad de zarzal",
+              "icon": "inv_herbalism_70_dreamleaf",
+              "officialDesc": "Meittik, Lekshi y Kezkitt están vinculados y comparten todo el daño recibido."
+            },
+            {
+              "spellId": 1234753,
+              "tags": [
+                "golpe-tanque"
+              ],
+              "note": "Golpe fuerte de Meittik. Defensivo en cada uno; en Mítica además provoca una réplica que golpea a todo el grupo.",
+              "name": "Golpe de cimientos",
+              "icon": "spell_nature_earthquake",
+              "officialDesc": "Meittik golpea fuertemente a su objetivo principal con una fuerza inmensa, le inflige daño de naturaleza y daño físico. La fuerza del impacto rompe la capa superior del suelo cercano y crea áreas de Marga fértil."
+            },
+            {
+              "spellId": 1234782,
+              "tags": [
+                "esquivar"
+              ],
+              "note": "Charcos que deja Golpe de cimientos. Ralentizan y dañan: salgan de ellos salvo para interceptar semillas.",
+              "name": "Marga fértil",
+              "icon": "spell_shaman_earthquake",
+              "officialDesc": "El sustrato desenterrado ralentiza un 50% a los jugadores alcanzados por el efecto e inflige daño de naturaleza cada 1 s."
+            },
+            {
+              "spellId": 1235564,
+              "tags": [
+                "soak"
+              ],
+              "note": "Kezkitt alimenta cada semilla con este haz. Párense dentro para frenar su crecimiento; si una madura, estalla en daño de área.",
+              "name": "Haz de broteluz",
+              "icon": "ability_paladin_infusionoflight",
+              "officialDesc": "Kezkitt canaliza un haz de luz en cada semilla de broteluz que inflige daño sagrado cada 2 s a los jugadores que están de pie en el área de efecto. El poderoso haz germina rápidamente la semilla y aplica acumulaciones de Atiborrado de luz. Después de 8 s, el broteluz lanza Sobrecrecimiento de floraluz. Estar de pie dentro del haz sofoca el crecimiento de la semilla e impide las aplicaciones de Atiborrado de luz."
+            }
+          ],
+          "tips": {
+            "tank": [
+              "Agrupa a los tres jefes cerca de un charco de Marga fértil para que el grupo intercepte sin moverse mucho.",
+              "Rota defensivos para Golpe de cimientos."
+            ],
+            "healer": [
+              "Cura a quien esté interceptando el Haz de broteluz.",
+              "Guarda un CD de área por si una semilla llega a madurar."
+            ],
+            "dps": [
+              "Daño en área constante: los tres comparten la vida.",
+              "Entren rápido al Haz de broteluz cuando aparezca una semilla."
+            ]
+          }
         },
         {
           "name": "Ikuzz, el cazador de luz",
-          "desc": "Cazador corrompido por la luz.",
-          "strategy": [
-            "🛡️ <b>Tanque:</b> Usa defensivos para <span class='spell-link'>Pisotón verde</span>, que daña a todo el grupo y lo empuja. Después, ayuda a romper las <span class='spell-link'>Raíces espinosangrientas</span>.",
-            "💚 <b>Sanador:</b> Ten al grupo con vida alta antes de <span class='spell-link'>Pisotón verde</span>: 4 segundos después brotan <span class='spell-link'>Raíces espinosangrientas</span> bajo cada jugador y lo inmovilizan hasta que se destruyen.",
-            "⚔️ <b>DPS:</b> Rompan las <span class='spell-link'>Raíces espinosangrientas</span> rápido. Con 100 de energía, Ikuzz fija a un jugador con <span class='spell-link'>Mirada sanguinaria</span> y lo persigue 10 segundos: si eres tú, corre lejos del jefe y llévalo por encima de las raíces."
-          ]
+          "npcId": 244887,
+          "desc": "Cazador corrompido por la luz que inmoviliza a su presa antes de atacar.",
+          "abilities": [
+            {
+              "spellId": 1236746,
+              "tags": [
+                "area",
+                "mover"
+              ],
+              "note": "Golpea y empuja a todo el grupo. 4 segundos después brotan raíces bajo cada jugador.",
+              "name": "Pisotón verde",
+              "icon": "inv_raptortravelform",
+              "officialDesc": "Ikuzz da un pisotón que inflige daño físico a todos los jugadores y los repele. Después de 4 s, emergen Raíces espinosangrientas en las ubicaciones de los jugadores."
+            },
+            {
+              "spellId": 1236658,
+              "tags": [
+                "prioridad"
+              ],
+              "note": "Inmovilizan al jugador hasta que se destruyen. Rómpanlas rápido, sobre todo las del objetivo de Mirada sanguinaria.",
+              "name": "Raíces espinosangrientas",
+              "icon": "inv_-misc_herb_marrowroot_leaf",
+              "officialDesc": "Las raíces sujetan a los jugadores, les infligen daño de naturaleza y los enraízan en su lugar hasta que las destruyen."
+            },
+            {
+              "spellId": 1237090,
+              "tags": [
+                "fijar"
+              ],
+              "note": "Con 100 de energía fija a un jugador y lo persigue 10 segundos. Si te toca, corre lejos y llévalo por encima de las raíces.",
+              "name": "Mirada sanguinaria",
+              "icon": "ability_fixated_state_red",
+              "officialDesc": "Ikuzz se fija en un jugador y lo persigue durante 10 s. Al llegar a su objetivo, Ikuzz le realiza una Incisión."
+            }
+          ],
+          "tips": {
+            "tank": [
+              "Defensivo en cada Pisotón verde.",
+              "Ayuda a romper raíces cuando el jefe está persiguiendo a otro jugador."
+            ],
+            "healer": [
+              "Grupo con vida alta antes de Pisotón verde.",
+              "Atento al jugador fijado: si queda atrapado en raíces, necesita curación fuerte."
+            ],
+            "dps": [
+              "Raíces primero, jefe después.",
+              "Si te fija, no corras hacia el grupo."
+            ]
+          }
         },
         {
           "name": "Celador de la luz Ruia",
-          "desc": "Guardián que cambia de forma según su vida.",
-          "strategy": [
-            "🛡️ <b>Tanque:</b> Hasta el 70% de vida está en <span class='spell-link'>Forma de lechúcico lunar</span> y reemplaza sus ataques cuerpo a cuerpo con <span class='spell-link'>Cólera del celador</span>: el grupo debe interrumpirla para reducir tu daño recibido.",
-            "💚 <b>Sanador:</b> En M+ <span class='spell-link'>Fuegoluz</span> quema a tres jugadores; al terminar deja haces que dañan y silencian a quien los pise. Al 40% vuelve a forma Haranir y canaliza <span class='spell-link'>Espíritus del valle</span>, lanzando todas sus habilidades en ráfaga: prepárate para daño constante.",
-            "⚔️ <b>DPS:</b> Rotar interrupciones en <span class='spell-link'>Cólera del celador</span> es obligatorio. Esquiven los impactos de <span class='spell-link'>Lluvia de luz</span> y no pisen los haces de <span class='spell-link'>Fuegoluz</span>."
-          ]
+          "npcId": 245912,
+          "desc": "Guardián que cambia de forma según su vida restante.",
+          "abilities": [
+            {
+              "spellId": 1239821,
+              "tags": [
+                "interrumpir",
+                "golpe-tanque"
+              ],
+              "note": "En forma de lechúcico lunar (hasta 70%) reemplaza sus ataques cuerpo a cuerpo. Interrumpir cada uno reduce mucho el daño al tanque.",
+              "name": "Cólera del celador",
+              "icon": "spell_nature_wispsplodegreen",
+              "officialDesc": "Ruia ataca a su objetivo actual con un relámpago de energía y le inflige daño de naturaleza."
+            },
+            {
+              "spellId": 1239824,
+              "tags": [
+                "area"
+              ],
+              "note": "En M+ afecta a tres jugadores. Al terminar deja haces que dañan y silencian: colóquense donde no estorben y nadie los pise.",
+              "name": "Fuegoluz",
+              "icon": "inv_ability_holyfire_buff",
+              "officialDesc": "Ruia dispara un haz de energía a un jugador que lo quema y le inflige daño radiante cada 1 s durante 6 s. Cuando expira, emergen Rayos de fuegoluz en la ubicación del jugador afectado."
+            },
+            {
+              "spellId": 1240098,
+              "tags": [
+                "esquivar"
+              ],
+              "note": "Impactos de luz en el suelo: muévanse fuera de los círculos.",
+              "name": "Lluvia de luz",
+              "icon": "inv_ability_holyfire_missile",
+              "officialDesc": "Ruia invoca oleadas de energía de luz que caen de las alturas e infligen daño sagrado a los jugadores en un radio de 4 m del impacto."
+            },
+            {
+              "spellId": 1241067,
+              "tags": [
+                "area"
+              ],
+              "note": "Al 40% vuelve a forma Haranir y lanza todas sus habilidades en ráfaga. Guarden defensivos y CDs de curación para esta fase.",
+              "name": "Espíritus del valle",
+              "icon": "inv_ability_druid_convokethespirits",
+              "officialDesc": "Ruia convoca a los espíritus y lanza Fuegoluz, Lluvia de luz, Golpes pulverizadores y Vapuleo doloroso cada 8 s hasta que lo derrotan."
+            }
+          ],
+          "tips": {
+            "tank": [
+              "Pide un orden de interrupciones para Cólera del celador antes del pull."
+            ],
+            "healer": [
+              "Fuegoluz es daño sostenido sobre tres jugadores: prepara curación en el tiempo.",
+              "Guarda tu CD fuerte para Espíritus del valle (40%)."
+            ],
+            "dps": [
+              "Rotar interrupciones es obligatorio hasta el 70%.",
+              "No pisen los haces de Fuegoluz: silencian."
+            ]
+          }
         },
         {
           "name": "Ziekket",
-          "desc": "Jefe final del valle.",
-          "strategy": [
-            "🛡️ <b>Tanque:</b> Mantén al jefe en posición y ayuda a controlar a los Azotadores engendro de luz que invoca con <span class='spell-link'>Despertar de la floraluz</span>.",
-            "💚 <b>Sanador:</b> Quien toca un orbe de <span class='spell-link'>Esencia de floraluz</span> gana 10% de daño y sanación, pero recibe daño Sagrado durante 12 segundos: cúralos.",
-            "⚔️ <b>DPS:</b> Los Azotadores engendro de luz se entierran al 1% de vida y <span class='spell-link'>Despertar de la floraluz</span> los vuelve a levantar: bájenlos juntos. Intercepten los orbes de <span class='spell-link'>Esencia de floraluz</span> antes de que lleguen a Ziekket."
-          ]
+          "npcId": 247676,
+          "desc": "Jefe final del valle; despierta a la floraluz para atacar al grupo.",
+          "abilities": [
+            {
+              "spellId": 1246372,
+              "tags": [
+                "adds"
+              ],
+              "note": "Invoca Azotadores engendro de luz y reanima a los que estaban enterrados.",
+              "name": "Despertar de la floraluz",
+              "icon": "inv_desertlasherorchid_yellow",
+              "officialDesc": "Ziekket siembra energía de Luz en el suelo, hace brotar azotadores engendros de luz y vuelve a despertar a cualquiera que esté Inerte. Los azotadores vuelven a despertar con Recrecimiento vicioso."
+            },
+            {
+              "spellId": 1246858,
+              "tags": [
+                "soak"
+              ],
+              "note": "Orbes que avanzan hacia Ziekket. Intercéptenlos antes de que lleguen: quien lo toca gana daño y sanación, pero recibe daño durante 12 segundos.",
+              "name": "Esencia de floraluz",
+              "icon": "inv_ability_holyfire_orb",
+              "officialDesc": "Ziekket extrae glóbulos de energía de floraluz de la tierra que se mueven hacia él y desencadenan una Explosión fluorescente cuando lo alcanzan. Cuando los jugadores tocan los orbes, estos estallan y les otorgan Poder de floraluz."
+            }
+          ],
+          "tips": {
+            "tank": [
+              "Junta a los Azotadores con el jefe para que reciban el daño en área."
+            ],
+            "healer": [
+              "Cura a quienes intercepten Esencia de floraluz: el daño dura 12 segundos."
+            ],
+            "dps": [
+              "Los Azotadores se entierran al 1% de vida: bájenlos juntos para que no regresen escalonados.",
+              "Asignen quién intercepta cada orbe."
+            ]
+          }
         }
       ],
       "trash": [
         {
           "name": "Siembrahechizos radiante",
-          "mechanic": "El lanzador más importante de la mazmorra. Interrumpan <span class='spell-link'>Salva de saetas de luz</span> en cada casteo."
+          "npcId": 245336,
+          "note": "El lanzador más importante de la mazmorra.",
+          "abilities": [
+            {
+              "spellId": 1301834,
+              "tags": [
+                "interrumpir",
+                "area"
+              ],
+              "note": "Interrumpir en cada casteo.",
+              "name": "Salva de saetas de luz",
+              "icon": "ability_priest_flashoflight"
+            }
+          ]
         },
         {
           "name": "Alapétalo de pluma ligera",
-          "mechanic": "Interrumpan <span class='spell-link'>Chirrido desorientador</span> siempre: desorienta a todo el grupo."
+          "npcId": 245484,
+          "abilities": [
+            {
+              "spellId": 1238294,
+              "tags": [
+                "interrumpir"
+              ],
+              "note": "Interrumpir siempre: desorienta a todo el grupo.",
+              "name": "Chirrido desorientador",
+              "icon": "inv_111_hunter_ability_harrierscall",
+              "officialDesc": "El taumaturgo emite un chillido penetrante que desorienta a los enemigos durante 3 s."
+            }
+          ]
         },
         {
           "name": "Azotador atiborrado de luz",
-          "mechanic": "Cura a los enemigos cercanos mientras tiene el escudo activo. Rompan el escudo primero."
+          "npcId": 245345,
+          "note": "Cura a los enemigos cercanos mientras tiene el escudo activo. Rompan el escudo primero.",
+          "abilities": []
         },
         {
           "name": "Eructador esporañublo",
-          "mechanic": "Objetivo prioritario en su grupo: lanza ráfagas de proyectiles. No lo junten con otros pulls de mucho daño."
+          "npcId": 254850,
+          "note": "Objetivo prioritario en su grupo: lanza ráfagas de proyectiles. No lo junten con otros pulls de mucho daño.",
+          "abilities": []
         }
       ]
     }
