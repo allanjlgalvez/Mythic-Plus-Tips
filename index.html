@@ -1208,5 +1208,62 @@
         }
         function formatSeconds(sec) { const m = Math.floor(sec/60); const s = Math.floor(sec%60); return `${m}:${s<10?'0':''}${s}`; }
     </script>
+    <script>
+        // Sonidos de interfaz generados con Web Audio (sin archivos externos ni licencias de Blizzard).
+        (function () {
+            let ctx = null;
+            let muted = localStorage.getItem('mythic-sound-muted') === '1';
+
+            function getCtx() {
+                if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+                if (ctx.state === 'suspended') ctx.resume();
+                return ctx;
+            }
+
+            function playClick() {
+                if (muted) return;
+                const c = getCtx();
+                const t = c.currentTime;
+                const osc = c.createOscillator();
+                const gain = c.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(900, t);
+                osc.frequency.exponentialRampToValueAtTime(380, t + 0.07);
+                gain.gain.setValueAtTime(0.0001, t);
+                gain.gain.exponentialRampToValueAtTime(0.18, t + 0.008);
+                gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.09);
+                osc.connect(gain).connect(c.destination);
+                osc.start(t);
+                osc.stop(t + 0.1);
+            }
+
+            const toggle = document.createElement('button');
+            toggle.id = 'sound-toggle';
+            toggle.type = 'button';
+            toggle.className = 'fixed bottom-4 left-4 z-50 w-10 h-10 rounded-full bg-stone-900/90 border border-stone-700 text-stone-200 text-base flex items-center justify-center shadow-lg';
+            function renderToggle() {
+                toggle.textContent = muted ? '🔇' : '🔊';
+                toggle.setAttribute('aria-label', muted ? 'Activar sonidos' : 'Silenciar sonidos');
+                toggle.title = toggle.getAttribute('aria-label');
+            }
+            toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                muted = !muted;
+                localStorage.setItem('mythic-sound-muted', muted ? '1' : '0');
+                renderToggle();
+                if (!muted) playClick();
+            });
+            renderToggle();
+            document.body.appendChild(toggle);
+
+            // Un sonido por toque o clic en controles interactivos.
+            const selector = 'button, a, [role="button"], .dungeon-card';
+            document.addEventListener('pointerdown', function (e) {
+                if (e.target.closest && e.target.closest(selector) && e.target.closest(selector) !== toggle) {
+                    playClick();
+                }
+            }, { passive: true });
+        })();
+    </script>
 </body>
 </html>
