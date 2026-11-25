@@ -1,0 +1,69 @@
+{
+  "packageId": "io.github.allanjlgalvez.guiamiticaplus",
+  "host": "allanjlgalvez.github.io",
+  "name": "Guía Mítica Plus",
+  "launcherName": "Guía Mítica+",
+  "display": "standalone",
+  "themeColor": "#1A1614",
+  "themeColorDark": "#000000",
+  "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
+  "backgroundColor": "#0C0A09",
+  "enableNotifications": false,
+  "startUrl": "/Mythic-Plus-Tips/",
+  "iconUrl": "https://allanjlgalvez.github.io/Mythic-Plus-Tips/images/launchericon-512x512.png",
+  "maskableIconUrl": "https://allanjlgalvez.github.io/Mythic-Plus-Tips/images/maskable-512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./guia-mitica-plus-upload.keystore",
+    "alias": "upload"
+  },
+  "appVersionName": "1.0.0",
+  "appVersionCode": 1,
+  "shortcuts": [
+    {
+      "name": "Guía de mazmorras",
+      "shortName": "Guía",
+      "url": "http://localhost:8766/Mythic-Plus-Tips/index.html#tab-dungeons",
+      "chosenIconUrl": "https://allanjlgalvez.github.io/Mythic-Plus-Tips/images/launchericon-192x192.png"
+    },
+    {
+      "name": "Matriz de contramedidas",
+      "shortName": "Matriz",
+      "url": "http://localhost:8766/Mythic-Plus-Tips/index.html#tab-matrix",
+      "chosenIconUrl": "https://allanjlgalvez.github.io/Mythic-Plus-Tips/images/launchericon-192x192.png"
+    },
+    {
+      "name": "Analizador de grupo",
+      "shortName": "Analizador",
+      "url": "http://localhost:8766/Mythic-Plus-Tips/index.html#tab-analyzer",
+      "chosenIconUrl": "https://allanjlgalvez.github.io/Mythic-Plus-Tips/images/launchericon-192x192.png"
+    }
+  ],
+  "generatorApp": "unknown",
+  "webManifestUrl": "https://allanjlgalvez.github.io/Mythic-Plus-Tips/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "http://localhost:8766/Mythic-Plus-Tips/",
+  "minSdkVersion": 24,
+  "orientation": "portrait",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "protocolHandlers": [],
+  "fileHandlers": [],
+  "launchHandlerClientMode": "",
+  "displayOverride": [
+    "window-controls-overlay",
+    "minimal-ui"
+  ],
+  "appVersion": "1.0.0"
+}

@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guía no oficial de mazmorras Míticas+ de World of Warcraft en español: jefes, habilidades, interrupciones, disipaciones, rutas y analizador de grupo.">
     <title>Guía Mítica Plus - Matriz Táctica y Contramedidas M+</title>
 
     <!-- Recursos locales (funcionan sin conexión) -->
+    <!-- Precarga: los datos y las primeras portadas se piden en paralelo con el CSS -->
+    <link rel="preload" href="data/dungeons.json" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="data/classes.json" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="images/altar-of-fangs.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="images/den-of-nalorakk.webp" as="image" fetchpriority="high">
     <link rel="stylesheet" href="css/tailwind.css">
-    <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="vendor/fontawesome/icons.css">
     <link rel="stylesheet" href="vendor/fonts/fonts.css">
-    <script src="vendor/chart.umd.min.js"></script>
 
     <!-- PWA Setup -->
     <link rel="manifest" href="manifest.json">
@@ -140,7 +145,7 @@
                     </div>
                     <div>
                         <h1 class="font-cinzel text-base sm:text-lg font-bold tracking-wide text-amber-400 drop-shadow">GUÍA MÍTICA PLUS</h1>
-                        <p class="text-[10px] text-stone-400 hidden sm:block">Estrategias y Contramedidas M+</p>
+                        <p class="text-xs text-stone-400 hidden sm:block">Estrategias y Contramedidas M+</p>
                     </div>
                 </div>
                 
@@ -163,7 +168,7 @@
                 </nav>
 
                 <div class="md:hidden">
-                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="text-stone-300 hover:text-white p-2">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Abrir menú" aria-controls="mobile-menu" aria-expanded="false" class="text-stone-300 hover:text-white p-3">
                         <i class="fa-solid fa-bars text-xl"></i>
                     </button>
                 </div>
@@ -171,19 +176,19 @@
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden bg-[#141210] border-t border-stone-800 px-4 pt-2 pb-4 space-y-2">
-            <button onclick="switchTab('tab-dungeons'); toggleMobileMenu();" class="w-full text-left px-3 py-2 text-stone-200 hover:bg-stone-900 rounded flex items-center gap-2 font-bold text-amber-400">
+            <button onclick="switchTab('tab-dungeons')" class="w-full text-left px-3 py-2 text-stone-200 hover:bg-stone-900 rounded flex items-center gap-2 font-bold text-amber-400">
                 <i class="fa-solid fa-dungeon"></i> Guía de Mazmorras
             </button>
-            <button onclick="switchTab('tab-overview'); toggleMobileMenu();" class="w-full text-left px-3 py-2 text-stone-200 hover:bg-stone-900 rounded flex items-center gap-2">
+            <button onclick="switchTab('tab-overview')" class="w-full text-left px-3 py-2 text-stone-200 hover:bg-stone-900 rounded flex items-center gap-2">
                 <i class="fa-solid fa-chart-pie text-amber-500"></i> Ecosistema M+
             </button>
-            <button onclick="switchTab('tab-matrix'); toggleMobileMenu();" class="w-full text-left px-3 py-2 text-stone-200 hover:bg-stone-900 rounded flex items-center gap-2">
+            <button onclick="switchTab('tab-matrix')" class="w-full text-left px-3 py-2 text-stone-200 hover:bg-stone-900 rounded flex items-center gap-2">
                 <i class="fa-solid fa-table-list text-amber-500"></i> Matriz de Clases
             </button>
-            <button onclick="switchTab('tab-analyzer'); toggleMobileMenu();" class="w-full text-left px-3 py-2 text-stone-200 hover:bg-stone-900 rounded flex items-center gap-2">
+            <button onclick="switchTab('tab-analyzer')" class="w-full text-left px-3 py-2 text-stone-200 hover:bg-stone-900 rounded flex items-center gap-2">
                 <i class="fa-solid fa-users-gear text-amber-500"></i> Cobertura de Grupo
             </button>
-            <button onclick="switchTab('tab-calculator'); toggleMobileMenu();" class="w-full text-left px-3 py-2 text-stone-200 hover:bg-stone-900 rounded flex items-center gap-2">
+            <button onclick="switchTab('tab-calculator')" class="w-full text-left px-3 py-2 text-stone-200 hover:bg-stone-900 rounded flex items-center gap-2">
                 <i class="fa-solid fa-calculator text-amber-500"></i> Calculadora M+
             </button>
         </div>
@@ -216,14 +221,14 @@
         <section id="tab-overview" class="hidden space-y-6">
             <div class="companion-panel p-6 rounded-xl">
                 <h2 class="font-cinzel text-2xl font-bold text-amber-400 mb-2">
-                    <i class="fa-solid fa-compass text-amber-500 mr-2"></i>Arquitectura de la Temporada 2: La Maldición de Ula'tek
+                    <i class="fa-solid fa-compass text-amber-500 mr-2"></i>Temporada 2 de Midnight
                 </h2>
                 <p class="text-stone-300 leading-relaxed text-sm sm:text-base">
-                    Guía estratégica interactiva para la Temporada 2 de <span class="font-semibold text-amber-400">World of Warcraft: Midnight</span> (Parche 12.1). En llaves M+12 o superiores se activa <span class="font-semibold text-purple-400">Astucia de Xal'atath</span> (-15 segundos por cada muerte).
+                    Resumen de la Temporada 2 de Míticas+ en <span class="font-semibold text-amber-400">World of Warcraft: Midnight</span> (parche 12.1). Desde +12, <span class="font-semibold text-purple-400">Astucia de Xal'atath</span> revoca los pactos de Xal'atath y cada muerte resta 15 segundos al temporizador.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div class="companion-panel p-4 rounded-xl flex items-center space-x-4">
                     <div class="p-3 bg-stone-800 border border-amber-600/40 rounded-lg text-amber-400"><i class="fa-solid fa-calendar-check text-2xl"></i></div>
                     <div>
@@ -235,22 +240,15 @@
                     <div class="p-3 bg-stone-800 border border-purple-600/40 rounded-lg text-purple-400"><i class="fa-solid fa-skull text-2xl"></i></div>
                     <div>
                         <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider">Afijo M+12</p>
-                        <p class="text-lg font-bold text-purple-300">Astucia Xal'atath</p>
+                        <p class="text-lg font-bold text-purple-300">Astucia de Xal'atath</p>
                         <p class="text-xs text-purple-400">-15s por muerte</p>
                     </div>
                 </div>
                 <div class="companion-panel p-4 rounded-xl flex items-center space-x-4">
                     <div class="p-3 bg-stone-800 border border-emerald-600/40 rounded-lg text-emerald-400"><i class="fa-solid fa-trophy text-2xl"></i></div>
                     <div>
-                        <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider">KSM</p>
-                        <p class="text-lg font-bold text-stone-100">2,000 Pts</p>
-                    </div>
-                </div>
-                <div class="companion-panel p-4 rounded-xl flex items-center space-x-4">
-                    <div class="p-3 bg-stone-800 border border-amber-600/40 rounded-lg text-amber-400"><i class="fa-solid fa-crown text-2xl"></i></div>
-                    <div>
-                        <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider">KSL</p>
-                        <p class="text-lg font-bold text-stone-100">3,000 Pts</p>
+                        <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider">Maestro de piedras angulares</p>
+                        <p class="text-lg font-bold text-stone-100">2,000 de puntuación</p>
                     </div>
                 </div>
             </div>
@@ -261,26 +259,26 @@
                     <div class="chart-container"><canvas id="timersChart"></canvas></div>
                 </div>
                 <div class="companion-panel p-5 rounded-xl flex flex-col justify-between">
-                    <h3 class="font-cinzel font-bold text-amber-400 text-base mb-3"><i class="fa-solid fa-box-open text-amber-500 mr-2"></i>Recompensas e Item Level (iLvl)</h3>
+                    <h3 class="font-cinzel font-bold text-amber-400 text-base mb-3"><i class="fa-solid fa-box-open text-amber-500 mr-2"></i>Gran Cámara: nivel de objeto</h3>
                     <div class="overflow-x-auto custom-scrollbar">
                         <table class="min-w-full text-left text-xs text-stone-300 border-collapse">
                             <thead>
                                 <tr class="bg-[#141210] border-b border-stone-700 text-amber-400 font-cinzel">
-                                    <th class="py-2 px-3">Piedra M+</th>
-                                    <th class="py-2 px-3">Botín Final</th>
-                                    <th class="py-2 px-3">Gran Cámara</th>
-                                    <th class="py-2 px-3">Mejora</th>
+                                    <th class="py-2 px-3">Llave completada</th>
+                                    <th class="py-2 px-3">Nivel de objeto</th>
+                                    <th class="py-2 px-3">Rango de mejora</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-stone-800">
-                                <tr class="hover:bg-stone-900"><td class="py-2 px-3 font-bold text-white">+2</td><td class="py-2 px-3">295 iLvl</td><td class="py-2 px-3 text-emerald-400 font-semibold">305 iLvl</td><td class="py-2 px-3">Campeón 2/6</td></tr>
-                                <tr class="hover:bg-stone-900"><td class="py-2 px-3 font-bold text-white">+4</td><td class="py-2 px-3">298 iLvl</td><td class="py-2 px-3 text-emerald-400 font-semibold">308 iLvl</td><td class="py-2 px-3">Campeón 3/6</td></tr>
-                                <tr class="hover:bg-stone-900"><td class="py-2 px-3 font-bold text-white">+6</td><td class="py-2 px-3">305 iLvl</td><td class="py-2 px-3 text-emerald-400 font-semibold">311 iLvl</td><td class="py-2 px-3">Héroe 1/6</td></tr>
-                                <tr class="hover:bg-stone-900"><td class="py-2 px-3 font-bold text-white">+8</td><td class="py-2 px-3">308 iLvl</td><td class="py-2 px-3 text-emerald-400 font-semibold">315 iLvl</td><td class="py-2 px-3">Héroe 2/6</td></tr>
-                                <tr class="hover:bg-stone-900 bg-amber-950/20"><td class="py-2 px-3 font-bold text-amber-400">+10+</td><td class="py-2 px-3 font-semibold">311 iLvl</td><td class="py-2 px-3 text-amber-400 font-bold">318 iLvl</td><td class="py-2 px-3">Héroe 3/6 → Mítico</td></tr>
+                                <tr class="hover:bg-stone-900"><td class="py-2 px-3 font-bold text-white">+2 y +3</td><td class="py-2 px-3 text-emerald-400 font-semibold">305</td><td class="py-2 px-3">Héroe 1/6</td></tr>
+                                <tr class="hover:bg-stone-900"><td class="py-2 px-3 font-bold text-white">+4 y +5</td><td class="py-2 px-3 text-emerald-400 font-semibold">308</td><td class="py-2 px-3">Héroe 2/6</td></tr>
+                                <tr class="hover:bg-stone-900"><td class="py-2 px-3 font-bold text-white">+6</td><td class="py-2 px-3 text-emerald-400 font-semibold">311</td><td class="py-2 px-3">Héroe 3/6</td></tr>
+                                <tr class="hover:bg-stone-900"><td class="py-2 px-3 font-bold text-white">+7</td><td class="py-2 px-3 text-emerald-400 font-semibold">315</td><td class="py-2 px-3">Héroe 4/6</td></tr>
+                                <tr class="hover:bg-stone-900 bg-amber-950/20"><td class="py-2 px-3 font-bold text-amber-400">+10 o más</td><td class="py-2 px-3 text-amber-400 font-bold">318</td><td class="py-2 px-3">Mito 1/6</td></tr>
                             </tbody>
                         </table>
                     </div>
+                    <p class="text-xs text-stone-400 mt-3">El cofre al final de una +10 o superior da nivel 311 (Héroe 3/6). Subir de +10 no mejora la Gran Cámara. Valores del parche 12.1; pueden cambiar con ajustes de Blizzard.</p>
                 </div>
             </div>
         </section>
@@ -408,7 +406,9 @@
         </section>
     </main>
 
-    <footer class="max-w-7xl mx-auto px-4 py-6 text-[11px] text-stone-500 text-center space-y-1">
+    <div id="toast" role="status" aria-live="polite" class="fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-lg bg-stone-800 border border-stone-600 text-sm text-stone-100 shadow-lg opacity-0 transition-opacity pointer-events-none"></div>
+
+    <footer class="max-w-7xl mx-auto px-4 py-6 text-xs text-stone-400 text-center space-y-1">
         <p>Guía de fans no oficial. Sin afiliación con Blizzard Entertainment. World of Warcraft es una marca de Blizzard Entertainment, Inc.</p>
         <p>Nombres y descripciones de habilidades: <a href="https://www.wowhead.com/mx" target="_blank" rel="noopener" class="underline hover:text-stone-300">Wowhead</a> · <a href="privacidad.html" class="underline hover:text-stone-300">Política de privacidad</a></p>
     </footer>
@@ -461,7 +461,6 @@
                 return;
             }
             renderCalculatorOptions();
-            initTimersChart();
             renderDungeonSelector();
             renderMobileDungeonMenu();
             matrixData = buildMatrixRows();
@@ -470,13 +469,28 @@
             renderClassFilterBadges();
             renderMatrixTable();
             calculatePartyCoverage();
-            // Accesos directos del manifest (p. ej. #tab-matrix) abren esa pestaña.
-            const tabFromHash = location.hash.slice(1);
-            if (document.getElementById(tabFromHash)?.matches('section[id^="tab-"]')) switchTab(tabFromHash);
+            // Abre la pestaña o guía de la dirección (accesos directos del manifest, enlaces compartidos).
+            const initial = location.hash.slice(1) || 'tab-dungeons';
+            history.replaceState({ route: initial }, '', '#' + initial);
+            renderRoute(initial);
             calculateKeyTimes();
         });
 
-        function switchTab(tabId) {
+        // Chart.js (200 KB) solo se carga al abrir la pestaña que tiene la gráfica.
+        let chartReady = null;
+        function ensureTimersChart() {
+            chartReady ??= new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = 'vendor/chart.umd.min.js';
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            }).then(initTimersChart).catch(err => { chartReady = null; console.warn('No se pudo cargar la gráfica', err); });
+            return chartReady;
+        }
+
+        function showTab(tabId) {
+            if (tabId === 'tab-overview') ensureTimersChart();
             ['tab-overview', 'tab-dungeons', 'tab-matrix', 'tab-analyzer', 'tab-calculator'].forEach(t => {
                 document.getElementById(t).classList.add('hidden');
                 document.getElementById(`nav-${t}`)?.classList.remove('active');
@@ -485,7 +499,56 @@
             document.getElementById(`nav-${tabId}`)?.classList.add('active');
         }
 
-        function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+        // ===== Navegación con historial =====
+        // Cada pestaña y cada guía tienen su dirección (#tab-matrix, #mazmorra-voidscar-arena),
+        // así el botón "Atrás" de Android vuelve a la pantalla anterior en vez de cerrar la app,
+        // y se pueden compartir enlaces directos a una guía.
+        const TAB_IDS = ['tab-overview', 'tab-dungeons', 'tab-matrix', 'tab-analyzer', 'tab-calculator'];
+        let currentRoute = null;
+
+        function renderRoute(route) {
+            const dungeonId = route.startsWith('mazmorra-') ? route.slice('mazmorra-'.length) : null;
+            if (dungeonId && dungeonsData.some(d => d.id === dungeonId)) {
+                showTab('tab-dungeons');
+                showDungeon(dungeonId);
+            } else {
+                const tab = TAB_IDS.includes(route) ? route : 'tab-dungeons';
+                showTab(tab);
+                const guideOpen = !document.getElementById('dungeon-detail-view').classList.contains('hidden');
+                if (tab === 'tab-dungeons' && guideOpen) showDungeonGrid();
+                route = tab;
+            }
+            currentRoute = route;
+            document.getElementById('mobile-menu')?.classList.add('hidden');
+            document.getElementById('mobile-menu-btn')?.setAttribute('aria-expanded', 'false');
+            window.scrollTo(0, 0);
+        }
+
+        function navigate(route) {
+            if (route === currentRoute) return renderRoute(route);
+            history.pushState({ route }, '', '#' + route);
+            renderRoute(route);
+        }
+
+        function switchTab(tabId) { navigate(tabId); }
+        function selectDungeon(id) {
+            const fromGrid = currentRoute === 'tab-dungeons';
+            if ('mazmorra-' + id === currentRoute) return;
+            history.pushState({ route: 'mazmorra-' + id, fromGrid }, '', '#mazmorra-' + id);
+            renderRoute('mazmorra-' + id);
+        }
+        function backToDungeonGrid() {
+            // Si llegamos desde la lista, "volver" equivale al botón Atrás.
+            if (history.state?.fromGrid) history.back();
+            else navigate('tab-dungeons');
+        }
+
+        window.addEventListener('popstate', () => renderRoute(location.hash.slice(1)));
+
+        function toggleMobileMenu() {
+            const hidden = document.getElementById('mobile-menu').classList.toggle('hidden');
+            document.getElementById('mobile-menu-btn').setAttribute('aria-expanded', String(!hidden));
+        }
 
         function initTimersChart() {
             if (typeof Chart === 'undefined') {
@@ -529,6 +592,7 @@
                     ${dungeonsData.map(dMap => `
                         <button onclick="selectDungeon('${dMap.id}')"
                                 title="${dMap.name}"
+                                aria-label="${dMap.name}"
                                 style="background-image: url('images/${dMap.id}.webp');"
                                 id="mini-nav-${dMap.id}"
                                 class="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded bg-cover bg-center border-2 transition-all border-stone-600 opacity-50 hover:opacity-100 hover:border-amber-500">
@@ -543,10 +607,10 @@
                         class="group relative dungeon-card rounded-xl p-4 text-left flex flex-col justify-between aspect-square overflow-hidden shadow-xl">
                     <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-amber-500/30 to-transparent rounded-bl-full"></div>
                     <div class="relative z-10">
-                        <span class="text-[10px] font-bold uppercase tracking-wide text-amber-400 drop-shadow">${d.expansion}</span>
-                        <h4 class="font-cinzel font-bold text-xs sm:text-sm mt-1 text-stone-100 leading-tight group-hover:text-amber-300 transition-colors drop-shadow-md">${d.name}</h4>
+                        <span class="text-xs font-bold uppercase tracking-wide text-amber-400 drop-shadow">${d.expansion}</span>
+                        <h3 class="font-cinzel font-bold text-xs sm:text-sm mt-1 text-stone-100 leading-tight group-hover:text-amber-300 transition-colors drop-shadow-md">${d.name}</h3>
                     </div>
-                    <div class="mt-2 text-[11px] font-semibold text-stone-300 flex justify-between items-center relative z-10 border-t pt-2 border-stone-700/60 drop-shadow">
+                    <div class="mt-2 text-xs font-semibold text-stone-300 flex justify-between items-center relative z-10 border-t pt-2 border-stone-700/60 drop-shadow">
                         <span class="flex items-center"><i class="fa-solid fa-stopwatch text-amber-400 mr-1"></i> ${d.timer}</span>
                         <span class="flex items-center"><i class="fa-solid fa-skull text-purple-300 mr-1"></i> ${d.bossesCount} Jefes</span>
                     </div>
@@ -562,8 +626,8 @@
             if (!list) return;
             list.innerHTML = dungeonsData.map(d => `
                 <button onclick="selectDungeonFromMobile('${d.id}')" class="w-full text-left px-2 py-1.5 text-xs text-stone-300 hover:bg-stone-900 hover:text-amber-400 rounded flex items-center justify-between">
-                    <span><i class="fa-solid fa-shield-halved text-[10px] mr-1.5 text-amber-500"></i>${d.name}</span>
-                    <span class="font-mono text-[10px] text-stone-500">${d.timer}</span>
+                    <span><i class="fa-solid fa-shield-halved text-xs mr-1.5 text-amber-500"></i>${d.name}</span>
+                    <span class="font-mono text-xs text-stone-400">${d.timer}</span>
                 </button>
             `).join('');
         }
@@ -608,7 +672,7 @@
         function renderTag(tag) {
             const t = ABILITY_TAGS[tag];
             if (!t) return '';
-            return `<span class="inline-flex items-center gap-1 border rounded px-1.5 py-0.5 text-[10px] font-semibold ${t.cls}"><i class="fa-solid ${t.icon}"></i>${t.label}</span>`;
+            return `<span class="inline-flex items-center gap-1 border rounded px-1.5 py-0.5 text-xs font-semibold ${t.cls}"><i class="fa-solid ${t.icon}"></i>${t.label}</span>`;
         }
 
         function renderAbility(a, compact = false) {
@@ -623,7 +687,7 @@
                             <a href="${wowheadUrl('spell', a.spellId)}" target="_blank" rel="noopener" class="spell-link text-sm hover:underline">${a.name}</a>
                             ${(a.tags || []).map(renderTag).join('')}
                         </div>
-                        ${a.officialDesc ? `<p class="text-[11px] text-stone-400 leading-relaxed">${a.officialDesc}</p>` : ''}
+                        ${a.officialDesc ? `<p class="text-xs text-stone-400 leading-relaxed">${a.officialDesc}</p>` : ''}
                         ${a.note ? `<p class="text-xs text-stone-200 leading-relaxed"><span class="text-amber-400 font-semibold">Táctica:</span> ${a.note}</p>` : ''}
                     </div>
                 </div>`;
@@ -636,22 +700,22 @@
             return `
                 <section id="guide-boss-${index}" class="bg-[#141210] rounded-lg border border-stone-700 scroll-mt-24">
                     <header class="p-4 border-b border-stone-800">
-                        <p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold">Jefe ${index + 1}</p>
+                        <p class="text-xs uppercase tracking-wider text-stone-400 font-bold">Jefe ${index + 1}</p>
                         <h4 class="font-cinzel font-bold text-lg text-amber-300">
                             ${b.npcId ? `<a href="${wowheadUrl('npc', b.npcId)}" target="_blank" rel="noopener" class="hover:underline">${b.name}</a>` : b.name}
                         </h4>
                         <p class="text-xs text-stone-400 italic">${b.desc}</p>
-                        ${npcLinks ? `<p class="text-[11px] text-stone-400 mt-1">${npcLinks}</p>` : ''}
+                        ${npcLinks ? `<p class="text-xs text-stone-400 mt-1">${npcLinks}</p>` : ''}
                     </header>
                     <div class="p-4">
-                        <p class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-1">Habilidades</p>
+                        <p class="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">Habilidades</p>
                         ${b.abilities.map(a => renderAbility(a)).join('')}
                     </div>
                     ${b.tips ? `
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-stone-800 border-t border-stone-800 rounded-b-lg overflow-hidden">
                         ${ROLE_TIPS.filter(r => b.tips[r.key]?.length).map(r => `
                             <div class="bg-stone-900 p-3">
-                                <p class="text-[11px] font-bold uppercase tracking-wider mb-2 ${r.cls}"><i class="fa-solid ${r.icon} mr-1"></i>${r.label}</p>
+                                <p class="text-xs font-bold uppercase tracking-wider mb-2 ${r.cls}"><i class="fa-solid ${r.icon} mr-1"></i>${r.label}</p>
                                 <ul class="space-y-1.5 text-xs text-stone-300 list-disc pl-4">
                                     ${b.tips[r.key].map(t => `<li>${t}</li>`).join('')}
                                 </ul>
@@ -671,13 +735,34 @@
                 </div>`;
         }
 
+        async function shareGuide(id) {
+            const d = dungeonsData.find(x => x.id === id);
+            const url = location.href.split('#')[0] + '#mazmorra-' + id;
+            const data = { title: `${d.name} · Guía Mítica Plus`, text: `Guía de ${d.name} para Míticas+`, url };
+            try {
+                if (navigator.share) return await navigator.share(data);
+                await navigator.clipboard.writeText(url);
+                showToast('Enlace copiado');
+            } catch (err) {
+                if (err?.name !== 'AbortError') showToast('No se pudo compartir');
+            }
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.remove('opacity-0');
+            clearTimeout(showToast.timer);
+            showToast.timer = setTimeout(() => t.classList.add('opacity-0'), 2000);
+        }
+
         function renderGuideBody(d) {
             const minutes = timerToMinutes(d.timer);
             const o = d.overview || {};
             const usedTags = [...new Set([...d.bosses, ...d.trash].flatMap(x => (x.abilities || []).flatMap(a => a.tags || [])))];
             const stat = (label, value) => `
                 <div class="bg-stone-900 border border-stone-700 rounded-lg px-3 py-2">
-                    <p class="text-[10px] uppercase tracking-wider text-stone-500 font-bold">${label}</p>
+                    <p class="text-xs uppercase tracking-wider text-stone-400 font-bold">${label}</p>
                     <p class="text-sm font-bold text-stone-100">${value}</p>
                 </div>`;
             const navLink = (href, label) => `<a href="${href}" onclick="event.preventDefault(); document.querySelector('${href}').scrollIntoView({behavior: 'smooth'})" class="whitespace-nowrap px-3 py-1.5 rounded-full border border-stone-700 bg-stone-900 text-xs text-stone-300 hover:border-amber-500 hover:text-amber-300">${label}</a>`;
@@ -685,7 +770,10 @@
             return `
                 <div class="space-y-6">
                     <section id="guide-overview" class="space-y-3 scroll-mt-24">
-                        ${o.summary ? `<p class="text-sm text-stone-300 leading-relaxed">${o.summary}</p>` : ''}
+                        <div class="flex flex-col sm:flex-row sm:items-start gap-3">
+                            ${o.summary ? `<p class="text-sm text-stone-300 leading-relaxed flex-1">${o.summary}</p>` : '<div class="flex-1"></div>'}
+                            <button onclick="shareGuide('${d.id}')" class="self-start inline-flex items-center gap-2 px-4 py-2.5 min-h-[44px] rounded-lg border border-stone-600 bg-stone-900 text-sm text-stone-200 hover:border-amber-500 hover:text-amber-300"><i class="fa-solid fa-share-nodes" aria-hidden="true"></i>Compartir</button>
+                        </div>
                         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
                             ${stat('Temporizador', d.timer)}
                             ${stat('+2', formatSeconds(minutes * 60 * 0.8))}
@@ -708,16 +796,16 @@
                         <ol class="space-y-2">
                             ${d.route.map((step, i) => `
                                 <li class="flex gap-3 text-xs text-stone-300 leading-relaxed">
-                                    <span class="flex-shrink-0 w-6 h-6 rounded-full ${/^Jefe/.test(step) ? 'bg-amber-600 text-stone-950' : 'bg-stone-800 text-stone-300 border border-stone-600'} font-bold flex items-center justify-center text-[11px]">${i + 1}</span>
+                                    <span class="flex-shrink-0 w-6 h-6 rounded-full ${/^Jefe/.test(step) ? 'bg-amber-600 text-stone-950' : 'bg-stone-800 text-stone-300 border border-stone-600'} font-bold flex items-center justify-center text-xs">${i + 1}</span>
                                     <span class="pt-0.5 ${/^Jefe/.test(step) ? 'font-semibold text-amber-200' : ''}">${step}</span>
                                 </li>`).join('')}
                         </ol>
-                        <p class="text-[10px] text-stone-500 mt-3">Orden general de la mazmorra. El mapa con los pulls numerados llegará en una próxima versión.</p>
+                        <p class="text-xs text-stone-400 mt-3">Orden general de la mazmorra. El mapa con los pulls numerados llegará en una próxima versión.</p>
                     </section>` : ''}
 
                     ${usedTags.length ? `
                     <div class="flex flex-wrap gap-1.5 items-center">
-                        <span class="text-[10px] uppercase tracking-wider text-stone-500 font-bold mr-1">Leyenda:</span>
+                        <span class="text-xs uppercase tracking-wider text-stone-400 font-bold mr-1">Leyenda:</span>
                         ${usedTags.map(renderTag).join('')}
                     </div>` : ''}
 
@@ -729,13 +817,13 @@
                         <div id="guide-trash" class="space-y-4 scroll-mt-24">
                             <h3 class="font-cinzel font-bold text-lg text-amber-400 border-b border-stone-700 pb-2"><i class="fa-solid fa-biohazard text-amber-500 mr-2"></i>Trash importante</h3>
                             ${d.trash.map(renderTrashGuide).join('')}
-                            <p class="text-[10px] text-stone-500">Nombres y descripciones oficiales de <a href="https://www.wowhead.com/mx" target="_blank" rel="noopener" class="underline hover:text-stone-300">Wowhead</a> (es-MX).</p>
+                            <p class="text-xs text-stone-400">Nombres y descripciones oficiales de <a href="https://www.wowhead.com/mx" target="_blank" rel="noopener" class="underline hover:text-stone-300">Wowhead</a> (es-MX).</p>
                         </div>
                     </div>
                 </div>`;
         }
 
-        function selectDungeon(id) {
+        function showDungeon(id) {
             const d = dungeonsData.find(x => x.id === id);
             const gridView = document.getElementById('dungeon-grid-view');
             const detailView = document.getElementById('dungeon-detail-view');
@@ -777,12 +865,11 @@
         }
 
         function selectDungeonFromMobile(id) {
-            switchTab('tab-dungeons');
             toggleMobileMenu();
             selectDungeon(id);
         }
 
-        function backToDungeonGrid() {
+        function showDungeonGrid() {
             const gridView = document.getElementById('dungeon-grid-view');
             const detailView = document.getElementById('dungeon-detail-view');
 
@@ -877,20 +964,20 @@
         function renderCounters(tag, onlyClass) {
             return countersFor(tag)
                 .filter(c => !onlyClass || onlyClass === 'ALL' || c.cls === onlyClass)
-                .map(c => `<span class="inline-block mr-2 mb-1"><span style="${classStyle(c.cls)}">${c.cls}</span>: <a href="${wowheadUrl('spell', c.spell.spellId)}" target="_blank" rel="noopener" class="hover:underline">${c.spell.name}</a>${c.roles ? ` <span class="text-stone-500">(${c.roles.map(r => ROLE_LABELS[r]).join(' / ')})</span>` : ''}</span>`)
+                .map(c => `<span class="inline-block mr-2 mb-1"><span style="${classStyle(c.cls)}">${c.cls}</span>: <a href="${wowheadUrl('spell', c.spell.spellId)}" target="_blank" rel="noopener" class="hover:underline">${c.spell.name}</a>${c.roles ? ` <span class="text-stone-400">(${c.roles.map(r => ROLE_LABELS[r]).join(' / ')})</span>` : ''}</span>`)
                 .join('');
         }
 
         function renderMatrixTable(data = matrixData) {
             const body = document.getElementById('matrix-table-body');
             if (!data.length) {
-                body.innerHTML = `<tr><td colspan="5" class="py-6 px-4 text-center text-stone-500">No hay mecánicas con esos filtros.</td></tr>`;
+                body.innerHTML = `<tr><td colspan="5" class="py-6 px-4 text-center text-stone-400">No hay mecánicas con esos filtros.</td></tr>`;
                 return;
             }
             body.innerHTML = data.map(r => `
                 <tr class="hover:bg-stone-900 transition-colors align-top">
                     <td class="py-3 px-4 font-semibold text-amber-400 whitespace-nowrap">${r.dungeon}</td>
-                    <td class="py-3 px-4 font-medium text-stone-200">${r.enemy} <span class="block text-[10px] text-stone-500">${r.kind}</span></td>
+                    <td class="py-3 px-4 font-medium text-stone-200">${r.enemy} <span class="block text-xs text-stone-400">${r.kind}</span></td>
                     <td class="py-3 px-4"><a href="${wowheadUrl('spell', r.ability.spellId)}" target="_blank" rel="noopener" class="spell-link inline-flex items-center gap-1.5 hover:underline">${r.ability.icon ? `<img src="images/spells/${r.ability.icon}.jpg" alt="" class="w-5 h-5 rounded border border-stone-600">` : ''}${r.ability.name}</a></td>
                     <td class="py-3 px-4 whitespace-nowrap">${renderTag(r.tag)}</td>
                     <td class="py-3 px-4 text-stone-200">${renderCounters(r.tag, activeClassFilter)}</td>
@@ -907,11 +994,22 @@
             { id: 'party-dps3', role: 'dps', default: 'Chamán' },
         ];
 
+        // El grupo elegido se recuerda en el dispositivo (solo localStorage, nada sale del teléfono).
+        const PARTY_STORAGE_KEY = 'guia-mitica:grupo';
+        function loadSavedParty() {
+            try { return JSON.parse(localStorage.getItem(PARTY_STORAGE_KEY)) || {}; } catch { return {}; }
+        }
+        function saveParty(party) {
+            try { localStorage.setItem(PARTY_STORAGE_KEY, JSON.stringify(party)); } catch { /* almacenamiento no disponible */ }
+        }
+
         function populatePartySelects() {
+            const saved = loadSavedParty();
             for (const slot of PARTY_SLOTS) {
-                document.getElementById(slot.id).innerHTML = classNames
-                    .filter(c => classesData[c].roles.includes(slot.role))
-                    .map(c => `<option value="${c}" ${c === slot.default ? 'selected' : ''}>${c}</option>`)
+                const options = classNames.filter(c => classesData[c].roles.includes(slot.role));
+                const chosen = options.includes(saved[slot.id]) ? saved[slot.id] : slot.default;
+                document.getElementById(slot.id).innerHTML = options
+                    .map(c => `<option value="${c}" ${c === chosen ? 'selected' : ''}>${c}</option>`)
                     .join('');
             }
         }
@@ -922,6 +1020,7 @@
 
         function calculatePartyCoverage() {
             const party = PARTY_SLOTS.map(s => ({ cls: document.getElementById(s.id).value, role: s.role }));
+            saveParty(Object.fromEntries(PARTY_SLOTS.map((s, i) => [s.id, party[i].cls])));
             const needed = COUNTER_TAGS.filter(t => matrixData.some(r => r.tag === t));
 
             const coverage = needed.map(tag => ({
@@ -940,7 +1039,7 @@
                 <div class="p-3 border rounded-lg text-xs ${c.by.length ? 'bg-emerald-950/40 border-emerald-800 text-emerald-300' : 'bg-red-950/40 border-red-800 text-red-300'}">
                     <div class="mb-1">${renderTag(c.tag)}</div>
                     <b>${c.by.length ? (c.tag === 'interrumpir' ? `${c.by.length} de 5 jugadores` : 'Cubierto') : 'Falta'}</b>
-                    <span class="block text-[10px] text-stone-400 mt-0.5">${c.uses} mecánica${c.uses === 1 ? '' : 's'} en la temporada</span>
+                    <span class="block text-xs text-stone-400 mt-0.5">${c.uses} mecánica${c.uses === 1 ? '' : 's'} en la temporada</span>
                     ${c.by.length ? `<span class="block mt-1">${c.by.map(x => `<span style="${classStyle(x.m.cls)}">${x.m.cls}</span>: ${x.spell.name}`).join('<br>')}</span>` : ''}
                 </div>`).join('');
 

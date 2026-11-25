@@ -1,5 +1,5 @@
 // CACHE_NAME y PRECACHE_ASSETS los genera tools/build-sw.js (npm run build:sw).
-const CACHE_NAME = 'mythic-plus-58f1a1142a';
+const CACHE_NAME = 'mythic-plus-a54365c5a9';
 
 // Todo lo que la app necesita para funcionar sin conexión.
 const PRECACHE_ASSETS = [
@@ -11,11 +11,8 @@ const PRECACHE_ASSETS = [
     './data/classes.json',
     './data/dungeons.json',
     './vendor/chart.umd.min.js',
-    './vendor/fontawesome/css/all.min.css',
-    './vendor/fontawesome/webfonts/fa-brands-400.woff2',
-    './vendor/fontawesome/webfonts/fa-regular-400.woff2',
-    './vendor/fontawesome/webfonts/fa-solid-900.woff2',
-    './vendor/fontawesome/webfonts/fa-v4compatibility.woff2',
+    './vendor/fontawesome/fa-solid-subset.woff2',
+    './vendor/fontawesome/icons.css',
     './vendor/fonts/cinzel-latin-600-normal.woff2',
     './vendor/fonts/cinzel-latin-700-normal.woff2',
     './vendor/fonts/cinzel-latin-800-normal.woff2',

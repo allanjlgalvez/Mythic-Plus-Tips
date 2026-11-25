@@ -116,15 +116,54 @@
   "shortcuts": [
     {
       "name": "Guía de mazmorras",
-      "url": "/Mythic-Plus-Tips/index.html#tab-dungeons"
+      "url": "/Mythic-Plus-Tips/index.html#tab-dungeons",
+      "short_name": "Guía",
+      "icons": [
+        {
+          "src": "images/launchericon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        },
+        {
+          "src": "images/launchericon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Matriz de contramedidas",
-      "url": "/Mythic-Plus-Tips/index.html#tab-matrix"
+      "url": "/Mythic-Plus-Tips/index.html#tab-matrix",
+      "short_name": "Matriz",
+      "icons": [
+        {
+          "src": "images/launchericon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        },
+        {
+          "src": "images/launchericon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     },
     {
       "name": "Analizador de grupo",
-      "url": "/Mythic-Plus-Tips/index.html#tab-analyzer"
+      "url": "/Mythic-Plus-Tips/index.html#tab-analyzer",
+      "short_name": "Analizador",
+      "icons": [
+        {
+          "src": "images/launchericon-96x96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        },
+        {
+          "src": "images/launchericon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }

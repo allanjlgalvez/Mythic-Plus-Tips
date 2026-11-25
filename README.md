@@ -5,14 +5,20 @@ Mythic plus dungeon helper with matrix approach
 
 La app no depende de CDNs: Tailwind, Chart.js, Font Awesome y las fuentes viven en `css/` y `vendor/`, y el service worker (`sw.js`) los precachea para que funcione offline.
 
-Después de cambiar `index.html`, los datos o las imágenes, regenera el CSS y la lista de precarga del service worker:
+Requisitos: Node 22 y Python 3 (`pip install -r tools/requirements.txt`).
+
+Después de cambiar `index.html`, los datos o las imágenes:
 
 ```bash
 npm install
 npm run build
+npm run check
 ```
 
-`npm run build` compila Tailwind (`build:css`) y regenera `PRECACHE_ASSETS` y `CACHE_NAME` en `sw.js` (`build:sw`); no hay que editarlos a mano.
+- `npm run build`: genera el subconjunto de íconos de Font Awesome (`build:icons`), compila Tailwind (`build:css`) y regenera `PRECACHE_ASSETS` y `CACHE_NAME` en `sw.js` (`build:sw`). No hay que editarlos a mano.
+- `npm run check`: valida los datos (`validate`) y abre la app en Chromium para recorrer las 8 guías, la matriz, el analizador y la gráfica (`test`).
+
+GitHub Actions corre lo mismo en cada push y pull request (`.github/workflows/ci.yml`), y falla si falta hacer commit de algún archivo generado.
 
 ## Datos de mazmorras
 
@@ -41,3 +47,14 @@ También sincroniza `data/classes.json`. Rellena `name`, `icon` y `officialDesc`
 - La **Matriz de Contramedidas** se genera sola: cada habilidad con etiqueta `interrumpir`, `aturdir`, `disipar-*`, `calmar` o `purgar` aparece como fila, con las clases que la pueden resolver.
 - El **Analizador de grupo** cruza esas mismas etiquetas con `data/classes.json` (qué habilidad de cada clase resuelve cada etiqueta y en qué rol) y avisa qué mecánicas de cada mazmorra no cubre el grupo.
 - Cada mazmorra tiene una **ruta** (`route`): una lista de pasos en orden.
+
+## App Android (Google Play)
+
+El proyecto Android está en `android/` (TWA generada con Bubblewrap, destino Android 16 / API 36). Los pasos para publicar y actualizar están en [`docs/PUBLICAR-ANDROID.md`](docs/PUBLICAR-ANDROID.md). La llave de firma **nunca** se sube al repositorio.
+
+## Navegación
+
+Cada pantalla tiene su dirección, así el botón "Atrás" de Android funciona y se pueden compartir enlaces:
+
+- Pestañas: `#tab-dungeons`, `#tab-overview`, `#tab-matrix`, `#tab-analyzer`, `#tab-calculator`
+- Guía de una mazmorra: `#mazmorra-<id>` (por ejemplo `#mazmorra-voidscar-arena`)
