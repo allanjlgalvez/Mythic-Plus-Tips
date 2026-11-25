@@ -1,0 +1,45 @@
+name: Revisión
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias
+        run: |
+          npm ci
+          pip install -r tools/requirements.txt
+          npx playwright install --with-deps chromium
+
+      - name: Validar datos
+        run: npm run validate
+
+      - name: Los archivos generados están al día
+        run: |
+          npm run build
+          if ! git diff --quiet; then
+            echo "::error::Faltan archivos generados. Corre 'npm run build' y haz commit de los cambios."
+            git --no-pager diff --stat
+            exit 1
+          fi
+
+      - name: Prueba de humo en Chromium
+        run: npm test

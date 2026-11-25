@@ -1,0 +1,11 @@
+guia-mitica-plus-upload.keystore
+*.keystore
+*.jks
+build/
+app/build/
+.gradle/
+local.properties
+*.apk
+*.aab
+*.idsig
+dist/

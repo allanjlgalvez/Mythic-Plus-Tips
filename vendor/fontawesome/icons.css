@@ -1,0 +1,43 @@
+/* Font Awesome Free 6.5.1 (subconjunto generado por tools/build-icons.py). Licencia: ver LICENSE.txt */
+@font-face{font-family:"FA Solid";font-style:normal;font-weight:900;font-display:block;src:url(fa-solid-subset.woff2) format("woff2")}
+.fa-solid{font-family:"FA Solid";font-weight:900;font-style:normal;font-variant:normal;line-height:1;display:inline-block;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.fa-arrow-left:before{content:"\f060"}
+.fa-arrows-left-right:before{content:"\f07e"}
+.fa-bars:before{content:"\f0c9"}
+.fa-biohazard:before{content:"\f780"}
+.fa-bolt:before{content:"\f0e7"}
+.fa-book-bookmark:before{content:"\e0bb"}
+.fa-box-open:before{content:"\f49e"}
+.fa-broom:before{content:"\f51a"}
+.fa-bullseye:before{content:"\f140"}
+.fa-calculator:before{content:"\f1ec"}
+.fa-calendar-check:before{content:"\f274"}
+.fa-caret-up:before{content:"\f0d8"}
+.fa-chart-pie:before{content:"\f200"}
+.fa-circle-info:before{content:"\f05a"}
+.fa-compass:before{content:"\f14e"}
+.fa-crosshairs:before{content:"\f05b"}
+.fa-crown:before{content:"\f521"}
+.fa-dungeon:before{content:"\f6d9"}
+.fa-face-angry:before{content:"\f556"}
+.fa-flask:before{content:"\f0c3"}
+.fa-hand:before{content:"\f256"}
+.fa-heart-pulse:before{content:"\f21e"}
+.fa-khanda:before{content:"\f66d"}
+.fa-map-location-dot:before{content:"\f5a0"}
+.fa-person-running:before{content:"\f70c"}
+.fa-route:before{content:"\f4d7"}
+.fa-seedling:before{content:"\f4d8"}
+.fa-share-nodes:before{content:"\f1e0"}
+.fa-shield-halved:before{content:"\f3ed"}
+.fa-skull:before{content:"\f54c"}
+.fa-square-check:before{content:"\f14a"}
+.fa-star:before{content:"\f005"}
+.fa-stopwatch:before{content:"\f2f2"}
+.fa-table-list:before{content:"\f00b"}
+.fa-trophy:before{content:"\f091"}
+.fa-users:before{content:"\f0c0"}
+.fa-users-gear:before{content:"\f509"}
+.fa-users-viewfinder:before{content:"\e595"}
+.fa-virus:before{content:"\e074"}
+.fa-wand-sparkles:before{content:"\f72b"}
