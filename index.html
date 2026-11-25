@@ -167,10 +167,13 @@
                     </button>
                 </nav>
 
-                <div class="md:hidden">
+                <div class="flex items-center gap-1">
+                    <span id="sound-slot" class="contents"></span>
+                    <div class="md:hidden">
                     <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Abrir menú" aria-controls="mobile-menu" aria-expanded="false" class="text-stone-300 hover:text-white p-3">
                         <i class="fa-solid fa-bars text-xl"></i>
                     </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1068,6 +1071,67 @@
             document.getElementById('time-plus1').innerText = formatSeconds(s);
         }
         function formatSeconds(sec) { const m = Math.floor(sec/60); const s = Math.floor(sec%60); return `${m}:${s<10?'0':''}${s}`; }
+    </script>
+    <script>
+        // Sonidos de interfaz generados con Web Audio (sin archivos externos ni licencias de Blizzard).
+        // Empiezan apagados; el botón de la esquina los activa y la preferencia se guarda en el dispositivo.
+        (function () {
+            const KEY = 'mythic-sound-muted';
+            let ctx = null;
+            let muted = true;
+            try { muted = localStorage.getItem(KEY) !== '0'; } catch { /* sin almacenamiento: apagados */ }
+
+            function getCtx() {
+                if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+                if (ctx.state === 'suspended') ctx.resume();
+                return ctx;
+            }
+
+            function playClick() {
+                if (muted) return;
+                const c = getCtx();
+                const t = c.currentTime;
+                const osc = c.createOscillator();
+                const gain = c.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(900, t);
+                osc.frequency.exponentialRampToValueAtTime(380, t + 0.07);
+                gain.gain.setValueAtTime(0.0001, t);
+                gain.gain.exponentialRampToValueAtTime(0.18, t + 0.008);
+                gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.09);
+                osc.connect(gain).connect(c.destination);
+                osc.start(t);
+                osc.stop(t + 0.1);
+            }
+
+            const toggle = document.createElement('button');
+            toggle.id = 'sound-toggle';
+            toggle.type = 'button';
+            toggle.className = 'w-11 h-11 rounded-full text-stone-300 flex items-center justify-center hover:text-amber-300 hover:bg-stone-800';
+            function renderToggle() {
+                const label = muted ? 'Activar sonidos' : 'Silenciar sonidos';
+                toggle.innerHTML = `<i class="fa-solid ${muted ? 'fa-volume-xmark' : 'fa-volume-high'}" aria-hidden="true"></i>`;
+                toggle.setAttribute('aria-label', label);
+                toggle.setAttribute('aria-pressed', String(!muted));
+                toggle.title = label;
+            }
+            toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                muted = !muted;
+                try { localStorage.setItem(KEY, muted ? '1' : '0'); } catch { /* sin almacenamiento */ }
+                renderToggle();
+                if (!muted) playClick();
+            });
+            renderToggle();
+            (document.getElementById('sound-slot') || document.body).appendChild(toggle);
+
+            // Un sonido por toque o clic en controles interactivos.
+            const selector = 'button, a, [role="button"], .dungeon-card';
+            document.addEventListener('pointerdown', function (e) {
+                const el = e.target.closest && e.target.closest(selector);
+                if (el && el !== toggle && !toggle.contains(el)) playClick();
+            }, { passive: true });
+        })();
     </script>
 </body>
 </html>

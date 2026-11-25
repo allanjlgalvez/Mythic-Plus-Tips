@@ -1,5 +1,5 @@
 // CACHE_NAME y PRECACHE_ASSETS los genera tools/build-sw.js (npm run build:sw).
-const CACHE_NAME = 'mythic-plus-a54365c5a9';
+const CACHE_NAME = 'mythic-plus-1c7121f400';
 
 // Todo lo que la app necesita para funcionar sin conexión.
 const PRECACHE_ASSETS = [
